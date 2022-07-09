@@ -3,6 +3,7 @@ import Nav from "./components/partials/Nav";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import AddWorld from "./components/AddWorld";
 import User from "./components/User";
 import { Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/addworld" element={<AddWorld />} />
       </Routes>
     </div>
   );

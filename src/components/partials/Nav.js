@@ -13,6 +13,9 @@ function Nav() {
         <li>
           <a href="/register">Register</a>
         </li>
+        <li>
+          <a href="/addworld">Add world</a>
+        </li>
       </ul>
     </nav>
   );
