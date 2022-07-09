@@ -11,16 +11,16 @@ function AddWorld() {
   });
 
   const onSearch = async (text) => {
-    // const results = `https://api.tvmaze.com/search/shows?q=${text}`;
     const results = await Api.get("/", {
       params: { q: text },
     });
-    console.log("addworld", results);
+    //console.log("addworld", results);
+
     setState((prevState) => {
       return { ...prevState, results: results };
     });
   };
-
+  //console.log("state results", state.results);
   //  `https://api.tvmaze.com/search/shows?q=${}`
   return (
     <div className="App">
