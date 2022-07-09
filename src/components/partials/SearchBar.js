@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { isValidElement, useState } from "react";
 
 //
 function SearchBar(props) {
@@ -15,9 +15,13 @@ function SearchBar(props) {
       onSearch(searchText);
     }
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <div className="search">
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="keyword"
