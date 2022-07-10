@@ -6,7 +6,7 @@ import Register from "./components/Register";
 import AddWorld from "./components/AddWorld";
 import User from "./components/User";
 import { Routes, Route } from "react-router-dom";
-// const vrchat = require("vrchat");
+import vrchat from "vrchat";
 
 // console.log("PROCESS: ", process.env)
 // console.log("PROCESS.USERNAME: ", process.env.REACT_APP_PASSWORD)
