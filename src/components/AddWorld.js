@@ -6,22 +6,22 @@ import Api from "../api/Api";
 import WorldList from "./partials/WorldList";
 
 function AddWorld() {
+  //Creates state and sets to empty array
   const [state, setState] = useState({
     results: [],
   });
 
+  //Takes input field and adds submit to API url
   const onSearch = async (text) => {
     const results = await Api.get("/", {
       params: { q: text },
     });
-    //console.log("addworld", results);
 
     setState((prevState) => {
       return { ...prevState, results: results };
     });
   };
-  //console.log("state results", state.results);
-  //  `https://api.tvmaze.com/search/shows?q=${}`
+
   return (
     <div className="App">
       <h1>Add World</h1>

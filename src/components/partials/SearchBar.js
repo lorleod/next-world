@@ -6,16 +6,20 @@ function SearchBar(props) {
   const { onSearch } = props;
   const [searchText, setSearchText] = useState("");
 
+  //Changes state to input field
   const handleInput = (event) => {
     const text = event.target.value;
     setSearchText(text);
   };
+
+  //Allows input to be submit by enter
   const handleEnter = (event) => {
     if (event.key === "Enter") {
       onSearch(searchText);
     }
   };
 
+  //Prevents refresh on Submit
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -29,7 +33,6 @@ function SearchBar(props) {
           onKeyPress={handleEnter}
           value={searchText}
         ></input>
-
         {adv ? (
           <div className="advanced-search">
             <input type="text" placeholder="Worldid" name="worldid"></input>
