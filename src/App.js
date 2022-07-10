@@ -1,7 +1,7 @@
 const vrchat = require("vrchat");
 
 import { Routes, Route } from "react-router-dom";
-import { USERNAME, PASSWORD } from './.env'
+import { USERNAME, PASSWORD } from '../.env.local'
 
 import "./App.scss";
 import Nav from "./components/partials/Nav";
