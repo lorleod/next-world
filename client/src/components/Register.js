@@ -8,7 +8,7 @@ function Register() {
   const submit = (event) => {
     event.preventDefault();
     console.log(username + password);
-    axios.post("http://localhost:3001/register/insert", {
+    axios.post("http://localhost:3001/user/register", {
       username: username,
       password: password,
     });
