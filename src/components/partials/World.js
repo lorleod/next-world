@@ -1,3 +1,5 @@
+import "./world.scss";
+
 function World(props) {
   const { show } = props.show;
   return (
