@@ -1,4 +1,12 @@
-.show-world {
+.world-box {
   margin: 10px 0;
   border-style: solid;
+  background-color: aquamarine;
+  display: flex;
+}
+
+.world-box i {
+  display: flex;
+  justify-content: center;
+  width: 50px;
 }

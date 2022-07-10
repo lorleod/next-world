@@ -10,7 +10,6 @@ function WorldList({ results }) {
 
   //Maps through data and adds as prop to world.js
   let showList = data.map((item) => <World key={item.show.id} show={item} />);
-  console.log("data in worldlist", data);
   return <div className="result">{showList}</div>;
 }
 

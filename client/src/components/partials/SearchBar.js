@@ -6,6 +6,16 @@ function SearchBar(props) {
   const { onSearch } = props;
   const [searchText, setSearchText] = useState("");
 
+  //onClick handler for showing advance form
+  const show = () => {
+    setAdv(true);
+  };
+
+  //onClick handler for hidding advance form
+  const hide = () => {
+    setAdv(false);
+  };
+
   //Changes state to input field
   const handleInput = (event) => {
     const text = event.target.value;
@@ -37,12 +47,11 @@ function SearchBar(props) {
           <div className="advanced-search">
             <input type="text" placeholder="Worldid" name="worldid"></input>
             <input type="text" placeholder="author" name="author"></input>
-            <button onClick={() => setAdv(false)}>Hide</button>
+            <button onClick={hide}>Hide</button>
           </div>
         ) : null}
-        <button>Search</button>
         {!adv ? (
-          <button type="button" onClick={() => setAdv(true)}>
+          <button type="button" onClick={show}>
             Advanced
           </button>
         ) : null}
