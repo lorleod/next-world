@@ -3,7 +3,7 @@ const app = express();
 const port = 3001;
 const mongo = require("./mongo");
 
-const UsersSchema = require("./models/Users");
+const UsersSchema = require("./Schema/users-schema");
 
 app.use(express.json());
 
