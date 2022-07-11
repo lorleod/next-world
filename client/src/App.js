@@ -3,7 +3,7 @@ import Nav from "./components/partials/Nav";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import UserDashboard from "./components/User";
+import UserDashboard from "./components/UserDashboard";
 import { Routes, Route } from "react-router-dom";
 
 function App() {

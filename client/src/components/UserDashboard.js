@@ -1,17 +1,18 @@
 import "../App.scss";
 import { useEffect } from "react";
+// import jwt from "jsonwebtoken";
 
 function UserDashboard() {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const user = jwt.decode(token);
-      if (!user) {
-        localStorage.removeItem("token");
-        window.localtion.href = "/login";
-      }
-    }
-  });
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     const user = jwt.decode(token);
+  //     if (!user) {
+  //       localStorage.removeItem("token");
+  //       window.localtion.href = "/login";
+  //     }
+  //   }
+  // });
 
   return (
     <div className="App">
