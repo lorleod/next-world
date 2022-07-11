@@ -12,7 +12,8 @@ function Register() {
       username: username,
       password: password,
     });
-    console.log(response.data);
+    let data = response.data;
+    console.log(data);
   };
   return (
     <div className="App">
