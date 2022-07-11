@@ -5,6 +5,7 @@ const port = 3001;
 const mongoose = require("mongoose");
 const usersRoute = require("./routes/users");
 const loginRoute = require("./routes/login");
+const api = require("./routes/getWorld")
 require("./vrcApi");
 
 
@@ -17,6 +18,7 @@ require("dotenv").config();
 //Routes
 app.use("/user/register", usersRoute);
 app.use("/user/login", loginRoute);
+app.use("/api/getWorld", api)
 
 //Connecting to MongoDB
 mongoose.connect(

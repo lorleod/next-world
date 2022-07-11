@@ -1,4 +1,8 @@
 const vrchat = require("vrchat");
+require('dotenv').config();
+
+
+console.log(".env: ", process.env.VRCUSER, process.env.VRCPASSWORD);
 
 // Step 1. We begin with creating a Configuration, which contains the username and password for authentication.
 const configuration = new vrchat.Configuration({
@@ -26,3 +30,5 @@ AuthenticationApi.getCurrentUser()
 }).catch(error => {
   console.log("ERROR:", error)
 });
+
+module.exports = { WorldsApi };
