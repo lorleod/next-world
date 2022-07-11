@@ -18,6 +18,9 @@ router.post("/", async (req, res, next) => {
         );
         return res.json({ status: "ok", user: token });
       }
+      if (err) {
+        return res.json({ status: "error", message: "passwords don't match" });
+      }
     });
   } else {
     return res.json({ status: "error", user: false });
