@@ -8,15 +8,19 @@ function Login() {
   const submit = async (event) => {
     event.preventDefault();
     //console.log(username, password);
-    const response = await axios.post("http://localhost:3001/user/login", {
-      username: username,
-      password: password,
-    });
+    const response = await axios.post(
+      "http://localhost:3001/user/login",
+      {
+        username: username,
+        password: password,
+      },
+      { withCredentials: true, credentials: "include" }
+    );
     const data = response.data;
 
     if (data.user) {
       alert("Login successful");
-      window.location.href = "/";
+      //window.location.href = "/";
     } else {
       alert("Please check credentials");
     }

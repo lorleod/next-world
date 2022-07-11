@@ -3,8 +3,10 @@ const cors = require("cors");
 const app = express();
 const port = 3001;
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const usersRoute = require("./routes/users");
 const loginRoute = require("./routes/login");
+const logoutRoute = require("./routes/logout");
 
 // Step 1. We begin with creating a Configuration, which contains the username and password for authentication.
 const vrchat = require("vrchat");
@@ -29,12 +31,14 @@ AuthenticationApi.getCurrentUser()
 
 //Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser());
 require("dotenv").config();
 
 //Routes
 app.use("/user/register", usersRoute);
 app.use("/user/login", loginRoute);
+app.use("/user/logout", logoutRoute);
 
 //Connecting to MongoDB
 mongoose.connect(
