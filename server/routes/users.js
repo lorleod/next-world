@@ -8,9 +8,9 @@ router.post("/", async (req, res) => {
   try {
     const user = new User({ Username: username, Password: password });
     await user.save();
-    console.log("user created");
+    res.json({ status: "ok", message: "user created" });
   } catch (err) {
-    console.log("username already taken");
+    res.json({ status: "error", message: "username already created" });
   }
 });
 

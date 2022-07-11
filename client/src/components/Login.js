@@ -5,14 +5,25 @@ import axios from "axios";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
-    console.log(username, password);
-    axios.post("http://localhost:3001/user/login", {
+    //console.log(username, password);
+    const response = await axios.post("http://localhost:3001/user/login", {
       username: username,
       password: password,
     });
+    const data = response.data;
+
+    if (data.user) {
+      alert("Login successful");
+      window.location.href = "/";
+    } else {
+      alert("Please check credentials");
+    }
+
+    console.log(data);
   };
+
   return (
     <div className="App">
       <h1>Login</h1>

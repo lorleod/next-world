@@ -13,15 +13,15 @@ const User = mongoose.Schema({
   },
 });
 
-User.pre("save", async function (next) {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(this.Password, salt);
-    this.Password = hashedPassword;
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
+// User.pre("save", async function (next) {
+//   try {
+//     const salt = await bcrypt.genSalt(10);
+//     const hashedPassword = await bcrypt.hash(this.Password, salt);
+//     this.Password = hashedPassword;
+//     next();
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = mongoose.model("users", User);
