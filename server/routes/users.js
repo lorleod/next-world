@@ -1,15 +1,16 @@
 const router = require("express").Router();
 
-const usersSchema = require("../Schema/users-schema");
+const User = require("../Schema/users-schema");
 router.post("/", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const user = new usersSchema({ Username: username, Password: password });
+
   try {
+    const user = new User({ Username: username, Password: password });
     await user.save();
-    res.send("inserted into users");
+    console.log("user created");
   } catch (err) {
-    console.log(err);
+    console.log("username already taken");
   }
 });
 
