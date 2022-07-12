@@ -20,7 +20,7 @@ function Login() {
 
     if (data.user) {
       alert("Login successful");
-      //window.location.href = "/";
+      window.location.href = "/user";
     } else {
       alert("Please check credentials");
     }
