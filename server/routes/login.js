@@ -6,14 +6,14 @@ router.post("/", async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const maxAge = 1000 * 60 * 60 * 24 * 7;
-  const user = await User.findOne({ Username: username });
+  const user = await User.findOne({ username: username });
 
   if (user) {
-    bcrypt.compare(password, user.Password, (err, isValid) => {
+    bcrypt.compare(password, user.password, (err, isValid) => {
       if (isValid) {
         const token = jwt.sign(
           {
-            Username: user.Username,
+            username: user.username,
             _id: user._id,
           },
           "secret123"

@@ -6,19 +6,24 @@ import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 
 function Nav() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const cookie = Cookies.get();
 
+  //Changes state if user is logged in
   useEffect(() => {
     if (cookie.jwt) {
-      setUser(false);
+      setUser(true);
     }
   });
 
-  console.log("user", user);
+  //Sends logout sumbit to backend to delete the cookies
   const logout = async (event) => {
     event.preventDefault();
-    const response = await axios.get("http://localhost:3001/user/logout");
+    const response = await axios.post(
+      "http://localhost:3001/user/logout",
+      {},
+      { withCredentials: true }
+    );
     const data = response.data;
 
     if (data.message === "logout successful") {
@@ -34,7 +39,7 @@ function Nav() {
       <h3>
         <Link to="/">NextWorld</Link>
       </h3>
-      {user ? (
+      {!user ? (
         <ul className="nav-links">
           <li>
             <Link to="/login">Login</Link>
@@ -44,7 +49,7 @@ function Nav() {
           </li>
         </ul>
       ) : null}
-      {!user ? (
+      {user ? (
         <ul className="nav-links">
           <li>
             <button onClick={logout}>Logout</button>

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Playlistdb = mongoose.Schema({
+const Playlist = mongoose.Schema({
   id: {
     type: Number,
     required: true,

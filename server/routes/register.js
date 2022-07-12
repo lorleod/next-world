@@ -2,8 +2,11 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const User = require("../Schema/users-schema");
 router.post("/", async (req, res) => {
+
+  console.log("registration posted!")
   const username = req.body.username;
   const password = req.body.password;
+  console.log("register.js router.post username: ", username)
 
   const maxAge = 1000 * 60 * 60 * 24 * 7;
   const createToken = (id) => {
@@ -11,12 +14,13 @@ router.post("/", async (req, res) => {
   };
 
   try {
-    const user = await User.create({ Username: username, Password: password });
+    const user = await User.create({ username: username, password: password });
     const token = createToken(user._id);
     res.cookie("jwt", token, { maxAge: maxAge });
     res.status(201).json({ user: user._id });
   } catch (err) {
-    res.json({ status: "error", message: "username already created" });
+    console.log(err);
+    res.json({ status: "error", message: err });
   }
 });
 

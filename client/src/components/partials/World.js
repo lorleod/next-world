@@ -1,8 +1,16 @@
 import "./world.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import axios from "axios";
 function World(props) {
   const submit = () => {
-    console.log("posts to database");
+    console.log("id in WORLD: ", props.id);
+
+    axios.put('http://localhost:3001/api/playlist', {worldId: props.id})
+      .then((data) => {
+        console.log("Inside World axios put: ", data)
+      }).catch((err) => {
+        console.log("Error: ", err)
+      })
   };
 
   console.log("props in world", props)

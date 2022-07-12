@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const usersRoute = require("./routes/users");
+const registerRoute = require("./routes/register");
 const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const api = require("./routes/getWorld");
@@ -17,7 +17,7 @@ app.use(cookieParser());
 require("dotenv").config();
 
 //Routes
-app.use("/user/register", usersRoute);
+app.use("/user/register", registerRoute);
 app.use("/user/login", loginRoute);
 app.use("/user/logout", logoutRoute);
 app.use("/api/getWorld", api);
