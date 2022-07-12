@@ -7,9 +7,11 @@ router.post("/", async (req, res) => {
   console.log("req.body.text", req.body.text)
 
   const search = req.body.text
-  WorldsApi.searchWorlds(false, "popularity", undefined, undefined, 3, "descending", 0, search)
+
+  //request to VRC API SearchWorld
+  WorldsApi.searchWorlds(false, "popularity", undefined, undefined, 10, "descending", 0, search)
   .then((worldResults) => {
-    console.log("WORLDRESULTS: ", worldResults.data)
+    res.send(worldResults.data);
   });
 })
 

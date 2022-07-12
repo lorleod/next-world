@@ -4,15 +4,17 @@ function World(props) {
   const submit = () => {
     console.log("posts to database");
   };
-  const { show } = props.show;
+
+  console.log("props in world", props)
   return (
     <div className="world-box">
       <div>
-        <h2>{show.name}</h2>
-        <img className="img-world" src="" />
+        <h2>{props.title}</h2>
+        <h3>{props.author}</h3>
+        <img className="img-world" src={props.image} />
       </div>
       <div className="world-desc">
-        <p>{show.summary}</p>
+        <p>summary</p>
       </div>
       <button onClick={submit}>
         <i className="bi bi-plus-circle-fill fa-lg"></i>
