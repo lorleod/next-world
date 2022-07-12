@@ -24,4 +24,14 @@ User.pre("save", async function (next) {
   }
 });
 
+//started making a playlist schema - move into new file if desired
+const Playlist = mongoose.Schema({
+  id: {
+    type:
+  }
+  title: {
+    type: String
+  }
+})
+
 module.exports = mongoose.model("users", User);

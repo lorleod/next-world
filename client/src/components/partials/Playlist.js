@@ -9,7 +9,7 @@ function Playlist({ results }) {
     data = results.data;
   }
 
-  console.log("worldlist data", data)
+  console.log("Playlist data", data)
 
   //Maps through data and adds as prop to world.js
   let playlist = data.map((item) => <WorldExpanded
