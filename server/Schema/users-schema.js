@@ -2,15 +2,16 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const User = mongoose.Schema({
-  Username: {
+  // QUESTION: should these be capitalized?
+  username: {
     type: String,
     required: true,
     unique: true,
   },
-  Password: {
+  password: {
     type: String,
     required: true,
-  },
+  }
 });
 
 User.pre("save", async function (next) {
@@ -23,5 +24,32 @@ User.pre("save", async function (next) {
     next(err);
   }
 });
+
+//started making a playlist schema - move into new file if desired
+const Playlistdb = mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  title: {
+    type: String,
+    required: true,
+    maxLength: 40
+  },
+  description: {
+    type: String
+  },
+  numberOfLikes: {
+    type: Number,
+    min: 0,
+  },
+  worldIds: {
+    type: Array
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'users'
+  }
+})
 
 module.exports = mongoose.model("users", User);
