@@ -9,6 +9,7 @@ const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const api = require("./routes/getWorld");
 const createPlaylistRoute = require("./routes/createplaylist")
+const playlist = require("./routes/playlist");
 require("./vrcApi");
 
 //Middleware
@@ -23,6 +24,7 @@ app.use("/user/login", loginRoute);
 app.use("/user/logout", logoutRoute);
 app.use("/api/getWorld", api);
 app.use("/playlist/create", createPlaylistRoute)
+app.use("/playlist", playlist);
 
 //Connecting to MongoDB
 mongoose.connect(

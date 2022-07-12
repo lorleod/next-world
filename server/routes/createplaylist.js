@@ -2,18 +2,6 @@ const router = require("express").Router();
 const Playlist = require("../Schema/playlists-schema");
 const jwt = require("jsonwebtoken");
 
-// Generate a random string
-const generateRandomString = function () {
-  let randomString = "";
-  const charSet =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const setLength = charSet.length;
-  for (let i = 0; i <= 10; i++) {
-    randomString += charSet.charAt(Math.floor(Math.random() * setLength));
-  }
-  return randomString;
-};
-
 router.post("/", async (req, res) => {
 
   console.log("Playlist route req.body", req.body);
