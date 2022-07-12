@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import axios from "axios";
+import Cookies from "js-cookie";
 
 
 function CreatePlaylist() {
@@ -8,21 +9,30 @@ function CreatePlaylist() {
   const submit = async (event) => {
     event.preventDefault();
     // console.log(username + password);
-    const response = await axios.post(
+
+    //get coded jwt cookie containing user id
+    let token = Cookies.get('jwt');
+    console.log("token", token);
+
+    await axios.post(
       "http://localhost:3001/playlist/create",
       {
         title: title,
         description: description,
+        token: token
       },
       { withCredentials: true, credentials: "include" }
-    );
-    let data = response.data;
-    if (data) {
-      alert("Playlist Created");
-      window.location.href = "/playlist/:id";
-    } else {
-      alert("Playlist creation unscuccessful");
-    }
+    ).then((response) => {
+      let data = response.data;
+      console.log("data at createplaylist", data)
+      if (data) {
+        alert("Playlist Created");
+        window.location.href = `/playlist/${data}`;
+      } else {
+        alert("Playlist creation unscuccessful");
+      }
+    });
+
   };
   return (
     <div className="App">

@@ -1,10 +1,12 @@
 import "../App.scss";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const submit = async (event) => {
     event.preventDefault();
     //console.log(username, password);
@@ -19,8 +21,10 @@ function Login() {
     const data = response.data;
 
     if (data.user) {
+      console.log(data);
+      Cookies.set("jwt", data.user, { expires: 7 } )
       alert("Login successful");
-      window.location.href = "/user";
+      // window.location.href = "/user";
     } else {
       alert("Please check credentials");
     }

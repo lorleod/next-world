@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     const user = await User.create({ username: username, password: password });
     const token = createToken(user._id);
     res.cookie("jwt", token, { maxAge: maxAge });
-    res.status(201).json({ user: user._id });
+    res.status(201).json({ user: token  });
   } catch (err) {
     console.log(err);
     res.json({ status: "error", message: err });

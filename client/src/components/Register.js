@@ -1,6 +1,7 @@
 import "../App.scss";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -18,6 +19,7 @@ function Register() {
     );
     let data = response.data;
     if (data.user) {
+      Cookies.set("jwt", data.user, { expires: 7 } )
       alert("Register successful");
       window.location.href = "/";
     } else {
