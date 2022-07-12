@@ -19,10 +19,20 @@ function Nav() {
           <button onClick={logout}>Logout</button>
         </li>
         <li>
+
+          <a href="/addworld">Search</a>
+        </li>
+        <li>
+          <a href="/userDashboard">Dashboard</a>
+        </li>
+        <li>
+          <a href="/create">Create a Playlist</a>
+
           <Link to="/register">Register</Link>
         </li>
         <li>
           <Link to="/addworld">Add world</Link>
+
         </li>
       </ul>
     </nav>
