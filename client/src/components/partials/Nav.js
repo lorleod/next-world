@@ -22,7 +22,13 @@ function Nav() {
           <Link to="/register">Register</Link>
         </li>
         <li>
-          <Link to="/addworld">Add world</Link>
+          <Link to="/addworld">Search</Link>
+        </li>
+        <li>
+          <Link to="/userDashboard">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/create">Create a Playlist</Link>
         </li>
       </ul>
     </nav>
