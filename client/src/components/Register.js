@@ -8,12 +8,21 @@ function Register() {
   const submit = async (event) => {
     event.preventDefault();
     // console.log(username + password);
-    const response = await axios.post("http://localhost:3001/user/register", {
-      username: username,
-      password: password,
-    });
+    const response = await axios.post(
+      "http://localhost:3001/user/register",
+      {
+        username: username,
+        password: password,
+      },
+      { withCredentials: true, credentials: "include" }
+    );
     let data = response.data;
-    console.log(data);
+    if (data.user) {
+      alert("Register successful");
+      window.location.href = "/";
+    } else {
+      alert("Register unscuccessful");
+    }
   };
   return (
     <div className="App">

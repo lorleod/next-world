@@ -1,19 +1,25 @@
 import "../../App.scss";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Nav() {
+  const logout = async () => {
+    await axios.get("http://localhost:3001/user/logout");
+  };
   return (
     <nav>
       <h3>
-        <a href="/">NextWorld</a>
+        <Link to="/">NextWorld</Link>
       </h3>
       <ul className="nav-links">
         <li>
-          <a href="/login">Login</a>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <a href="/register">Register</a>
+          <button onClick={logout}>Logout</button>
         </li>
         <li>
+
           <a href="/addworld">Search</a>
         </li>
         <li>
@@ -21,6 +27,12 @@ function Nav() {
         </li>
         <li>
           <a href="/create">Create a Playlist</a>
+
+          <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to="/addworld">Add world</Link>
+
         </li>
       </ul>
     </nav>
