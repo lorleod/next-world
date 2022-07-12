@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import UserDashboard from "./components/UserDashboard";
 import AddWorld from "./components/AddWorld";
+import Create from "./components/Create";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addworld" element={<AddWorld />} />
+        <Route path="/userDashboard" element={<UserDashboard />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
     </div>
   );
