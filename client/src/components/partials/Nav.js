@@ -14,7 +14,13 @@ function Nav() {
           <a href="/register">Register</a>
         </li>
         <li>
-          <a href="/addworld">Add world</a>
+          <a href="/addworld">Search</a>
+        </li>
+        <li>
+          <a href="/userDashboard">Dashboard</a>
+        </li>
+        <li>
+          <a href="/create">Create a Playlist</a>
         </li>
       </ul>
     </nav>
