@@ -4,7 +4,7 @@ const Playlist = require("../Schema/playlists-schema");
 
 router.get("/", async (req, res) => {
   const token = req.cookies.jwt;
-  // console.log(token);
+  console.log("req: ", req);
   let decoded = jwt.verify(token, process.env.JWTSECRET);
   // console.log("decoded: ", decoded);
   try {
