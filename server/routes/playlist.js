@@ -34,10 +34,15 @@ router.post("/edit", async (req, res) => {
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
   let filter = { _id: o_id };
-  const updatedDoc = {
-    $set: { title: title, description: description },
-  };
-  await Playlist.updateOne(filter, updatedDoc);
+  try {
+    const updatedDoc = {
+      $set: { title: title, description: description },
+    };
+    await Playlist.updateOne(filter, updatedDoc);
+    return res.send("Playlist updated");
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 router.delete("/delete", async (req, res) => {

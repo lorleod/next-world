@@ -25,34 +25,35 @@ function Playlist({ results }) {
   }, []);
 
   const confirm = async (event) => {
+    let confirm = window.confirm("Confirm edits");
     event.preventDefault();
     // console.log(username + password);
 
     //get coded jwt cookie containing user id
     let token = Cookies.get("jwt");
-    console.log("token", token);
-
-    await axios
-      .post(
-        "http://localhost:3001/playlist/edit",
-        {
-          title: title,
-          description: description,
-          token: token,
-          playlistId: playlistId,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((response) => {
-        let data = response.data;
-        console.log("data at createplaylist", data);
-        if (data) {
-          alert("Playlist Created");
-          window.location.href = `/playlist/${data}`;
-        } else {
-          alert("Playlist creation unscuccessful");
-        }
-      });
+    // console.log("token", token);
+    if (confirm) {
+      await axios
+        .post(
+          "http://localhost:3001/playlist/edit",
+          {
+            title: title,
+            description: description,
+            token: token,
+            playlistId: playlistId,
+          },
+          { withCredentials: true, credentials: "include" }
+        )
+        .then((response) => {
+          let data = response.data;
+          console.log("data at createplaylist", data);
+          if (data) {
+            window.location.href = `/playlist/${playlistId}`;
+          } else {
+            alert("Playlist creation unscuccessful");
+          }
+        });
+    }
   };
 
   const EditPlaylist = () => {
