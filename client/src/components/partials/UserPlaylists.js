@@ -8,8 +8,14 @@ export default function UserPlaylists({ props }) {
     console.log("data", data);
   }
   const UserPlaylists = data.map((playlists) => {
-    console.log("props: ", playlists);
-    return <UserPlaylistItem key={playlists._id} PlaylistId={playlists._id} />;
+    console.log("props: ", playlists.title);
+    return (
+      <UserPlaylistItem
+        key={playlists._id}
+        PlaylistTitle={playlists.title}
+        PlaylistId={playlists._id}
+      />
+    );
   });
   return <div>{UserPlaylists}</div>;
 }

@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-import axios from "axios";
-
 export default function UserPlaylistItem(props) {
-  const playlistId = props.PlaylistId;
-  console.log(playlistId);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/user/${playlistId}`)
-      .then((response) => {})
-      .catch((error) => {});
-  }, []);
-  return <div></div>;
+  console.log("props userplaylistitem: ", props);
+  return (
+    <div>
+      <h3>
+        <a>{props.PlaylistTitle}</a>
+      </h3>
+    </div>
+  );
 }

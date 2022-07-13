@@ -14,11 +14,4 @@ router.get("/", async (req, res) => {
   } catch (error) {}
 });
 
-router.get("/:id", async (req, res) => {
-  const playlistId = req.params.id;
-  console.log("userdashbord ids", playlistId);
-  const playlists = await Playlist.find({ _id: playlistId });
-  console.log("dashboard playlists", playlists);
-});
-
 module.exports = router;
