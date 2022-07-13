@@ -1,26 +1,29 @@
 import World from "./World";
 import WorldExpanded from "./WorldExpanded";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 function Playlist({ results }) {
-  // console.log("results at worldlist", results.data)
-  // //Makes data empty array so not read as undefined
-  // let data = [];
-  // //Changes data to results if present
-  // if (results.data) {
-  //   data = results.data;
-  // }
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const params = useParams();
+  const playlistId = params.id;
 
-  // console.log("Playlist data", data)
+  axios.get(`http://localhost:3001/playlist/${playlistId}`).then((response) => {
+    setTitle(response.data.title);
+    setDescription(response.data.description);
+  });
 
-  // //Maps through data and adds as prop to world.js
-  // let playlist = data.map((item) => <WorldExpanded
-  //   key={item.id}
-  //   world={item}
-  //   title={item.name}
-  //   image={item.thumbnailImageUrl}
-  //   author={item.authorName}
-  // />);
-  return (<div className="result"><p>HITest</p></div>);
+  return (
+    <div className="result">
+      <h1>{title}</h1>
+      <h2>{description}</h2>
+      <h3>
+        <Link to="/addworld">Add World</Link>
+      </h3>
+    </div>
+  );
 }
 
 export default Playlist;
