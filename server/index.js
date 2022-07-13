@@ -1,9 +1,11 @@
+require("./vrcApi");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3001;
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const homeRoute = require("./routes/home");
 const registerRoute = require("./routes/register");
 const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
@@ -11,7 +13,6 @@ const api = require("./routes/getWorld");
 const createPlaylistRoute = require("./routes/createplaylist");
 const playlist = require("./routes/playlist");
 const userDashboard = require("./routes/dashboard");
-require("./vrcApi");
 
 //Middleware
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(cookieParser());
 require("dotenv").config();
 
 //Routes
+app.use("/", homeRoute);
 app.use("/user/register", registerRoute);
 app.use("/user/login", loginRoute);
 app.use("/user/logout", logoutRoute);
