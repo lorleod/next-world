@@ -28,8 +28,6 @@ function Playlist({ results }) {
       });
   }, []);
 
-  console.log("playlistUserId: ", playlistUserId);
-
   useEffect(() => {
     axios
       .get(`http://localhost:3001/playlist/auth/${token}`)
@@ -37,8 +35,6 @@ function Playlist({ results }) {
         setUser(response.data);
       });
   }, []);
-
-  console.log("user: ", user);
 
   const confirm = async (event) => {
     let confirm = window.confirm("Confirm edits");
@@ -62,7 +58,6 @@ function Playlist({ results }) {
         )
         .then((response) => {
           let data = response.data;
-          console.log("data at createplaylist", data);
           if (data) {
             window.location.href = `/playlist/${playlistId}`;
           } else {
@@ -72,13 +67,19 @@ function Playlist({ results }) {
     }
   };
 
-  function editPlaylist() {
+  const editPlaylist = () => {
     if (user === playlistUserId) {
       setEdit(true);
     } else {
       alert("You do not have permission to edit this playlist");
     }
-  }
+  };
+
+  const favourite = async () => {
+    await axios.get(
+      `http://localhost:3001/playlist/${token}/favourite/${playlistId}`
+    );
+  };
 
   return (
     <div>
@@ -87,8 +88,11 @@ function Playlist({ results }) {
           <h1>{title}</h1>
           <h2>{description}</h2>
           <button onClick={editPlaylist}>Edit Playlist</button>
-          <div></div>
-
+          <div>
+            <button onClick={favourite}>
+              <i className="bi bi-heart">Favourite</i>
+            </button>
+          </div>
           <WorldPlaylist props={worlds} edit={edit} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>

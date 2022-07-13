@@ -4,14 +4,16 @@ const Playlist = require("../Schema/playlists-schema");
 
 router.get("/", async (req, res) => {
   const token = req.cookies.jwt;
-   console.log(token);
+  console.log(token);
   let decoded = jwt.verify(token, process.env.JWTSECRET);
-   console.log("decoded: ", decoded);
+  console.log("decoded: ", decoded);
   try {
     const playlists = await Playlist.find({ user_id: decoded._id });
-     console.log(playlists);
+    console.log(playlists);
     res.send({ username: decoded.username, playlists: playlists });
   } catch (error) {}
 });
+
+router.get("/:user_id/:playlistId", async (req, res) => {});
 
 module.exports = router;
