@@ -23,7 +23,9 @@ function Playlist({ results }) {
       });
   }, []);
 
-  console.log("worlds: ", worlds);
+  const addWorldUrl = `/playlist/${params.id}/addworld`;
+
+  // console.log("worlds: ", worlds);
   return (
     <div className="result">
       <h1>{title}</h1>
@@ -32,7 +34,7 @@ function Playlist({ results }) {
 
       <WorldPlaylist props={worlds} />
       <h3>
-        <Link to="/addworld">Add World</Link>
+        <Link to={addWorldUrl}>Add World</Link>
       </h3>
     </div>
   );

@@ -26,6 +26,7 @@ app.use("/user/logout", logoutRoute);
 app.use("/api/getWorld", api);
 app.use("/playlist/create", createPlaylistRoute);
 app.use("/playlist", playlist);
+app.use("playlist/addworld", playlist);
 app.use("/user", userDashboard);
 
 //Connecting to MongoDB
