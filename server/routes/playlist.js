@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const User = require("../Schema/playlists-schema");
-const { WorldsApi } = require("../vrcApi");
+const jwt = require("jsonwebtoken");
 const Playlist = require("../Schema/playlists-schema");
 
 router.get("/:playlistId", async (req, res) => {
@@ -14,6 +13,16 @@ router.get("/:playlistId", async (req, res) => {
   return res.send(playlist);
 });
 // console.log("playlistID: ", playlistId);
+
+router.get("/auth/:token", async (req, res) => {
+  try {
+    let token = req.params.token;
+    let decoded = jwt.verify(token, process.env.JWTSECRET);
+    let user_id = decoded._id;
+    console.log("user_id: ", user_id);
+    return res.send(user_id);
+  } catch (error) {}
+});
 
 router.post("/addworld", async (req, res) => {
   const worldId = req.body.worldId;

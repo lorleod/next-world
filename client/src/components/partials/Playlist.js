@@ -10,9 +10,12 @@ function Playlist({ results }) {
   const [description, setDescription] = useState("");
   const [worlds, setWorlds] = useState([]);
   const [edit, setEdit] = useState(false);
+  const [playlistUserId, setPlaylistUserId] = useState("");
+  const [user, setUser] = useState("");
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
+  let token = Cookies.get("jwt");
 
   useEffect(() => {
     axios
@@ -21,8 +24,21 @@ function Playlist({ results }) {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setWorlds(response.data.worldIds);
+        setPlaylistUserId(response.data.user_id);
       });
   }, []);
+
+  console.log("playlistUserId: ", playlistUserId);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/playlist/auth/${token}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
+
+  console.log("user: ", user);
 
   const confirm = async (event) => {
     let confirm = window.confirm("Confirm edits");
@@ -30,7 +46,7 @@ function Playlist({ results }) {
     // console.log(username + password);
 
     //get coded jwt cookie containing user id
-    let token = Cookies.get("jwt");
+
     // console.log("token", token);
     if (confirm) {
       await axios
@@ -56,16 +72,21 @@ function Playlist({ results }) {
     }
   };
 
-  const EditPlaylist = () => {
-    setEdit(true);
-  };
+  function editPlaylist() {
+    if (user === playlistUserId) {
+      setEdit(true);
+    } else {
+      alert("You do not have permission to edit this playlist");
+    }
+  }
+
   return (
     <div>
       {!edit ? (
         <div className="result">
           <h1>{title}</h1>
           <h2>{description}</h2>
-          <button onClick={EditPlaylist}>Edit Playlist</button>
+          <button onClick={editPlaylist}>Edit Playlist</button>
           <div></div>
 
           <WorldPlaylist props={worlds} edit={edit} />

@@ -9,7 +9,6 @@ export default function PlaylistItem(props) {
   const [description, setDescription] = useState("");
   const [remove, setRemove] = useState(props.edit);
   const edit = props.edit;
-  console.log("remove in playlistitem", remove);
 
   const params = useParams();
 
