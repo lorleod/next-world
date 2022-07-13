@@ -5,7 +5,6 @@ const User = require("../Schema/users-schema");
 router.post("/", async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const maxAge = 1000 * 60 * 60 * 24 * 7;
   const user = await User.findOne({ username: username });
 
   if (user) {

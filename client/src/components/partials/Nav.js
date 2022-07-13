@@ -57,9 +57,6 @@ function Nav() {
           <li>
             <Link to="/user">Dashboard</Link>
           </li>
-          <li>
-            <Link to="/addworld">Add world</Link>
-          </li>
         </ul>
       ) : null}
     </nav>

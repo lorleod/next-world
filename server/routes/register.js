@@ -5,7 +5,6 @@ router.post("/", async (req, res) => {
   console.log("registration posted!");
   const username = req.body.username;
   const password = req.body.password;
-  const maxAge = 1000 * 60 * 60 * 24 * 7;
 
   try {
     const user = await User.create({ username: username, password: password });

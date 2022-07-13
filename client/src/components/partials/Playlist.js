@@ -10,7 +10,9 @@ function Playlist({ results }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [worlds, setWorlds] = useState([]);
+  const [edit, setEdit] = useState(false);
   const params = useParams();
+  const addWorldUrl = `/playlist/${params.id}/addworld`;
 
   useEffect(() => {
     const playlistId = params.id;
@@ -23,19 +25,37 @@ function Playlist({ results }) {
       });
   }, []);
 
-  const addWorldUrl = `/playlist/${params.id}/addworld`;
-
+  const EditPlaylist = () => {
+    setEdit(true);
+  };
   // console.log("worlds: ", worlds);
   return (
-    <div className="result">
-      <h1>{title}</h1>
-      <h2>{description}</h2>
-      <div></div>
+    <div>
+      {edit ? (
+        <div className="result">
+          <h1>{title}</h1>
+          <h2>{description}</h2>
+          <button onClick={EditPlaylist}>Edit Playlist</button>
+          <div></div>
 
-      <WorldPlaylist props={worlds} />
-      <h3>
-        <Link to={addWorldUrl}>Add World</Link>
-      </h3>
+          <WorldPlaylist props={worlds} />
+          <h3>
+            <Link to={addWorldUrl}>Add World</Link>
+          </h3>
+        </div>
+      ) : (
+        <div className="result">
+          <h1>{title}</h1>
+          <h2>{description}</h2>
+          <button onClick={EditPlaylist}>Edit Playlist</button>
+          <div></div>
+
+          <WorldPlaylist props={worlds} />
+          <h3>
+            <Link to={addWorldUrl}>Add World</Link>
+          </h3>
+        </div>
+      )}
     </div>
   );
 }

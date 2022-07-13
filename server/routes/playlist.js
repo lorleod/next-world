@@ -18,24 +18,24 @@ router.get("/:playlistId", async (req, res) => {
 router.post("/addworld", async (req, res) => {
   const worldId = req.body.worldId;
   const playlistId = req.body.playlistId;
-  // console.log("worldid at playlist backend", worldId);
-
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
-  console.log("o_id: ", o_id);
-
   let filter = { _id: o_id };
-
-  console.log("filter: ", filter);
-
   const updatedDoc = {
     $push: { worldIds: worldId },
   };
-
-  console.log("updatedDoc: ", updatedDoc);
-
-  let result = await Playlist.updateOne(filter, updatedDoc);
-
-  console.log("result: ", result);
+  await Playlist.updateOne(filter, updatedDoc);
 });
+
+router.delete("/delete", async (req, res) => {
+  try {
+    const playlistId = req.body._id;
+    console.log("response1:", res);
+    await Playlist.deleteOne({ _id: playlistId });
+    res.send("deleted");
+  } catch (error) {
+    console.log("error in catch: ", error);
+  }
+});
+
 module.exports = router;
