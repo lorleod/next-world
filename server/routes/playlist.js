@@ -22,44 +22,46 @@ router.post("/addworld", async (req, res) => {
 
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
-  console.log("o_id: ", o_id);
+  // console.log("o_id: ", o_id);
 
   let filter = { _id: o_id };
 
-  console.log("filter: ", filter);
+  // console.log("filter: ", filter);
 
   const updatedDoc = {
     $push: { worldIds: worldId },
   };
 
-  console.log("updatedDoc: ", updatedDoc);
+  // console.log("updatedDoc: ", updatedDoc);
 
   let result = await Playlist.updateOne(filter, updatedDoc);
 
-  console.log("result: ", result);
+  // console.log("result: ", result);
 });
 
-router.post("/deleteworld", async (req, res) => {
+router.delete("/deleteworld", async (req, res) => {
   const worldId = req.body.worldId;
+  console.log("worldId at world delete backend", worldId);
   const playlistId = req.body.playlistId;
-  // console.log("worldid at playlist backend", worldId);
+  console.log("playlistId at world delete backend", playlistId);
 
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
-  console.log("o_id: ", o_id);
+  // console.log("o_id: ", o_id);
 
   let filter = { _id: o_id };
 
-  console.log("filter: ", filter);
+  // console.log("filter: ", filter);
 
   const updatedDoc = {
     $pull: { worldIds: worldId },
   };
 
-  console.log("updatedDoc: ", updatedDoc);
+  // console.log("updatedDoc: ", updatedDoc);
 
   let result = await Playlist.updateOne(filter, updatedDoc);
 
-  console.log("result: ", result);
+  // console.log("result: ", result);
+  res.send("deleted world");
 });
 module.exports = router;

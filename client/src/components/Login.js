@@ -21,7 +21,7 @@ function Login() {
     const data = response.data;
 
     if (data.user) {
-      console.log(data);
+      // console.log(data);
       Cookies.set("jwt", data.user, { expires: 7 });
       alert("Login successful");
       window.location.href = "/user";

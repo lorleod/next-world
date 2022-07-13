@@ -12,7 +12,7 @@ function CreatePlaylist() {
 
     //get coded jwt cookie containing user id
     let token = Cookies.get('jwt');
-    console.log("token", token);
+    // console.log("token", token);
 
     await axios.post(
       "http://localhost:3001/playlist/create",
@@ -24,7 +24,7 @@ function CreatePlaylist() {
       { withCredentials: true, credentials: "include" }
     ).then((response) => {
       let data = response.data;
-      console.log("data at createplaylist", data)
+      // console.log("data at createplaylist", data)
       if (data) {
         alert("Playlist Created");
         window.location.href = `/playlist/${data}`;

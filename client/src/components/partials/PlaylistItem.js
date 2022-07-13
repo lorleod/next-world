@@ -7,6 +7,9 @@ export default function PlaylistItem(props) {
   const [author, setAuthor] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+
+  const params = useParams();
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
@@ -20,21 +23,20 @@ export default function PlaylistItem(props) {
   }, []);
 
   const deleteWorld = function () {
-    console.log("DELETEWORLD");
-  //   const params = useParams();
-  //   console.log("params: ", params);
+    let playlistId = params.id
 
-  //   axios
-  //     .post(`http://localhost:3001/:id/${props.worldId}`)
-  //     .then((response) => {
-  //       setTitle(response.data.title);
-  //       setAuthor(response.data.author);
-  //       setImage(response.data.image);
-  //       setDescription(response.data.description);
-  //     })
-  //     .catch((error) => {});
-
-  }
+    axios
+      .delete(`http://localhost:3001/playlist/deleteworld`, {
+        data: {
+          playlistId: playlistId,
+          worldId: props.worldId
+        }
+      })
+      .then((response) => {
+        console.log("response.data: ", response.data);
+      })
+      .catch((error) => {});
+  };
 
 
   return (
