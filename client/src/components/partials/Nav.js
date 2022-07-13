@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
 
 function Nav() {
   const [user, setUser] = useState(false);
@@ -53,6 +52,9 @@ function Nav() {
         <ul className="nav-links">
           <li>
             <button onClick={logout}>Logout</button>
+          </li>
+          <li>
+            <Link to="/user">Dashboard</Link>
           </li>
           <li>
             <Link to="/addworld">Add world</Link>

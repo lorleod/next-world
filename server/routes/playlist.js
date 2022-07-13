@@ -3,18 +3,18 @@ const User = require("../Schema/playlists-schema");
 const { WorldsApi } = require("../vrcApi");
 const Playlist = require("../Schema/playlists-schema");
 
-router.get("/:playlistID", async (req, res) => {
-  let playlistId = req.params.playlistID;
+router.get("/:playlistId", async (req, res) => {
+  let playlistId = req.params.playlistId;
 
-  console.log("playlistID: ", playlistId);
+  // console.log("playlistID: ", playlistId);
 
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
 
   const playlist = await Playlist.findOne({ _id: o_id });
 
-  console.log("PLAYLIST: ", playlist);
-  res.send(playlist);
+  // console.log("PLAYLIST: ", playlist);
+  return res.send(playlist);
 
   // request to VRC API getWorld
   // let worldArray = [
