@@ -1,5 +1,4 @@
-import World from "./World";
-import WorldExpanded from "./WorldExpanded";
+import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -13,9 +12,9 @@ function Playlist({ results }) {
   const [edit, setEdit] = useState(false);
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
+  const playlistId = params.id;
 
   useEffect(() => {
-    const playlistId = params.id;
     axios
       .get(`http://localhost:3001/playlist/${playlistId}`)
       .then((response) => {
@@ -25,13 +24,44 @@ function Playlist({ results }) {
       });
   }, []);
 
+  const confirm = async (event) => {
+    event.preventDefault();
+    // console.log(username + password);
+
+    //get coded jwt cookie containing user id
+    let token = Cookies.get("jwt");
+    console.log("token", token);
+
+    await axios
+      .post(
+        "http://localhost:3001/playlist/edit",
+        {
+          title: title,
+          description: description,
+          token: token,
+          playlistId: playlistId,
+        },
+        { withCredentials: true, credentials: "include" }
+      )
+      .then((response) => {
+        let data = response.data;
+        console.log("data at createplaylist", data);
+        if (data) {
+          alert("Playlist Created");
+          window.location.href = `/playlist/${data}`;
+        } else {
+          alert("Playlist creation unscuccessful");
+        }
+      });
+  };
+
   const EditPlaylist = () => {
     setEdit(true);
   };
   // console.log("worlds: ", worlds);
   return (
     <div>
-      {edit ? (
+      {!edit ? (
         <div className="result">
           <h1>{title}</h1>
           <h2>{description}</h2>
@@ -45,15 +75,31 @@ function Playlist({ results }) {
         </div>
       ) : (
         <div className="result">
-          <h1>{title}</h1>
-          <h2>{description}</h2>
-          <button onClick={EditPlaylist}>Edit Playlist</button>
-          <div></div>
+          <form>
+            <input
+              type="text"
+              placeholder="title"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            ></input>
+            <br />
+            <input
+              type="text"
+              placeholder="description"
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+            ></input>
+          </form>
 
           <WorldPlaylist props={worlds} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>
           </h3>
+          <button onClick={confirm}>Confirm</button>
         </div>
       )}
     </div>

@@ -27,6 +27,19 @@ router.post("/addworld", async (req, res) => {
   await Playlist.updateOne(filter, updatedDoc);
 });
 
+router.post("/edit", async (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  const playlistId = req.body.playlistId;
+  let ObjectId = require("mongodb").ObjectId;
+  let o_id = new ObjectId(playlistId);
+  let filter = { _id: o_id };
+  const updatedDoc = {
+    $set: { title: title, description: description },
+  };
+  await Playlist.updateOne(filter, updatedDoc);
+});
+
 router.delete("/delete", async (req, res) => {
   try {
     const playlistId = req.body._id;
