@@ -27,6 +27,7 @@ function Nav() {
 
     if (data.message === "logout successful") {
       alert("Logout successful");
+      localStorage.setItem("isAuthenication", "false");
       window.location.href = "/login";
     } else {
       alert("Logout failed");

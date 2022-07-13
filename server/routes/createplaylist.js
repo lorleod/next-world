@@ -3,7 +3,7 @@ const Playlist = require("../Schema/playlists-schema");
 const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  console.log("Playlist route req.body", req.body);
+  // console.log("Playlist route req.body", req.body);
 
   const title = req.body.title;
   const description = req.body.description;
@@ -11,7 +11,6 @@ router.post("/", async (req, res) => {
 
   // verify a token - symmetric - synchronous
   let decoded = jwt.verify(token, process.env.JWTSECRET);
-  console.log("decoded: ", decoded);
 
   try {
     const playlist = await Playlist.create({

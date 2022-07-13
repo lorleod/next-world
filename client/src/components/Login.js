@@ -22,9 +22,9 @@ function Login() {
 
     if (data.user) {
       console.log(data);
-      Cookies.set("jwt", data.user, { expires: 7 } )
+      Cookies.set("jwt", data.user, { expires: 7 });
       alert("Login successful");
-      // window.location.href = "/user";
+      window.location.href = "/user";
     } else {
       alert("Please check credentials");
     }

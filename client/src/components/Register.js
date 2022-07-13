@@ -19,9 +19,9 @@ function Register() {
     );
     let data = response.data;
     if (data.user) {
-      Cookies.set("jwt", data.user, { expires: 7 } )
+      Cookies.set("jwt", data.user, { expires: 7 });
       alert("Register successful");
-      window.location.href = "/";
+      window.location.href = "/user";
     } else {
       alert("Register unscuccessful");
     }

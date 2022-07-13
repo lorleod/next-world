@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   // console.log("decoded: ", decoded);
   try {
     const playlists = await Playlist.find({ user_id: decoded._id });
-    console.log(playlists);
+    // console.log(playlists);
     res.send({ username: decoded.username, playlists: playlists });
   } catch (error) {}
 });
