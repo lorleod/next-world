@@ -14,7 +14,7 @@ function World(props) {
         playlistId: params.id,
       })
       .then((data) => {
-        console.log("Inside World axios put: ", data);
+        // console.log("Inside World axios put: ", data);
       })
       .catch((err) => {
         console.log("Error: ", err);

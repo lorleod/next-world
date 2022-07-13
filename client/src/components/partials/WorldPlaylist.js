@@ -3,7 +3,7 @@ import PlaylistItem from "./PlaylistItem";
 
 function WorldPlaylist({ props }) {
   const worldPlayist = props.map((worldId) => {
-    console.log("worldId: ", worldId);
+    // console.log("worldId: ", worldId);
     return <PlaylistItem key={worldId} worldId={worldId} />;
   });
   return (

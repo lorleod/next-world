@@ -62,6 +62,8 @@ router.delete("/deleteworld", async (req, res) => {
   };
   let result = await Playlist.updateOne(filter, updatedDoc);
 
+  console.log("deleted world");
+
   res.send("deleted world");
 });
 
