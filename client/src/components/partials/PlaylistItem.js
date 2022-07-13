@@ -34,6 +34,10 @@ export default function PlaylistItem(props) {
       })
       .then((response) => {
         console.log("response.data: ", response.data);
+        if (response.data === "deleted world") {
+          alert("World deleted");
+          window.location.href=`/playlist/${playlistId}`
+        }
       })
       .catch((error) => {});
   };
