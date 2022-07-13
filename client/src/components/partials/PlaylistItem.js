@@ -25,7 +25,12 @@ export default function PlaylistItem(props) {
   const deleteWorld = function () {
     let playlistId = params.id
 
-    axios
+    let confirm = window.confirm("Are you sure you want to delete this world?");
+
+    if (confirm) {
+      console.log("Deleting world")
+
+      axios
       .delete(`http://localhost:3001/playlist/deleteworld`, {
         data: {
           playlistId: playlistId,
@@ -40,6 +45,7 @@ export default function PlaylistItem(props) {
         }
       })
       .catch((error) => {});
+    }
   };
 
 
