@@ -59,7 +59,6 @@ function Playlist({ results }) {
   const EditPlaylist = () => {
     setEdit(true);
   };
-  // console.log("worlds: ", worlds);
   return (
     <div>
       {!edit ? (
@@ -69,7 +68,7 @@ function Playlist({ results }) {
           <button onClick={EditPlaylist}>Edit Playlist</button>
           <div></div>
 
-          <WorldPlaylist props={worlds} />
+          <WorldPlaylist props={worlds} edit={edit} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>
           </h3>
@@ -96,7 +95,7 @@ function Playlist({ results }) {
             ></input>
           </form>
 
-          <WorldPlaylist props={worlds} />
+          <WorldPlaylist props={worlds} edit={edit} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>
           </h3>

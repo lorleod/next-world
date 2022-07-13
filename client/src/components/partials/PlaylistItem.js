@@ -7,6 +7,9 @@ export default function PlaylistItem(props) {
   const [author, setAuthor] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+  const [remove, setRemove] = useState(props.edit);
+  const edit = props.edit;
+  console.log("remove in playlistitem", remove);
 
   const params = useParams();
 
@@ -23,25 +26,24 @@ export default function PlaylistItem(props) {
   }, []);
 
   const deleteWorld = function () {
-    let playlistId = params.id
+    let playlistId = params.id;
 
     axios
       .delete(`http://localhost:3001/playlist/deleteworld`, {
         data: {
           playlistId: playlistId,
-          worldId: props.worldId
-        }
+          worldId: props.worldId,
+        },
       })
       .then((response) => {
         console.log("response.data: ", response.data);
         if (response.data === "deleted world") {
           alert("World deleted");
-          window.location.href=`/playlist/${playlistId}`
+          window.location.href = `/playlist/${playlistId}`;
         }
       })
       .catch((error) => {});
   };
-
 
   return (
     <div>
@@ -49,7 +51,7 @@ export default function PlaylistItem(props) {
       <h2>Author: {author}</h2>
       <h3>Description: {description}</h3>
       <img src={image} alt={title} />
-      <button onClick={deleteWorld}>Delete World</button>
+      {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
     </div>
   );
 }
