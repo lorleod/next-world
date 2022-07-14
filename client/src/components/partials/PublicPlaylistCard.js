@@ -43,15 +43,10 @@ export default function PublicPlaylistCard(props) {
   // console.log("favourites: ", favourites);
   return (
     <div>
-<<<<<<< HEAD
-      <h3>{props.playlistTitle}</h3>
-      <p>Number of likes: {}</p>
-=======
       <h3>
         <Link to={playlistUrl}>{props.playlistTitle}</Link>
       </h3>
       <p>Times Favourited: {favourites}</p>
->>>>>>> 7b3fb881d1e586663d8983fa647b2b6d52991f00
       <p>{props.playlistDesc}</p>
       <p>Author: {author}</p>
       <p>Worlds in Playlist:{mappedPlaysWorlds} </p>
