@@ -64,3 +64,24 @@ li#nav-register-link:hover {
 a.nav-link-a:hover {
   color: #2d2f32;
 }
+
+li#nav-dashboard-link:hover {
+  background-color: #75a07f;
+}
+
+button.nav-link-logout {
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #2d2f32;
+  color: rgb(176, 210, 231);
+  border: none;
+}
+
+button.nav-link-logout:hover {
+  background-color: #a66551;
+  color: #2d2f32
+}

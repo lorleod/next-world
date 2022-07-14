@@ -61,7 +61,7 @@ function Nav() {
             </Link>
           </li>
           <li id="nav-logout-link">
-            <button onClick={logout}>Logout</button>
+            <button className="nav-link-logout" onClick={logout}>Logout</button>
           </li>
         </ul>
       ) : null}
