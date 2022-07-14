@@ -22,11 +22,7 @@ function Home() {
     fetchData();
   }, []);
 
-  // console.log("home playlists: ", homePlaylists);
-  // console.log("home playlists worlds: ", homePlaylistWorlds);
-
   const mappedHomePlaylists = homePlaylists.map((playlist) => {
-    // setHomePlaylistWorlds(playlist.worldIds);
     return (
       <PublicPlaylistCard
         key={playlist._id}

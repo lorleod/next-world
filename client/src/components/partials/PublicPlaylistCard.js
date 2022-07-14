@@ -36,8 +36,9 @@ export default function PublicPlaylistCard(props) {
     fetchData();
   }, []);
 
-  const mappedPlaysWorlds = props.worldIds.map((world) => {
-    return <PublicPlaylistWorlds key={world} worldId={world} />;
+  const mappedPlaysWorlds = props.worldIds.map((world, index) => {
+    let key = world.concat(index);
+    return <PublicPlaylistWorlds key={key} worldId={world} />;
   });
 
   // console.log("favourites: ", favourites);

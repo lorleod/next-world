@@ -25,15 +25,22 @@ router.get("/auth/:token", async (req, res) => {
 });
 
 router.post("/addworld", async (req, res) => {
-  const worldId = req.body.worldId;
-  const playlistId = req.body.playlistId;
-  let ObjectId = require("mongodb").ObjectId;
-  let o_id = new ObjectId(playlistId);
-  let filter = { _id: o_id };
-  const updatedDoc = {
-    $push: { worldIds: worldId },
-  };
-  await Playlist.updateOne(filter, updatedDoc);
+  try {
+    const worldId = req.body.worldId;
+    const playlistId = req.body.playlistId;
+    let ObjectId = require("mongodb").ObjectId;
+    let o_id = new ObjectId(playlistId);
+    let filter = { _id: o_id };
+    const updatedDoc = {
+      $push: { worldIds: worldId },
+    };
+    await Playlist.updateOne(filter, updatedDoc);
+    res.send( "world added")
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", message: err });
+  }
+
 });
 
 router.post("/edit", async (req, res) => {
