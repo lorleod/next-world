@@ -1,0 +1,61 @@
+h3.public-playlist-title {
+  display: flex;
+  background-color: #372b3a;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.public-playlist-container {
+  display: flex;
+}
+
+a.public-playlist-title-link {
+  font-family: 'Comfortaa', cursive;
+  font-size: 26px;
+  margin: auto 0px;
+}
+
+.public-playlist-right-container {
+  border: 1px solid #372b3a;
+  border-radius: 0px 10px 10px 0px;
+  height: 150px;
+  margin: 18px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  background-color: #777f8a;
+}
+
+.public-playlist-info-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #9ca0a7;
+  height: inherit;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.public-playlist-worlds-title {
+  font-family: 'Comfortaa', cursive;
+  text-orientation: inherit;
+  writing-mode: vertical-rl;
+  font-size: 30px;
+}
+
+.public-playlist-description {
+  font-size: 18px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.public-playlist-worlds-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.public-playlist-author {
+  font-family: "Comfortaa", cursive;
+  font-size: 14px;
+}

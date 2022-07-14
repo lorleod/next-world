@@ -37,20 +37,18 @@ function Nav() {
   return (
     <nav>
       <h3 id="header-logo">
-        <Link className="header-logo-link" to="/">NextWorld</Link>
+        <Link className="header-logo-link" to="/">
+          NextWorld
+        </Link>
       </h3>
       {!user ? (
         <ul className="nav-links">
-          <li id="nav-register-link">
-            <Link className="nav-link-a" to="/register">
-              Register
-            </Link>
-          </li>
-          <li id="nav-login-link">
-            <Link className="nav-link-a" to="/login">
-              Login
-            </Link>
-          </li>
+          <Link className="nav-link-a" to="/register">
+            <li id="nav-register-link">Register</li>
+          </Link>
+          <Link className="nav-link-a" to="/login">
+            <li id="nav-login-link">Login</li>
+          </Link>
         </ul>
       ) : null}
       {user ? (
@@ -61,7 +59,9 @@ function Nav() {
             </Link>
           </li>
           <li id="nav-logout-link">
-            <button className="nav-link-logout" onClick={logout}>Logout</button>
+            <button className="nav-link-logout" onClick={logout}>
+              Logout
+            </button>
           </li>
         </ul>
       ) : null}
