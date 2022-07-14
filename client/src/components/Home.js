@@ -15,6 +15,7 @@ function Home() {
         })
         .then((response) => {
           setHomePlaylists(response.data);
+          console.log("response.data: ", response.data);
         })
         .catch((error) => {});
     };
@@ -22,7 +23,7 @@ function Home() {
   }, []);
 
   // console.log("home playlists: ", homePlaylists);
-  console.log("home playlists worlds: ", homePlaylistWorlds);
+  // console.log("home playlists worlds: ", homePlaylistWorlds);
 
   const mappedHomePlaylists = homePlaylists.map((playlist) => {
     // setHomePlaylistWorlds(playlist.worldIds);
@@ -31,6 +32,7 @@ function Home() {
         key={playlist._id}
         playlistTitle={playlist.title}
         playlistDesc={playlist.description}
+        playlistId={playlist._id}
         authorId={playlist.user_id}
         worldIds={playlist.worldIds}
       />

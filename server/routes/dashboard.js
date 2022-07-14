@@ -20,6 +20,7 @@ router.get("/home/:userid", async (req, res) => {
     const userInfo = await User.find({ _id: userId });
     res.send({ username: userInfo[0].username });
   } catch (error) {
+    res.send("Account deleted");
     console.log("error", error);
   }
 });

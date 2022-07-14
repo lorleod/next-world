@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
 
 router.get("/:worldId", async (req, res) => {
   const worldId = req.params.worldId;
-  console.log("worldId", worldId);
   WorldsApi.getWorld(worldId).then((response) => {
     // console.log("getWorld: ", response.data);
     res.send(response.data);
