@@ -32,13 +32,13 @@ function Home() {
         key={playlist._id}
         playlistTitle={playlist.title}
         playlistDesc={playlist.description}
+        authorId={playlist.user_id}
       />
     );
   });
 
   return (
     <div className="App">
-      <h1>Home</h1>
       {mappedHomePlaylists}
     </div>
   );
