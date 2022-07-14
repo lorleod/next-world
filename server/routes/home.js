@@ -6,8 +6,6 @@ router.get('/', async (req, res) => {
     //get all playlists from db
     const publicPlaylists = await Playlist.find();
 
-    console.log("home route publicplaylists: ", publicPlaylists);
-
     return res.send(publicPlaylists);
   } catch (err) {
     res.send({message: err});

@@ -33,6 +33,7 @@ function Home() {
         playlistTitle={playlist.title}
         playlistDesc={playlist.description}
         authorId={playlist.user_id}
+        numberOfLikes={playlist.numberOfLikes}
       />
     );
   });

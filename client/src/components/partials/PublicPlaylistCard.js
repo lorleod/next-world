@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function PublicPlaylistCard (props) {
-  const [worlds, setWorlds] = useState("");
   const [author, setAuthor] = useState("");
-  const [description, setDescription] = useState("");
+
+
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/user/${props.authorId}`)
       .then((response) => {
-        setAuthor(response.data.author);
+        console.log("response.data.username ", response.data.username);
+        setAuthor([response.data.username]);
       })
       .catch((error) => {});
 
@@ -30,6 +31,7 @@ export default function PublicPlaylistCard (props) {
   return (
     <div>
       <h3>{props.playlistTitle}</h3>
+      <p>Number of likes: {props.numberOfLikes}</p>
       <p>{props.playlistDesc}</p>
       <p>Author: {author}</p>
     </div>
