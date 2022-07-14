@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getLaunchLink } from "../../helpers/getLaunchLink.js"
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");
@@ -56,6 +57,7 @@ export default function PlaylistItem(props) {
       <h2>Author: {author}</h2>
       <h3>Description: {description}</h3>
       <img src={image} alt={title} />
+      <a href={getLaunchLink(props.worldId)}>Launch Link</a>
       {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
     </div>
   );

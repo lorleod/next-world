@@ -14,7 +14,7 @@ export default function PublicPlaylistCard(props) {
       .catch((error) => {});
 
     // axios
-    //   .get(`http://localhost:3001/api/getWorld/${props.authorId}`)
+    //   .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
     //   .then((response) => {
     //     setTitle(response.data.title);
     //     setAuthor(response.data.author);
