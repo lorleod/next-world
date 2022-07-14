@@ -18,6 +18,7 @@ export default function PublicPlaylistCard(props) {
         })
         .catch((error) => {});
     };
+
     fetchData();
   }, []);
 
@@ -41,14 +42,24 @@ export default function PublicPlaylistCard(props) {
 
   // console.log("favourites: ", favourites);
   return (
-    <div>
-      <h3>
-        <Link to={playlistUrl}>{props.playlistTitle}</Link>
+    <div className="public-playlists-container">
+      <h3 className="public-playlist-title">
+        <Link className="public-playlist-title-link" to={playlistUrl}>
+          {props.playlistTitle}
+        </Link>
       </h3>
-      <p>Times Favourited: {favourites}</p>
-      <p>{props.playlistDesc}</p>
-      <p>Author: {author}</p>
-      <p>Worlds in Playlist:{mappedPlaysWorlds} </p>
+      <div className="public-playlist-favourites">
+        Times Favourited: {favourites}
+      </div>
+      <div className="public-playlist-description">{props.playlistDesc}</div>
+      <div className="public-playlist-author">Author: {author}</div>
+      <div className="public-playlist-worlds-container">
+        <div className="public-playlist-worlds-title">
+          Worlds in Playlist:
+          <div />
+          <div className="public-playlist-world-list">{mappedPlaysWorlds}</div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -36,26 +36,32 @@ function Nav() {
 
   return (
     <nav>
-      <h3>
-        <Link to="/">NextWorld</Link>
+      <h3 id="header-logo">
+        <Link className="header-logo-link" to="/">NextWorld</Link>
       </h3>
       {!user ? (
         <ul className="nav-links">
-          <li>
-            <Link to="/login">Login</Link>
+          <li id="nav-register-link">
+            <Link className="nav-link-a" to="/register">
+              Register
+            </Link>
           </li>
-          <li>
-            <Link to="/register">Register</Link>
+          <li id="nav-login-link">
+            <Link className="nav-link-a" to="/login">
+              Login
+            </Link>
           </li>
         </ul>
       ) : null}
       {user ? (
         <ul className="nav-links">
-          <li>
-            <button onClick={logout}>Logout</button>
+          <li id="nav-dashboard-link">
+            <Link className="nav-link-a" to="/user">
+              Dashboard
+            </Link>
           </li>
-          <li>
-            <Link to="/user">Dashboard</Link>
+          <li id="nav-logout-link">
+            <button className="nav-link-logout" onClick={logout}>Logout</button>
           </li>
         </ul>
       ) : null}
