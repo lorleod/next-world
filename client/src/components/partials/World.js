@@ -6,15 +6,20 @@ function World(props) {
   const params = useParams();
   console.log("params: ", params);
   const submit = () => {
-    // console.log("WorldId: ", props.world.id);
-
+    console.log("addworld submit");
     axios
       .post("http://localhost:3001/playlist/addworld", {
         worldId: props.world.id,
         playlistId: params.id,
       })
       .then((data) => {
-        // console.log("Inside World axios put: ", data);
+        console.log("addworld .then");
+        if (data) {
+          alert("World added");
+          window.location.href = `/playlist/`;
+        } else {
+          alert("World add unsuccessful");
+        }
       })
       .catch((err) => {
         console.log("Error: ", err);
