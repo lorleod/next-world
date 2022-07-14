@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Rubik+Moonrocks&display=swap');
 
-div#login-page-container {
+div#register-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-h1#login-page-heading {
+h1#register-page-heading {
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
   font-size: 40px;
@@ -16,11 +16,11 @@ h1#login-page-heading {
   margin-bottom: 0px;
 }
 
-.login-form-container {
+.register-form-container {
   width: 100%;
 }
 
-input#login-username-form {
+input#register-username-form {
   font-family: 'Comfortaa', cursive;
   margin: 15px;
   width: 30%;
@@ -30,11 +30,11 @@ input#login-username-form {
   border: 1px solid rgb(176, 210, 231);
 }
 
-input#login-username-form:hover {
+input#register-username-form:hover {
   background-color: #8594aa;
 }
 
-input#login-password-form {
+input#register-password-form {
   font-family: 'Comfortaa', cursive;
   margin: 15px;
   width: 30%;
@@ -44,7 +44,7 @@ input#login-password-form {
   border: 1px solid rgb(176, 210, 231);
 }
 
-input#login-password-form:hover {
+input#register-password-form:hover {
   background-color: #8594aa;
 }
 
@@ -55,7 +55,7 @@ input#login-password-form:hover {
   color: rgb(176, 210, 231);
 }
 
-button.login-button{
+button.register-button{
   font-family: 'Comfortaa', cursive;
   margin: 15px;
   width: 35%;
@@ -69,7 +69,7 @@ button.login-button{
   color: #41252f;
 }
 
-button.login-button:hover {
+button.register-button:hover {
   color: #2f3339;
   background-color: #5e9369;
 }
