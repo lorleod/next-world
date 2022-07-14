@@ -14,22 +14,23 @@ function AddWorld() {
 
   //Takes input field and adds submit to API url
   const onSearch = async (text) => {
-    const response = await axios.post("http://localhost:3001/api/getWorld", {text: text})
+    const response = await axios
+      .post("http://localhost:3001/api/getWorld", { text: text })
       .then((response) => {
         // console.log("addWorld search results: ", response.data);
         // const results = response.data
         return response;
       });
 
-      setState((prevState) => {
-        return { ...prevState, results: response };
-      });
-
+    setState((prevState) => {
+      return { ...prevState, results: response };
+    });
   };
 
   return (
     <div className="App">
       <h1>Add World</h1>
+      <h4>Return to playlist</h4>
       <SearchBar onSearch={onSearch} />
       <WorldList results={state.results} />
     </div>
