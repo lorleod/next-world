@@ -2,7 +2,6 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const User = require("../Schema/users-schema");
 router.post("/", async (req, res) => {
-  console.log("registration posted!");
   const username = req.body.username;
   const password = req.body.password;
 
