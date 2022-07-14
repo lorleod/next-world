@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Home() {
-
   const [homePlaylists, setHomePlaylists] = useState([]);
 
   useEffect(() => {
@@ -22,8 +21,6 @@ function Home() {
     fetchData();
   }, []);
 
-
-
   console.log("home playlists: ", homePlaylists);
 
   const mappedHomePlaylists = homePlaylists.map((playlist) => {
@@ -38,11 +35,7 @@ function Home() {
     );
   });
 
-  return (
-    <div className="App">
-      {mappedHomePlaylists}
-    </div>
-  );
+  return <div className="App">{mappedHomePlaylists}</div>;
 }
 
 export default Home;

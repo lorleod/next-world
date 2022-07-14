@@ -12,7 +12,7 @@ router.get("/:token", async (req, res) => {
   } catch (error) {}
 });
 
-router.get("/:userid", async (req, res) => {
+router.get("/home/:userid", async (req, res) => {
   console.log("Dashboard req.params.userid", req.params.userid);
   const userId = req.params.userid;
 
