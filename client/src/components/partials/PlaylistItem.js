@@ -51,6 +51,16 @@ export default function PlaylistItem(props) {
     }
   };
 
+  const launchWorld = function () {
+    const confirm = window.confirm(
+      "Are you sure you want to launch this world? Will open in a new tab."
+    );
+
+    if (confirm) {
+      window.open(getLaunchLink(props.worldId));
+    }
+  };
+
   return (
     <div>
       <h1>Title: {title}</h1>
@@ -58,7 +68,8 @@ export default function PlaylistItem(props) {
       <h3>Description: {description}</h3>
       <img src={image} alt={title} />
       <div>
-        <a href={getLaunchLink(props.worldId)}>Launch Link</a>
+        {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
+        <a onClick={launchWorld}>Launch Link</a>
       </div>
       {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
     </div>

@@ -1,13 +1,15 @@
 import "../App.scss";
 import "./AddWorld.scss";
 import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import SearchBar from "./partials/SearchBar";
-import Api from "../api/Api";
 import WorldList from "./partials/WorldList";
 import axios from "axios";
 
 function AddWorld() {
-  //Creates state and sets to empty array
+  const params = useParams();
+  const playlistId = params.id;
+  const playlistUrl = `/playlist/${playlistId}`;
   const [state, setState] = useState({
     results: [],
   });
@@ -30,7 +32,7 @@ function AddWorld() {
   return (
     <div className="App">
       <h1>Add World</h1>
-      <h4>Return to playlist</h4>
+      <Link to={playlistUrl}>Back to Playlist</Link>
       <SearchBar onSearch={onSearch} />
       <WorldList results={state.results} />
     </div>
