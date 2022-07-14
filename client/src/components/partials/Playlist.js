@@ -10,9 +10,12 @@ function Playlist({ results }) {
   const [description, setDescription] = useState("");
   const [worlds, setWorlds] = useState([]);
   const [edit, setEdit] = useState(false);
+  const [playlistUserId, setPlaylistUserId] = useState("");
+  const [user, setUser] = useState("");
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
+  let token = Cookies.get("jwt");
 
   useEffect(() => {
     axios
@@ -21,54 +24,76 @@ function Playlist({ results }) {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setWorlds(response.data.worldIds);
+        setPlaylistUserId(response.data.user_id);
+        console.log("response", response);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/playlist/auth/${token}`)
+      .then((response) => {
+        setUser(response.data);
       });
   }, []);
 
   const confirm = async (event) => {
+    let confirm = window.confirm("Confirm edits");
     event.preventDefault();
     // console.log(username + password);
 
     //get coded jwt cookie containing user id
-    let token = Cookies.get("jwt");
-    console.log("token", token);
 
-    await axios
-      .post(
-        "http://localhost:3001/playlist/edit",
-        {
-          title: title,
-          description: description,
-          token: token,
-          playlistId: playlistId,
-        },
-        { withCredentials: true, credentials: "include" }
-      )
-      .then((response) => {
-        let data = response.data;
-        console.log("data at createplaylist", data);
-        if (data) {
-          alert("Playlist Created");
-          window.location.href = `/playlist/${data}`;
-        } else {
-          alert("Playlist creation unscuccessful");
-        }
-      });
+    // console.log("token", token);
+    if (confirm) {
+      await axios
+        .post(
+          "http://localhost:3001/playlist/edit",
+          {
+            title: title,
+            description: description,
+            token: token,
+            playlistId: playlistId,
+          },
+          { withCredentials: true, credentials: "include" }
+        )
+        .then((response) => {
+          let data = response.data;
+          if (data) {
+            window.location.href = `/playlist/${playlistId}`;
+          } else {
+            alert("Playlist creation unscuccessful");
+          }
+        });
+    }
   };
 
-  const EditPlaylist = () => {
-    setEdit(true);
+  const editPlaylist = () => {
+    if (user === playlistUserId) {
+      setEdit(true);
+    } else {
+      alert("You do not have permission to edit this playlist");
+    }
   };
-  // console.log("worlds: ", worlds);
+
+  const favourite = async () => {
+    await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
+  };
+
   return (
     <div>
       {!edit ? (
         <div className="result">
           <h1>{title}</h1>
+          <h3>Favourites: </h3>
           <h2>{description}</h2>
-          <button onClick={EditPlaylist}>Edit Playlist</button>
-          <div></div>
-
-          <WorldPlaylist props={worlds} />
+          <button onClick={editPlaylist}>Edit Playlist</button>
+          <div>
+            <button onClick={favourite}>
+              <i className="bi bi-heart">Favourite</i>
+            </button>
+          </div>
+          <WorldPlaylist props={worlds} edit={edit} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>
           </h3>
@@ -95,7 +120,7 @@ function Playlist({ results }) {
             ></input>
           </form>
 
-          <WorldPlaylist props={worlds} />
+          <WorldPlaylist props={worlds} edit={edit} />
           <h3>
             <Link to={addWorldUrl}>Add World</Link>
           </h3>

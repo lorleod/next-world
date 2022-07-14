@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const User = require("../Schema/playlists-schema");
-const { WorldsApi } = require("../vrcApi");
+const jwt = require("jsonwebtoken");
 const Playlist = require("../Schema/playlists-schema");
+const User = require("../Schema/users-schema");
 
 router.get("/:playlistId", async (req, res) => {
   let playlistId = req.params.playlistId;
@@ -14,6 +14,15 @@ router.get("/:playlistId", async (req, res) => {
   return res.send(playlist);
 });
 // console.log("playlistID: ", playlistId);
+
+router.get("/auth/:token", async (req, res) => {
+  try {
+    let token = req.params.token;
+    let decoded = jwt.verify(token, process.env.JWTSECRET);
+    let user_id = decoded._id;
+    return res.send(user_id);
+  } catch (error) {}
+});
 
 router.post("/addworld", async (req, res) => {
   const worldId = req.body.worldId;
@@ -34,10 +43,15 @@ router.post("/edit", async (req, res) => {
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
   let filter = { _id: o_id };
-  const updatedDoc = {
-    $set: { title: title, description: description },
-  };
-  await Playlist.updateOne(filter, updatedDoc);
+  try {
+    const updatedDoc = {
+      $set: { title: title, description: description },
+    };
+    await Playlist.updateOne(filter, updatedDoc);
+    return res.send("Playlist updated");
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 router.delete("/delete", async (req, res) => {

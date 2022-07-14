@@ -1,5 +1,5 @@
 import React from "react";
-import UserPlaylistItem from "./UserPlaylistItem";
+import UserFavouriteItem from "./UserFavouriteItem";
 
 export default function UserPlaylists({ props }) {
   let data = [];
@@ -10,10 +10,9 @@ export default function UserPlaylists({ props }) {
     console.log("props: ", playlists);
     return (
       <div>
-        <UserPlaylistItem
+        <UserFavouriteItem
           key={playlists._id}
-          PlaylistTitle={playlists.title}
-          PlaylistId={playlists._id}
+          PlaylistId={playlists.playlist_id}
         />
       </div>
     );

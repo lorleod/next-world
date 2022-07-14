@@ -11,6 +11,10 @@ const User = mongoose.Schema({
     type: String,
     required: true,
   },
+  favourites: {
+    type: Array,
+    default: [],
+  },
 });
 
 User.pre("save", async function (next) {
