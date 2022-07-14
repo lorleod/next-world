@@ -9,11 +9,9 @@ router.post("/:token/:playlist_id", async (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWTSECRET);
     const user_id = decoded._id;
-    console.log("user_id", user_id);
-    console.log("playlist_id", playlist_id);
     await Favourites.create({
       playlist_id: playlist_id,
-      user_id: decoded._id,
+      user_id: user_id,
     });
   } catch (error) {}
 });
@@ -44,4 +42,14 @@ router.delete("/delete/:playlist_id", async (req, res) => {
   } catch (error) {}
 });
 
+router.get("/count/:playlist_id", async (req, res) => {
+  const playlist_id = req.params.playlist_id;
+  try {
+    const playlist_id = req.params.playlist_id;
+    const favourites = await Favourites.find({ playlist_id: playlist_id });
+    res.send(favourites);
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

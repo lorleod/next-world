@@ -12,29 +12,46 @@ function Playlist({ results }) {
   const [edit, setEdit] = useState(false);
   const [playlistUserId, setPlaylistUserId] = useState("");
   const [user, setUser] = useState("");
+  const [favourites, setFavourites] = useState([]);
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
   let token = Cookies.get("jwt");
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/playlist/${playlistId}`)
-      .then((response) => {
-        setTitle(response.data.title);
-        setDescription(response.data.description);
-        setWorlds(response.data.worldIds);
-        setPlaylistUserId(response.data.user_id);
-        console.log("response", response);
-      });
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3001/playlist/${playlistId}`)
+        .then((response) => {
+          setTitle(response.data.title);
+          setDescription(response.data.description);
+          setWorlds(response.data.worldIds);
+          setPlaylistUserId(response.data.user_id);
+        });
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/playlist/auth/${token}`)
-      .then((response) => {
-        setUser(response.data);
-      });
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3001/playlist/auth/${token}`)
+        .then((response) => {
+          setUser(response.data);
+        });
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3001/favourites/count/${playlistId}`)
+        .then((response) => {
+          setFavourites(response.data.length);
+        });
+    };
+    fetchData();
   }, []);
 
   const confirm = async (event) => {
@@ -85,7 +102,7 @@ function Playlist({ results }) {
       {!edit ? (
         <div className="result">
           <h1>{title}</h1>
-          <h3>Favourites: </h3>
+          <h3>Favourites: {favourites}</h3>
           <h2>{description}</h2>
           <button onClick={editPlaylist}>Edit Playlist</button>
           <div>
