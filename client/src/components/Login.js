@@ -1,4 +1,5 @@
 import "../App.scss";
+import "./login.scss";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -34,24 +35,33 @@ function Login() {
 
   return (
     <div className="App">
-      <h1>Login</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        ></input>
-        <input
-          type="text"
-          placeholder="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        ></input>
-        <button onClick={submit}>Login</button>
-      </form>
+      <div id="login-page-container">
+        <h1 id="login-page-heading">Login</h1>
+        <div className="login-form-container">
+          <form>
+            <br />
+            <input
+              id="login-username-form"
+              type="text"
+              placeholder="username"
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+            ></input>
+            <br />
+            <input
+              id="login-password-form"
+              type="text"
+              placeholder="password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            ></input>
+            <br />
+            <button className="login-button" onClick={submit}>Login</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
