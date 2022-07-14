@@ -16,6 +16,7 @@ export default function PublicPlaylistCard(props) {
         })
         .catch((error) => {});
     };
+
     fetchData();
   }, []);
 
@@ -26,7 +27,7 @@ export default function PublicPlaylistCard(props) {
   return (
     <div>
       <h3>{props.playlistTitle}</h3>
-      <p>Number of likes: {props.numberOfLikes}</p>
+      <p>Number of likes: {}</p>
       <p>{props.playlistDesc}</p>
       <p>Author: {author}</p>
       <p>Worlds in Playlist:{mappedPlaysWorlds} </p>

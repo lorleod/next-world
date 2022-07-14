@@ -4,7 +4,7 @@ const Playlist = require("../Schema/playlists-schema");
 router.get('/', async (req, res) => {
   try {
     //get all playlists from db
-    const publicPlaylists = await Playlist.find();
+    const publicPlaylists = await Playlist.find().sort( { numberOfLikes: -1 } );
 
     return res.send(publicPlaylists);
   } catch (err) {
