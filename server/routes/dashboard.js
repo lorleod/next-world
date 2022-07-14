@@ -13,12 +13,12 @@ router.get("/:token", async (req, res) => {
 });
 
 router.get("/home/:userid", async (req, res) => {
-  console.log("Dashboard req.params.userid", req.params.userid);
+  // console.log("Dashboard req.params.userid", req.params.userid);
   const userId = req.params.userid;
 
   try {
     const userInfo = await User.find({ _id: userId });
-    console.log("userInfo[0].username: ", userInfo[0].username);
+    // console.log("userInfo[0].username: ", userInfo[0].username);
     res.send({ username: userInfo[0].username });
   } catch (error) {
     console.log("error", error);
