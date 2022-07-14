@@ -42,11 +42,7 @@ router.delete("/delete/:playlist_id", async (req, res) => {
   } catch (error) {}
 });
 
-<<<<<<< HEAD
-router.get("/count/:playlist_id", async (req, res) => {Ok
-=======
 router.get("/count/:playlist_id", async (req, res) => {
->>>>>>> 7b3fb881d1e586663d8983fa647b2b6d52991f00
   try {
     const playlist_id = req.params.playlist_id;
     const favourites = await Favourites.find({ playlist_id: playlist_id });
