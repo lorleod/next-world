@@ -25,6 +25,7 @@ function Playlist({ results }) {
         setDescription(response.data.description);
         setWorlds(response.data.worldIds);
         setPlaylistUserId(response.data.user_id);
+        console.log("response", response);
       });
   }, []);
 
@@ -76,9 +77,7 @@ function Playlist({ results }) {
   };
 
   const favourite = async () => {
-    await axios.get(
-      `http://localhost:3001/playlist/${token}/favourite/${playlistId}`
-    );
+    await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
   };
 
   return (
@@ -86,6 +85,7 @@ function Playlist({ results }) {
       {!edit ? (
         <div className="result">
           <h1>{title}</h1>
+          <h3>Favourites: </h3>
           <h2>{description}</h2>
           <button onClick={editPlaylist}>Edit Playlist</button>
           <div>

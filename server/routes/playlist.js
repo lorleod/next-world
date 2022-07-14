@@ -20,7 +20,6 @@ router.get("/auth/:token", async (req, res) => {
     let token = req.params.token;
     let decoded = jwt.verify(token, process.env.JWTSECRET);
     let user_id = decoded._id;
-    console.log("user_id: ", user_id);
     return res.send(user_id);
   } catch (error) {}
 });
@@ -80,20 +79,4 @@ router.delete("/deleteworld", async (req, res) => {
   res.send("deleted world");
 });
 
-router.get("/:token/favourite/:playlist_id", async (req, res) => {
-  const token = req.params.token;
-  const playlist_id = req.params.playlist_id;
-  try {
-    const decoded = jwt.verify(token, process.env.JWTSECRET);
-    const user_id = decoded._id;
-    console.log("user_id: ", user_id);
-    let ObjectId = require("mongodb").ObjectId;
-    let o_id = new ObjectId(user_id);
-    let filter = { _id: o_id };
-    const updatedDoc = {
-      $push: { favourites: playlist_id },
-    };
-    await User.updateOne(filter, updatedDoc);
-  } catch (error) {}
-});
 module.exports = router;

@@ -11,6 +11,7 @@ const api = require("./routes/getWorld");
 const createPlaylistRoute = require("./routes/createplaylist");
 const playlist = require("./routes/playlist");
 const userDashboard = require("./routes/dashboard");
+const favouritesRoute = require("./routes/favourites");
 require("./vrcApi");
 
 //Middleware
@@ -29,6 +30,7 @@ app.use("/playlist/create", createPlaylistRoute);
 app.use("playlist/addworld", playlist);
 app.use("playlist/delete", playlist);
 app.use("/user", userDashboard);
+app.use("/favourites", favouritesRoute);
 
 //Connecting to MongoDB
 mongoose.connect(
