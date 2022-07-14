@@ -6,8 +6,6 @@ function World(props) {
   const params = useParams();
   console.log("params: ", params);
   const submit = () => {
-    // console.log("WorldId: ", props.world.id);
-
     axios
       .post("http://localhost:3001/playlist/addworld", {
         worldId: props.world.id,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { getLaunchLink } from "../../helpers/getLaunchLink.js"
+import { getLaunchLink } from "../../helpers/getLaunchLink.js";
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");
@@ -17,9 +17,9 @@ export default function PlaylistItem(props) {
     axios
       .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
       .then((response) => {
-        setTitle(response.data.title);
-        setAuthor(response.data.author);
-        setImage(response.data.image);
+        setTitle(response.data.name);
+        setAuthor(response.data.authorName);
+        setImage(response.data.thumbnailImageUrl);
         setDescription(response.data.description);
       })
       .catch((error) => {});
@@ -31,23 +31,23 @@ export default function PlaylistItem(props) {
     let confirm = window.confirm("Are you sure you want to delete this world?");
 
     if (confirm) {
-      console.log("Deleting world")
+      console.log("Deleting world");
 
       axios
-      .delete(`http://localhost:3001/playlist/deleteworld`, {
-        data: {
-          playlistId: playlistId,
-          worldId: props.worldId,
-        },
-      })
-      .then((response) => {
-        console.log("response.data: ", response.data);
-        if (response.data === "deleted world") {
-          alert("World deleted");
-          window.location.href = `/playlist/${playlistId}`;
-        }
-      })
-      .catch((error) => {});
+        .delete(`http://localhost:3001/playlist/deleteworld`, {
+          data: {
+            playlistId: playlistId,
+            worldId: props.worldId,
+          },
+        })
+        .then((response) => {
+          console.log("response.data: ", response.data);
+          if (response.data === "deleted world") {
+            alert("World deleted");
+            window.location.href = `/playlist/${playlistId}`;
+          }
+        })
+        .catch((error) => {});
     }
   };
 
@@ -57,7 +57,9 @@ export default function PlaylistItem(props) {
       <h2>Author: {author}</h2>
       <h3>Description: {description}</h3>
       <img src={image} alt={title} />
-      <a href={getLaunchLink(props.worldId)}>Launch Link</a>
+      <div>
+        <a href={getLaunchLink(props.worldId)}>Launch Link</a>
+      </div>
       {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
     </div>
   );

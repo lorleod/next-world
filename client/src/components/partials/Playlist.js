@@ -24,9 +24,12 @@ function Playlist({ results }) {
         .get(`http://localhost:3001/playlist/${playlistId}`)
         .then((response) => {
           setTitle(response.data.title);
+          console.log("response.data.title: ", response.data.title);
           setDescription(response.data.description);
+          console.log("response.data.description: ", response.data.description);
           setWorlds(response.data.worldIds);
           setPlaylistUserId(response.data.user_id);
+          // console.log("playist information", response.data);
         });
     };
     fetchData();
@@ -111,9 +114,6 @@ function Playlist({ results }) {
             </button>
           </div>
           <WorldPlaylist props={worlds} edit={edit} />
-          <h3>
-            <Link to={addWorldUrl}>Add World</Link>
-          </h3>
         </div>
       ) : (
         <div className="result">
@@ -138,9 +138,11 @@ function Playlist({ results }) {
           </form>
 
           <WorldPlaylist props={worlds} edit={edit} />
-          <h3>
-            <Link to={addWorldUrl}>Add World</Link>
-          </h3>
+          {edit ? (
+            <h3>
+              <Link to={addWorldUrl}>Add World</Link>
+            </h3>
+          ) : null}
           <button onClick={confirm}>Confirm</button>
         </div>
       )}
