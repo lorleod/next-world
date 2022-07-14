@@ -5,6 +5,7 @@ import axios from "axios";
 
 function Home() {
   const [homePlaylists, setHomePlaylists] = useState([]);
+  const [homePlaylistWorlds, setHomePlaylistWorlds] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,7 +14,6 @@ function Home() {
           withCredentials: true,
         })
         .then((response) => {
-          console.log("home component - server'sresponse: ", response.data);
           setHomePlaylists(response.data);
         })
         .catch((error) => {});
@@ -21,16 +21,18 @@ function Home() {
     fetchData();
   }, []);
 
-  console.log("home playlists: ", homePlaylists);
+  // console.log("home playlists: ", homePlaylists);
+  console.log("home playlists worlds: ", homePlaylistWorlds);
 
   const mappedHomePlaylists = homePlaylists.map((playlist) => {
+    // setHomePlaylistWorlds(playlist.worldIds);
     return (
       <PublicPlaylistCard
         key={playlist._id}
         playlistTitle={playlist.title}
         playlistDesc={playlist.description}
         authorId={playlist.user_id}
-        numberOfLikes={playlist.numberOfLikes}
+        worldIds={playlist.worldIds}
       />
     );
   });

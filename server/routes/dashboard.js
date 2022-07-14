@@ -18,7 +18,6 @@ router.get("/home/:userid", async (req, res) => {
 
   try {
     const userInfo = await User.find({ _id: userId });
-    // console.log("userInfo[0].username: ", userInfo[0].username);
     res.send({ username: userInfo[0].username });
   } catch (error) {
     console.log("error", error);
