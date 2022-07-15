@@ -2,7 +2,7 @@ import "../App.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import DashboardPlaylists from "./partials/DashboardPlaylists";
+import MyPlaylists from "./partials/MyPlaylists";
 import UserFavourites from "./partials/UserFavourites";
 const Cookies = require("js-cookie");
 
@@ -53,7 +53,7 @@ function UserDashboard() {
       <h1>{username}</h1>
       <Link to="/playlist/create">Create New Playlist</Link>
       <h2>My Playlists</h2>
-      <DashboardPlaylists key="1" playlists={playlists} />
+      <MyPlaylists key="1" playlists={playlists} />
       <h2>My Favourites</h2>
       <UserFavourites key="2" props={favourites} />
     </div>
