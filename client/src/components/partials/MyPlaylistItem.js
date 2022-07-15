@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export default function UserPlaylistItem(props) {
-  // console.log("props userplaylistitem: ", props);
-  // console.log("playlistid", props.PlaylistId);
+export default function MyPlaylistItem(props) {
   const playlistUrl = `/playlist/${props.PlaylistId}`;
   const deletePlaylist = () => {
     let confirm = window.confirm(

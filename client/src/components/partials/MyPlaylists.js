@@ -1,5 +1,5 @@
 import React from "react";
-import UserPlaylistItem from "./UserPlaylistItem";
+import MyPlaylistItem from "./MyPlaylistItem";
 
 export default function MyPlaylists(props) {
 
@@ -9,13 +9,13 @@ export default function MyPlaylists(props) {
     data = props.playlists;
   }
 
-  //map playlist objects to UserPlaylistItems
+  //map playlist objects to MyPlaylistItems
   const myPlaylists = data.map((playlist, index) => {
     // combine id and index for unique key that solves dubplicate key errors
     const key = playlist._id.concat(index);
     return (
       <div>
-        <UserPlaylistItem
+        <MyPlaylistItem
           key={key}
           PlaylistTitle={playlist.title}
           PlaylistId={playlist._id}
