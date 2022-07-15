@@ -34,7 +34,6 @@ function Login() {
   };
 
   return (
-    <div className="App">
       <div id="login-page-container">
         <h1 id="login-page-heading">Login</h1>
         <div className="login-form-container">
@@ -62,7 +61,6 @@ function Login() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 
