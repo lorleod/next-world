@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
+import FavouriteAddPopup from "./popups/FavouriteAddPopup";
+import SharedPopup from "./popups/SharedPopup";
 
 function Playlist({ results }) {
   const [title, setTitle] = useState("");
@@ -13,6 +15,8 @@ function Playlist({ results }) {
   const [playlistUserId, setPlaylistUserId] = useState("");
   const [user, setUser] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const [popupFavourite, setPopupFavourite] = useState(false);
+  const [popupShared, setPopupShared] = useState(false);
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
@@ -97,13 +101,18 @@ function Playlist({ results }) {
   };
 
   const favourite = async () => {
-    await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
+    await axios
+      .post(`http://localhost:3001/favourites/${token}/${playlistId}`)
+      .then((response) => {
+        setPopupFavourite(true);
+      });
   };
 
   const share = async () => {
     navigator.clipboard.writeText(
       `http://localhost:3000/playlist/${playlistId}`
     );
+    setPopupShared(true);
   };
 
   return (
@@ -153,6 +162,15 @@ function Playlist({ results }) {
           <button onClick={confirm}>Confirm</button>
         </div>
       )}
+      <FavouriteAddPopup
+        trigger={popupFavourite}
+        setTrigger={setPopupFavourite}
+      >
+        <h1>Playlist Added to Favourites</h1>
+      </FavouriteAddPopup>
+      <SharedPopup trigger={popupShared} setTrigger={setPopupShared}>
+        <h1>Link Copied to Clipboard</h1>
+      </SharedPopup>
     </div>
   );
 }

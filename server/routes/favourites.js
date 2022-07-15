@@ -13,6 +13,7 @@ router.post("/:token/:playlist_id", async (req, res) => {
       playlist_id: playlist_id,
       user_id: user_id,
     });
+    res.send("favourite added");
   } catch (error) {}
 });
 
