@@ -1,4 +1,5 @@
 import "./world.scss";
+import "./worldList.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -36,16 +37,16 @@ function World(props) {
   // console.log("props in world", props);
   return (
     <div className="world-box">
-      <div>
-        <h2>{props.title}</h2>
-        <h3>{props.author}</h3>
-        <img className="img-world" src={props.image} />
+      <img className="img-world" src={props.image} />
+      <div className="search-world-info-container">
+        <h2 className="search-world-title">{props.title}</h2>
+        <h5 className="search-world-author">{props.author}</h5>
+        <div className="search-world-description">
+          <p className="search-world-description-p">summary</p>
+        </div>
       </div>
-      <div className="world-desc">
-        <p>summary</p>
-      </div>
-      <button onClick={submit}>
-        <i className="bi bi-plus-circle-fill fa-lg"></i>
+      <button className="search-world-add-button" onClick={submit}>
+        Add
       </button>
       <BasicPopup
         trigger={popupAdded}

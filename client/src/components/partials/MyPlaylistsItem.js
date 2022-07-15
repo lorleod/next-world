@@ -11,18 +11,20 @@ export default function UserPlaylistItem(props) {
   const playlistUrl = `/playlist/${props.PlaylistId}`;
   const redirectUrl = `/user`;
   const deletePlaylist = () => {
+    // confirm equals true if user clicks "ok" on pop up
     let confirm = window.confirm(
       "Are you sure you want to delete this playlist?"
     );
+
+    //if confirm equals true, send DELETE request to backend
     if (confirm) {
-      console.log("delete");
       const response = axios
         .delete(`http://localhost:3001/playlist/delete`, {
           data: { _id: props.PlaylistId },
         })
         .then((response) => {
           const data = response.data;
-          console.log("data in playlistitem: ", data);
+          //if response confirms delete, alert user then redirect back to dashboard
           if (data === "deleted") {
             setPopupDeleted(true);
             setInterval(() => {
@@ -31,7 +33,9 @@ export default function UserPlaylistItem(props) {
             }, 2000);
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("Error deleting playlist: ", error);
+        });
     }
   };
 

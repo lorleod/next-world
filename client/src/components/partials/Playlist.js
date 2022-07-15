@@ -1,3 +1,4 @@
+import "./playlist.scss";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -133,17 +134,26 @@ function Playlist(props) {
   return (
     <div>
       {!edit ? (
-        <div className="result">
-          <h1>{title}</h1>
-          <h3>Favourites: {favourites}</h3>
-          <h2>{description}</h2>
+        <div className="results">
+          <h1 className="playlist-page-playlist-name">{title}</h1>
+          <h5 className="playlist-page-playlist-favourites">
+            Favourites: {favourites}
+          </h5>
+          <p className="playlist-page-playlist-description">{description}</p>
 
           <div>
-            <button onClick={favourite}>
+            <button
+              className="playlist-page-playlist-edit"
+              onClick={editPlaylistInfo}
+            >
+              Edit Playlist
+            </button>
+            <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
             <button onClick={copyToClipboard}>Share</button>
           </div>
+
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
       ) : (

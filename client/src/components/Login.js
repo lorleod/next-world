@@ -38,7 +38,7 @@ function Login() {
   };
 
   return (
-    <div className="App">
+    <div>
       <div id="login-page-container">
         <h1 id="login-page-heading">Login</h1>
         <div className="login-form-container">
