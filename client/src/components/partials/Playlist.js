@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
+import FavouriteAddPopup from "./popups/FavouriteAddPopup";
+import SharedPopup from "./popups/SharedPopup";
 
 function Playlist({ results }) {
   const [title, setTitle] = useState("");
@@ -14,6 +16,9 @@ function Playlist({ results }) {
   const [playlistUserId, setPlaylistUserId] = useState("");
   const [user, setUser] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const [popupFavourite, setPopupFavourite] = useState(false);
+  const [popupShared, setPopupShared] = useState(false);
+  const [editInfo, setEditInfo] = useState(false);
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
@@ -58,14 +63,27 @@ function Playlist({ results }) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3001/playlist/auth/${token}/${params.id}`)
+        .then((response) => {
+          const auth = response.data;
+          console.log("auth: ", auth);
+          if (auth === "Authorized") {
+            setEdit(true);
+          } else {
+            setEdit(false);
+          }
+        })
+        .catch((error) => {});
+    };
+    fetchData();
+  }, []);
+
   const confirm = async (event) => {
     let confirm = window.confirm("Confirm edits");
     event.preventDefault();
-    // console.log(username + password);
-
-    //get coded jwt cookie containing user id
-
-    // console.log("token", token);
     if (confirm) {
       await axios
         .post(
@@ -89,22 +107,24 @@ function Playlist({ results }) {
     }
   };
 
-  const editPlaylist = () => {
-    if (user === playlistUserId) {
-      setEdit(true);
-    } else {
-      alert("You do not have permission to edit this playlist");
-    }
-  };
-
   const favourite = async () => {
-    await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
+    await axios
+      .post(`http://localhost:3001/favourites/${token}/${playlistId}`)
+      .then((response) => {
+        setPopupFavourite(true);
+      });
   };
 
-  const share = async () => {
+  // copies the current playlist url to user's clipboard
+  const copyToClipboard = async () => {
     navigator.clipboard.writeText(
       `http://localhost:3000/playlist/${playlistId}`
     );
+    setPopupShared(true);
+  };
+
+  const editPlaylistInfo = async () => {
+    setEditInfo(true);
   };
 
   return (
@@ -120,16 +140,14 @@ function Playlist({ results }) {
           <div>
             <button
               className="playlist-page-playlist-edit"
-              onClick={editPlaylist}
+              onClick={editPlaylistInfo}
             >
               Edit Playlist
             </button>
             <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button className="playlist-page-playlist-share" onClick={share}>
-              Share
-            </button>
+            <button className="playlist-page-playlist-share"  onClick={copyToClipboard}>Copy Playlist Link to Clipboard</button>
           </div>
 
           <WorldPlaylist props={worlds} edit={edit} />
@@ -172,6 +190,15 @@ function Playlist({ results }) {
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
       )}
+      <FavouriteAddPopup
+        trigger={popupFavourite}
+        setTrigger={setPopupFavourite}
+      >
+        <h1>Playlist Added to Favourites</h1>
+      </FavouriteAddPopup>
+      <SharedPopup trigger={popupShared} setTrigger={setPopupShared}>
+        <h1>Link Copied to Clipboard</h1>
+      </SharedPopup>
     </div>
   );
 }

@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
+import PlaylistDeletedPopup from "./popups/PlaylistDeletedPopup.js";
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
-  const [remove, setRemove] = useState(props.edit);
+  const [popupDeleted, setPopupDeleted] = useState(false);
   const edit = props.edit;
 
   const params = useParams();
+  const redirectUrl = `/playlist/${params.id}`;
 
   useEffect(() => {
     axios
@@ -44,8 +46,7 @@ export default function PlaylistItem(props) {
         .then((response) => {
           console.log("response.data: ", response.data);
           if (response.data === "deleted world") {
-            alert("World deleted");
-            window.location.href = `/playlist/${playlistId}`;
+            setPopupDeleted(true);
           }
         })
         .catch((error) => {});
@@ -73,16 +74,15 @@ export default function PlaylistItem(props) {
 
       {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
       <a className="playlist-world-item-launch-item" onClick={launchWorld}>Launch Link</a>
-      
 
-      {edit ? (
-        <button
-          className="playlist-world-item-delete-button"
-          onClick={deleteWorld}
-        >
-          Delete World
-        </button>
-      ) : null}
+      {edit ? <button className="playlist-world-item-delete-button" onClick={deleteWorld}>Delete World</button> : null}
+      <PlaylistDeletedPopup
+        trigger={popupDeleted}
+        setTrigger={setPopupDeleted}
+        redirectUrl={redirectUrl}
+      >
+        <h1>World Deleted From Playlist</h1>
+      </PlaylistDeletedPopup>
     </div>
   );
 }

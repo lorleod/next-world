@@ -3,14 +3,14 @@ import PublicPlaylistCard from "./partials/PublicPlaylistCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Homepage - shows list of all playlists in the db
 function Home() {
   const [homePlaylists, setHomePlaylists] = useState([]);
-  const [homePlaylistWorlds, setHomePlaylistWorlds] = useState([]);
 
+  // When page loads, get array of playlist objects from backend
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get(`http://localhost:3001/`, {
+      await axios.get(`http://localhost:3001/`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -22,6 +22,7 @@ function Home() {
     fetchData();
   }, []);
 
+  //map array of playlist objects into array of PublicPlaylistCard components
   const mappedHomePlaylists = homePlaylists.map((playlist) => {
     return (
       <PublicPlaylistCard
@@ -35,6 +36,7 @@ function Home() {
     );
   });
 
+  //display PublicPlaylistCard component array
   return <div className="App">{mappedHomePlaylists}</div>;
 }
 
