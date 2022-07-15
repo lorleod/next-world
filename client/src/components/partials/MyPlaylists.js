@@ -1,9 +1,10 @@
 import React from "react";
-import MyPlaylistItem from "./MyPlaylistItem";
+import MyPlaylistsItem from "./MyPlaylistsItem";
 
+// component lists all user's created playlists
 export default function MyPlaylists(props) {
 
-  // lete data = empty array.. to prevent errors if it's empty?
+  // Let data = empty array.. to prevent errors if it's empty?
   let data = [];
   if (props.playlists) {
     data = props.playlists;
@@ -15,7 +16,7 @@ export default function MyPlaylists(props) {
     const key = playlist._id.concat(index);
     return (
       <div>
-        <MyPlaylistItem
+        <MyPlaylistsItem
           key={key}
           PlaylistTitle={playlist.title}
           PlaylistId={playlist._id}

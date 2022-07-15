@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import MyPlaylists from "./partials/MyPlaylists";
-import UserFavourites from "./partials/UserFavourites";
+import MyFavourites from "./partials/MyFavourites";
 const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and
@@ -55,7 +55,7 @@ function Dashboard() {
       <h2>My Playlists</h2>
       <MyPlaylists key="1" playlists={playlists} />
       <h2>My Favourites</h2>
-      <UserFavourites key="2" props={favourites} />
+      <MyFavourites key="2" favourites={favourites} />
     </div>
   );
 }

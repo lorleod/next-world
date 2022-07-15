@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // component to display each individual playlist created by current user
-export default function MyPlaylistItem(props) {
+export default function MyPlaylistsItem(props) {
   const playlistUrl = `/playlist/${props.PlaylistId}`;
 
   // pop up a confirmation then delete playlist if confirmed by user
