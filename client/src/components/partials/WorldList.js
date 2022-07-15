@@ -1,17 +1,15 @@
 import World from "./World";
 
 function WorldList(props) {
-  console.log("props at worldlist", props);
-  //Makes data empty array so not read as undefined
+  //Makes an empty array so not read as undefined before search is submitted
   let data = [];
-  //Changes data to results if present
+
+  //Updates data with search results when present
   if (props.results.data) {
     data = props.results.data;
   }
 
-  // console.log("worldlist data", data);
-
-  //Maps through data and adds as prop to world.js
+  //Maps through data and adds as props to world.js
   let worldList = data.map((item) => (
     <World
       key={item.id}

@@ -2,18 +2,17 @@ import {useState} from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
 
-
+//Page to collect new playlist info in form and submit
 function CreatePlaylist() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const submit = async (event) => {
     event.preventDefault();
-    // console.log(username + password);
 
-    //get coded jwt cookie containing user id
+    //get encoded jwt cookie containing user id for assigning owner of playlist
     let token = Cookies.get('jwt');
-    // console.log("token", token);
 
+    // post create playlist request to backend
     await axios.post(
       "http://localhost:3001/playlist/create",
       {
@@ -23,8 +22,8 @@ function CreatePlaylist() {
       },
       { withCredentials: true, credentials: "include" }
     ).then((response) => {
+      //if successful, alert user then redirect back to playlist
       let data = response.data;
-      console.log("Playlist created - in .then");
       if (data) {
         alert("Playlist Created");
         window.location.href = `/playlist/${data}`;
