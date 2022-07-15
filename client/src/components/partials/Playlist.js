@@ -113,7 +113,9 @@ function Playlist({ results }) {
               <i className="bi bi-heart">Favourite</i>
             </button>
           </div>
+
           <WorldPlaylist props={worlds} edit={edit} />
+
         </div>
       ) : (
         <div className="result">
