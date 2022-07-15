@@ -130,6 +130,7 @@ function Playlist({ results }) {
         <div className="result">
           <form>
             <input
+            className="playlist-page-edit-title"
               type="text"
               placeholder="title"
               value={title}
@@ -139,6 +140,7 @@ function Playlist({ results }) {
             ></input>
             <br />
             <input
+            className="playlist-page-edit-description"
               type="text"
               placeholder="description"
               value={description}

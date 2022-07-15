@@ -64,3 +64,32 @@ button.playlist-page-playlist-share:hover {
   background-color: #a18f37;
   color: #edf4ff;
 }
+
+input.playlist-page-edit-title{
+  font-family: 'Comfortaa', cursive;
+  margin: 15px;
+  width: 30%;
+  padding: 15px 40px;
+  border-radius: 5px;
+  background-color: #6d7683;
+  border: 1px solid rgb(176, 210, 231);
+}
+
+input.playlist-page-edit-title:hover{
+  background-color: #8594aa;
+}
+
+
+input.playlist-page-edit-description{
+  font-family: 'Comfortaa', cursive;
+  margin: 15px;
+  width: 30%;
+  padding: 15px 40px;
+  border-radius: 5px;
+  background-color: #6d7683;
+  border: 1px solid rgb(176, 210, 231);
+}
+
+input.playlist-page-edit-description:hover{
+  background-color: #8594aa;
+}
