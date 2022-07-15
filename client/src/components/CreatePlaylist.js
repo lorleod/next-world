@@ -2,10 +2,12 @@ import {useState} from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
 
-//Page to collect new playlist info in form and submit
+//Page to collect new playlist info and submit
 function CreatePlaylist() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  //submit form info to backend when triggered by user
   const submit = async (event) => {
     event.preventDefault();
 
@@ -39,14 +41,15 @@ function CreatePlaylist() {
       <form>
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           onChange={(event) => {
             setTitle(event.target.value);
           }}
         ></input>
         <input
           type="text"
-          placeholder="descrition"
+          size="60"
+          placeholder="Description"
           onChange={(event) => {
             setDescription(event.target.value);
           }}

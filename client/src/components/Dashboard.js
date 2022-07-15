@@ -53,9 +53,9 @@ function Dashboard() {
       <h1>{username}</h1>
       <Link to="/playlist/create">Create New Playlist</Link>
       <h2>My Playlists</h2>
-      <MyPlaylists key="1" playlists={playlists} />
+      <MyPlaylists key="999" playlists={playlists} />
       <h2>My Favourites</h2>
-      <MyFavourites key="2" favourites={favourites} />
+      <MyFavourites key="998" favourites={favourites} />
     </div>
   );
 }
