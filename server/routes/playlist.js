@@ -35,12 +35,11 @@ router.post("/addworld", async (req, res) => {
       $push: { worldIds: worldId },
     };
     await Playlist.updateOne(filter, updatedDoc);
-    res.send( "world added")
+    res.send("world added");
   } catch (err) {
     console.log(err);
     res.json({ status: "error", message: err });
   }
-
 });
 
 router.post("/edit", async (req, res) => {
@@ -86,6 +85,27 @@ router.delete("/deleteworld", async (req, res) => {
   console.log("deleted world");
 
   res.send("deleted world");
+});
+
+router.get("/auth/:user_id/:playlist_id", async (req, res) => {
+  try {
+    const token = req.params.user_id;
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    const user_id = decoded._id;
+    const playlist_id = req.params.playlist_id;
+    const playlist = await Playlist.findById({
+      _id: playlist_id,
+    });
+    const object_id = playlist.user_id;
+    const playlist_user_id = object_id.toString();
+    if (playlist_user_id === user_id) {
+      return res.send("Authorized");
+    } else {
+      return res.send("Unauthorized");
+    }
+  } catch (error) {
+    res.send("Unauthorized");
+  }
 });
 
 module.exports = router;
