@@ -1,3 +1,5 @@
+import "../App.scss";
+import "./createPlaylist.scss";
 import {useState} from 'react';
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -35,26 +37,31 @@ function CreatePlaylist() {
 
   };
   return (
-    <div className="App">
-      <h1>Create Playlist</h1>
+    <div className="create-playlist-container">
+      <h1 className="create-playlist-heading">Create Playlist</h1>
       <form>
+      <br />
         <input
+        className="create-playlist-title"
           type="text"
           placeholder="title"
           onChange={(event) => {
             setTitle(event.target.value);
           }}
         ></input>
+        <br />
         <input
+        className="create-playlist-description"
           type="text"
           placeholder="descrition"
           onChange={(event) => {
             setDescription(event.target.value);
           }}
         ></input>
-        <button onClick={submit}>Create</button>
+        <br />
+        <button className="create-playlist-create-button" onClick={submit}>Create</button>
       </form>
-    </div>
+      </div>
   );
 }
 
