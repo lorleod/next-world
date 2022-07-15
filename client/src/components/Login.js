@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import RedirectPopup from "./partials/popups/RedirectPopup";
 import BasicPopup from "./partials/popups/BasicPopup";
 
+// user login page
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,6 @@ function Login() {
 
   const submit = async (event) => {
     event.preventDefault();
-    //console.log(username, password);
     const response = await axios.post(
       "http://localhost:3001/user/login",
       {
@@ -27,14 +27,11 @@ function Login() {
     const data = response.data;
 
     if (data.user) {
-      // console.log(data);
       Cookies.set("jwt", data.user, { expires: 7 });
       setPopupLoginSuccess(true);
     } else {
       setPopupLoginError(true);
     }
-
-    console.log(data);
   };
 
   return (
