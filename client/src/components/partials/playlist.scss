@@ -93,3 +93,36 @@ input.playlist-page-edit-description{
 input.playlist-page-edit-description:hover{
   background-color: #8594aa;
 }
+
+.playlist-edit-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.playlist-edit-page-add-world {
+  font-family: 'Comfortaa', cursive;
+  background-color: #f5e17f;
+  color: #333436;
+  width: 85px;
+  padding: 10px 25px;
+  margin: 20px;
+}
+a.playlist-edit-page-add-world:hover {
+  background-color: #a18f37;
+}
+
+button.playlist-edit-page-confirm {
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  background-color: #75a07f;
+  color: #333436;
+  padding: 10px 25px;
+  margin: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+button.playlist-edit-page-confirm:hover {
+  background-color: #5a755f;
+}

@@ -112,25 +112,33 @@ function Playlist({ results }) {
       {!edit ? (
         <div className="result">
           <h1 className="playlist-page-playlist-name">{title}</h1>
-          <h5 className="playlist-page-playlist-favourites">Favourites: {favourites}</h5>
+          <h5 className="playlist-page-playlist-favourites">
+            Favourites: {favourites}
+          </h5>
           <p className="playlist-page-playlist-description">{description}</p>
-          
+
           <div>
-          <button className="playlist-page-playlist-edit" onClick={editPlaylist}>Edit Playlist</button>
+            <button
+              className="playlist-page-playlist-edit"
+              onClick={editPlaylist}
+            >
+              Edit Playlist
+            </button>
             <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button className="playlist-page-playlist-share" onClick={share}>Share</button>
+            <button className="playlist-page-playlist-share" onClick={share}>
+              Share
+            </button>
           </div>
 
           <WorldPlaylist props={worlds} edit={edit} />
-
         </div>
       ) : (
         <div className="result">
           <form>
             <input
-            className="playlist-page-edit-title"
+              className="playlist-page-edit-title"
               type="text"
               placeholder="title"
               value={title}
@@ -140,7 +148,7 @@ function Playlist({ results }) {
             ></input>
             <br />
             <input
-            className="playlist-page-edit-description"
+              className="playlist-page-edit-description"
               type="text"
               placeholder="description"
               value={description}
@@ -150,13 +158,18 @@ function Playlist({ results }) {
             ></input>
           </form>
 
-          <WorldPlaylist props={worlds} edit={edit} />
+          <div className="playlist-edit-buttons-container">
           {edit ? (
-            <h3>
-              <Link to={addWorldUrl}>Add World</Link>
-            </h3>
+            <Link className="playlist-edit-page-add-world" to={addWorldUrl}>
+              Add World
+            </Link>
           ) : null}
-          <button onClick={confirm}>Confirm</button>
+          <button className="playlist-edit-page-confirm" onClick={confirm}>
+            Confirm
+          </button>
+          </div>
+
+          <WorldPlaylist props={worlds} edit={edit} />
         </div>
       )}
     </div>
