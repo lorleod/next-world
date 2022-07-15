@@ -46,9 +46,10 @@ h3.public-playlist-title:hover {
 
 .public-playlist-worlds-title {
   font-family: "Comfortaa", cursive;
-  text-orientation: inherit;
-  writing-mode: vertical-rl;
-  font-size: 30px;
+  text-orientation: upright;
+  writing-mode: tb-rl;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .public-playlist-description {
@@ -80,4 +81,17 @@ h3.public-playlist-title:hover {
   height: 170px;
   // border-radius: 5px;
   margin: auto 0px;
+}
+
+.public-playlist-delete-container {
+  padding: 10px;
+  font-family: "Comfortaa", cursive;
+  text-orientation: upright;
+  writing-mode: tb-rl;
+  // writing-mode: vertical-lr;
+  // transform: rotate(180deg);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
 }

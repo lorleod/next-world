@@ -9,7 +9,7 @@ export default function MyFavouritesItem(props) {
   const [title, setTitle] = useState("");
   const [worldIds, setWorldIds] = useState([]);
   const playlistUrl = `/playlist/${props.playlistId}`;
-  // console.log("props: ", props);
+  // console.log("playlisturl: ", playlistUrl);
 
   useEffect(() => {
     axios
@@ -62,17 +62,20 @@ export default function MyFavouritesItem(props) {
           </Link>
         </h3>
         <div className="public-playlist-right-container">
-          <div className="public-playlist-worlds-title"> Worlds:</div>
+          <div className="public-playlist-worlds-title"> Worlds</div>
           <div className="public-playlist-worlds-container">
             <div className="public-playlist-world-list">
               {mappedPlaysWorlds}
             </div>
           </div>
+          <div
+            className="public-playlist-delete-container"
+            onClick={unFavourite}
+          >
+            Remove
+          </div>
         </div>
       </div>
-      <h3>
-        <i className="bi bi-trash" onClick={unFavourite}></i>
-      </h3>
     </div>
   );
 }

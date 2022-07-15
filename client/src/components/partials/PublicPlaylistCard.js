@@ -62,7 +62,7 @@ export default function PublicPlaylistCard(props) {
             Favourited: {favourites}
           </div>
         </div>
-        <div className="public-playlist-worlds-title"> Worlds:</div>
+        <div className="public-playlist-worlds-title"> Worlds</div>
         <div className="public-playlist-worlds-container">
           <div className="public-playlist-world-list">{mappedPlaysWorlds}</div>
         </div>

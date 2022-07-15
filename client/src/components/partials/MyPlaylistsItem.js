@@ -13,9 +13,9 @@ export default function MyPlaylistsItem(props) {
   const [worldId, setWorldId] = useState([]);
   // console.log("props userplaylistitem: ", props);
   // console.log("playlistid", props.PlaylistId);
-  const playlistUrl = `/playlist/${props.PlaylistId}`;
+  const playlistUrl = `/playlist/${props.playlistId}`;
   const redirectUrl = `/user`;
-  // console.log("props trigger: ", props);
+
   const deletePlaylist = () => {
     setConfirmPopup(true);
     if (confirmPopup === true) {
@@ -60,15 +60,20 @@ export default function MyPlaylistsItem(props) {
             </Link>
           </h3>
           <div className="public-playlist-right-container">
-            <div className="public-playlist-worlds-title"> Worlds:</div>
+            <div className="public-playlist-worlds-title"> Worlds</div>
             <div className="public-playlist-worlds-container">
               <div className="public-playlist-world-list">
                 {mappedPlaysWorlds}
               </div>
             </div>
+            <div
+              className="public-playlist-delete-container"
+              onClick={deletePlaylist}
+            >
+              Delete
+            </div>
           </div>
         </div>
-        <i className="bi bi-trash" onClick={deletePlaylist}></i>
       </h3>
       <RedirectPopup
         trigger={popupDeleted}
