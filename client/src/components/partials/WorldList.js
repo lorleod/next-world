@@ -1,12 +1,12 @@
 import World from "./World";
 
-function WorldList({ results }) {
-  // console.log("results at worldlist", results.data);
+function WorldList(props) {
+  console.log("props at worldlist", props);
   //Makes data empty array so not read as undefined
   let data = [];
   //Changes data to results if present
-  if (results.data) {
-    data = results.data;
+  if (props.results.data) {
+    data = props.results.data;
   }
 
   // console.log("worldlist data", data);
@@ -19,6 +19,7 @@ function WorldList({ results }) {
       title={item.name}
       image={item.thumbnailImageUrl}
       author={item.authorName}
+      playlistId={props.playlistId}
     />
   ));
 

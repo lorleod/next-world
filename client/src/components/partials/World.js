@@ -17,7 +17,7 @@ function World(props) {
         console.log("addworld .then");
         if (data) {
           alert("World added");
-          window.location.href = `/`;
+          window.location.href = `/playlist/${props.playlistId}`;
         } else {
           alert("World add unsuccessful");
         }
