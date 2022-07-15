@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
+import RedirectPopup from "./popups/RedirectPopup";
 
 export default function UserFavouritesItem(props) {
   const [title, setTitle] = useState("");
+  const [popupDeleted, setPopupDeleted] = useState(false);
   const playlistUrl = `/playlist/${props.PlaylistId}`;
-  console.log("props playlistid", props.PlaylistId);
+  const redirectUrl = `/user`;
 
   useEffect(() => {
     axios
@@ -16,7 +18,7 @@ export default function UserFavouritesItem(props) {
       });
   }, []);
 
-  console.log("title", title);
+  // console.log("title", title);
   const deleteFavourite = () => {
     let confirm = window.confirm(
       "Are you sure you want to delete this playlist?"
@@ -29,10 +31,9 @@ export default function UserFavouritesItem(props) {
         })
         .then((response) => {
           const data = response.data;
-          console.log("data in playlistitem: ", data);
+          // console.log("data in playlistitem: ", data);
           if (data === "deleted") {
-            alert("Playlist deleted from Favorites");
-            window.location.href = "/user";
+            setPopupDeleted(true);
           }
         })
         .catch((error) => {});
@@ -45,6 +46,13 @@ export default function UserFavouritesItem(props) {
         <Link to={playlistUrl}>{title}</Link>
         <i className="bi bi-trash" onClick={deleteFavourite}></i>
       </h3>
+      <RedirectPopup
+        trigger={popupDeleted}
+        setTrigger={setPopupDeleted}
+        redirectUrl={redirectUrl}
+      >
+        <h1>Favourite Delete</h1>
+      </RedirectPopup>
     </div>
   );
 }

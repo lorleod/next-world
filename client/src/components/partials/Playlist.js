@@ -4,8 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
-import FavouriteAddPopup from "./popups/FavouriteAddPopup";
-import SharedPopup from "./popups/SharedPopup";
+import BasicPopup from "./popups/BasicPopup";
 
 function Playlist({ results }) {
   const [title, setTitle] = useState("");
@@ -138,7 +137,7 @@ function Playlist({ results }) {
             <button onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button onClick={copyToClipboard}>Copy Playlist Link to Clipboard</button>
+            <button onClick={copyToClipboard}>Share</button>
           </div>
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
@@ -173,6 +172,7 @@ function Playlist({ results }) {
               <button onClick={favourite}>
                 <i className="bi bi-heart">Favourite</i>
               </button>
+              <button onClick={copyToClipboard}>Share</button>
             </div>
           )}
 
@@ -185,15 +185,12 @@ function Playlist({ results }) {
           <button onClick={confirm}>Confirm</button>
         </div>
       )}
-      <FavouriteAddPopup
-        trigger={popupFavourite}
-        setTrigger={setPopupFavourite}
-      >
+      <BasicPopup trigger={popupFavourite} setTrigger={setPopupFavourite}>
         <h1>Playlist Added to Favourites</h1>
-      </FavouriteAddPopup>
-      <SharedPopup trigger={popupShared} setTrigger={setPopupShared}>
+      </BasicPopup>
+      <BasicPopup trigger={popupShared} setTrigger={setPopupShared}>
         <h1>Link Copied to Clipboard</h1>
-      </SharedPopup>
+      </BasicPopup>
     </div>
   );
 }

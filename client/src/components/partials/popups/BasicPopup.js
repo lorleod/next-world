@@ -1,6 +1,6 @@
 import "./Popup.scss";
 
-function FavouriteAddPopup(props) {
+function BasicPopup(props) {
   const close = () => {
     props.setTrigger(false);
   };
@@ -16,4 +16,4 @@ function FavouriteAddPopup(props) {
   ) : null;
 }
 
-export default FavouriteAddPopup;
+export default BasicPopup;

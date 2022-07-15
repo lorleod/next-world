@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
-import PlaylistDeletedPopup from "./popups/PlaylistDeletedPopup.js";
+import RedirectPopup from "./popups/RedirectPopup.js";
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");
@@ -72,13 +72,13 @@ export default function PlaylistItem(props) {
         <a onClick={launchWorld}>Launch Link</a>
       </div>
       {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
-      <PlaylistDeletedPopup
+      <RedirectPopup
         trigger={popupDeleted}
         setTrigger={setPopupDeleted}
         redirectUrl={redirectUrl}
       >
         <h1>World Deleted From Playlist</h1>
-      </PlaylistDeletedPopup>
+      </RedirectPopup>
     </div>
   );
 }
