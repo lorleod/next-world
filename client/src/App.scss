@@ -15,7 +15,6 @@ a {
   border-radius: 5px;
 }
 
-
 nav {
   position: fixed;
   top: 0;
@@ -32,7 +31,7 @@ nav {
 }
 
 .nav-links {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   width: 100%;
   padding: 0px;
   display: flex;
@@ -46,7 +45,7 @@ h3#header-logo {
 }
 
 a.header-logo-link {
-  font-family: 'Rubik Moonrocks', cursive;
+  font-family: "Rubik Moonrocks", cursive;
   color: #ffd927;
 }
 
@@ -74,7 +73,7 @@ li#nav-dashboard-link:hover {
 }
 
 button.nav-link-logout {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-size: 16px;
   width: 100%;
   margin: 10px 0px;
@@ -87,5 +86,10 @@ button.nav-link-logout {
 
 button.nav-link-logout:hover {
   background-color: #a66551;
-  color: #2d2f32
+  color: #2d2f32;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }

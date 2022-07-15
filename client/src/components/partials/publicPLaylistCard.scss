@@ -12,7 +12,7 @@ h3.public-playlist-title {
 
 a.public-playlist-title-link {
   color: #fed928;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-size: 26px;
   margin: auto 0px;
 }
@@ -31,6 +31,7 @@ h3.public-playlist-title:hover {
   align-items: center;
   width: 80%;
   background-color: #777f8a;
+  overflow: hidden;
 }
 
 .public-playlist-info-container {
@@ -44,7 +45,7 @@ h3.public-playlist-title:hover {
 }
 
 .public-playlist-worlds-title {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   text-orientation: inherit;
   writing-mode: vertical-rl;
   font-size: 30px;
@@ -52,12 +53,14 @@ h3.public-playlist-title:hover {
 
 .public-playlist-description {
   font-size: 18px;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 }
 
 .public-playlist-worlds-container {
   display: flex;
   flex-direction: row;
+  overflow: scroll;
+  width: 100%;
 }
 
 .public-playlist-author {
@@ -65,5 +68,16 @@ h3.public-playlist-title:hover {
   font-size: 14px;
 }
 
+.public-playlist-world-list {
+  display: flex;
+  flex-direction: row;
+}
 
+.public-playlist-image-container {
+}
 
+.public-playlist-image {
+  height: 170px;
+  // border-radius: 5px;
+  margin: auto 0px;
+}
