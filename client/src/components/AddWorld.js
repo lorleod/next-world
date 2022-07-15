@@ -30,9 +30,9 @@ function AddWorld() {
   };
 
   return (
-    <div className="App">
-      <h1>Add World</h1>
-      <Link to={playlistUrl}>Back to Playlist</Link>
+    <div className="add-world-container">
+      <h1 className="add-world-heading">Add World</h1>
+      <Link className="add-world-back-playlist-button" to={playlistUrl}>Back to Playlist</Link>
       <SearchBar onSearch={onSearch} />
       <WorldList results={state.results} playlistId={playlistId}/>
     </div>

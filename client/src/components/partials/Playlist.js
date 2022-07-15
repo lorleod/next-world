@@ -110,7 +110,7 @@ function Playlist({ results }) {
   return (
     <div>
       {!edit ? (
-        <div className="result">
+        <div className="results">
           <h1 className="playlist-page-playlist-name">{title}</h1>
           <h5 className="playlist-page-playlist-favourites">
             Favourites: {favourites}
@@ -135,7 +135,7 @@ function Playlist({ results }) {
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
       ) : (
-        <div className="result">
+        <div className="results">
           <form>
             <input
               className="playlist-page-edit-title"
