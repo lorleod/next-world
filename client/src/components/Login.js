@@ -76,7 +76,7 @@ function Login() {
         <h1>Login Successful</h1>
       </RedirectPopup>
       <BasicPopup trigger={popupLoginError} setTrigger={setPopupLoginError}>
-        <h1>Login Successful </h1>
+        <h1>Login Unsuccessful </h1>
       </BasicPopup>
     </div>
   );
