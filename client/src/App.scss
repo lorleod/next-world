@@ -88,3 +88,8 @@ button.nav-link-logout:hover {
   background-color: #a66551;
   color: #2d2f32;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
