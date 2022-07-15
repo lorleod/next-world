@@ -68,7 +68,6 @@ export default function PlaylistItem(props) {
       <h3>Description: {description}</h3>
       <img src={image} alt={title} />
       <div>
-        {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
         <a onClick={launchWorld}>Launch Link</a>
       </div>
       {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
