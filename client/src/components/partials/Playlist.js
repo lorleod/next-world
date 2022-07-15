@@ -100,6 +100,12 @@ function Playlist({ results }) {
     await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
   };
 
+  const share = async () => {
+    navigator.clipboard.writeText(
+      `http://localhost:3000/playlist/${playlistId}`
+    );
+  };
+
   return (
     <div>
       {!edit ? (
@@ -112,6 +118,7 @@ function Playlist({ results }) {
             <button onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
+            <button onClick={share}>Share</button>
           </div>
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
