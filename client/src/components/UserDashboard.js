@@ -2,7 +2,7 @@ import "../App.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import UserPlaylists from "./partials/UserPlaylists";
+import MyPlaylists from "./partials/MyPlaylists";
 import UserFavourites from "./partials/UserFavourites";
 const Cookies = require("js-cookie");
 
@@ -20,8 +20,7 @@ function UserDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       // GET request to user/:token returns the user and user's playlists
-      await axios
-        .get(`http://localhost:3001/user/${token}`, {
+      await axios.get(`http://localhost:3001/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -33,10 +32,12 @@ function UserDashboard() {
     fetchData();
   }, []);
 
+    // on page load:
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get(`http://localhost:3001/favourites/${token}`, {
+
+      // GET request to favourites/:token returns all favourite playlists for that user
+      await axios.get(`http://localhost:3001/favourites/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -46,19 +47,15 @@ function UserDashboard() {
     };
     fetchData();
   }, []);
-  // console.log("user playllists", playlists);
+
   return (
     <div className="App">
       <h1>{username}</h1>
-      <h2>
-        My Playlists
-        <UserPlaylists props={playlists} />
-      </h2>
-      <h2>
-        My Favourites
-        <UserFavourites props={favourites} />
-      </h2>
-      <Link to="/playlist/create">Create Playlist</Link>
+      <Link to="/playlist/create">Create New Playlist</Link>
+      <h2>My Playlists</h2>
+      <MyPlaylists key="1" playlists={playlists} />
+      <h2>My Favourites</h2>
+      <UserFavourites key="2" props={favourites} />
     </div>
   );
 }
