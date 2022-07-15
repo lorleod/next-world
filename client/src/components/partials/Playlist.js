@@ -13,6 +13,9 @@ function Playlist({ results }) {
   const [playlistUserId, setPlaylistUserId] = useState("");
   const [user, setUser] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const [popupFavourite, setPopupFavourite] = useState(false);
+  const [popupShared, setPopupShared] = useState(false);
+  const [editInfo, setEditInfo] = useState(false);
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
@@ -57,14 +60,27 @@ function Playlist({ results }) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:3001/playlist/auth/${token}/${params.id}`)
+        .then((response) => {
+          const auth = response.data;
+          console.log("auth: ", auth);
+          if (auth === "Authorized") {
+            setEdit(true);
+          } else {
+            setEdit(false);
+          }
+        })
+        .catch((error) => {});
+    };
+    fetchData();
+  }, []);
+
   const confirm = async (event) => {
     let confirm = window.confirm("Confirm edits");
     event.preventDefault();
-    // console.log(username + password);
-
-    //get coded jwt cookie containing user id
-
-    // console.log("token", token);
     if (confirm) {
       await axios
         .post(
@@ -88,14 +104,6 @@ function Playlist({ results }) {
     }
   };
 
-  const editPlaylist = () => {
-    if (user === playlistUserId) {
-      setEdit(true);
-    } else {
-      alert("You do not have permission to edit this playlist");
-    }
-  };
-
   const favourite = async () => {
     await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
   };
@@ -106,6 +114,10 @@ function Playlist({ results }) {
     );
   };
 
+  const editPlaylistInfo = async () => {
+    setEditInfo(true);
+  };
+
   return (
     <div>
       {!edit ? (
@@ -113,7 +125,7 @@ function Playlist({ results }) {
           <h1>{title}</h1>
           <h3>Favourites: {favourites}</h3>
           <h2>{description}</h2>
-          <button onClick={editPlaylist}>Edit Playlist</button>
+
           <div>
             <button onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
@@ -124,25 +136,37 @@ function Playlist({ results }) {
         </div>
       ) : (
         <div className="result">
-          <form>
-            <input
-              type="text"
-              placeholder="title"
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-            ></input>
-            <br />
-            <input
-              type="text"
-              placeholder="description"
-              value={description}
-              onChange={(event) => {
-                setDescription(event.target.value);
-              }}
-            ></input>
-          </form>
+          {editInfo ? (
+            <form>
+              <input
+                type="text"
+                placeholder="title"
+                value={title}
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+              ></input>
+              <br />
+              <input
+                type="text"
+                placeholder="description"
+                value={description}
+                onChange={(event) => {
+                  setDescription(event.target.value);
+                }}
+              ></input>
+            </form>
+          ) : (
+            <div>
+              <h1>{title}</h1>
+              <h3>Favourites: {favourites}</h3>
+              <h2>{description}</h2>
+              <button onClick={editPlaylistInfo}>Edit Playlist Info</button>
+              <button onClick={favourite}>
+                <i className="bi bi-heart">Favourite</i>
+              </button>
+            </div>
+          )}
 
           <WorldPlaylist props={worlds} edit={edit} />
           {edit ? (
@@ -153,6 +177,15 @@ function Playlist({ results }) {
           <button onClick={confirm}>Confirm</button>
         </div>
       )}
+      <FavouriteAddPopup
+        trigger={popupFavourite}
+        setTrigger={setPopupFavourite}
+      >
+        <h1>Playlist Added to Favourites</h1>
+      </FavouriteAddPopup>
+      <SharedPopup trigger={popupShared} setTrigger={setPopupShared}>
+        <h1>Playlist Added to Favourites</h1>
+      </SharedPopup>
     </div>
   );
 }
