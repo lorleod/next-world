@@ -1,6 +1,6 @@
 h3.public-playlist-title {
   display: flex;
-  background-color: #372b3a;
+  background-color: rgb(59, 61, 65);
   width: 150px;
   height: 150px;
   border-radius: 10px 0px 0px 10px;
@@ -11,9 +11,14 @@ h3.public-playlist-title {
 }
 
 a.public-playlist-title-link {
+  color: #fed928;
   font-family: 'Comfortaa', cursive;
   font-size: 26px;
   margin: auto 0px;
+}
+
+h3.public-playlist-title:hover {
+  background-color: #2a2c2f;
 }
 
 .public-playlist-right-container {
@@ -59,3 +64,6 @@ a.public-playlist-title-link {
   font-family: "Comfortaa", cursive;
   font-size: 14px;
 }
+
+
+

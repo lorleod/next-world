@@ -28,7 +28,6 @@ function Register() {
     }
   };
   return (
-    <div className="App">
       <div id="register-page-container">
         <h1 id="register-page-heading">Register</h1>
         <div className="login-form-container">
@@ -56,7 +55,6 @@ function Register() {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 

@@ -3,10 +3,6 @@
   display: flex;
 }
 
-.img-world {
-  height: 250px;
-}
-
 .show-world p {
   display: flex;
   justify-content: baseline;
@@ -15,4 +11,22 @@
 .world-desc p {
   display: flex;
   align-items: baseline;
+}
+
+h1.add-world-heading{
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 40px;
+  color: #f8d427;
+  margin-bottom: 25px;
+}
+
+a.add-world-back-playlist-button {
+  font-family: "Comfortaa", cursive;
+  margin: 15px;
+  background-color: #be8989;
+  padding: 15px 40px;
+  border-radius: 5px;
+  border: none;
+  color: #41252f;
 }

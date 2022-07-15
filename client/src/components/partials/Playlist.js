@@ -1,3 +1,4 @@
+import "./playlist.scss";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -129,60 +130,64 @@ function Playlist({ results }) {
   return (
     <div>
       {!edit ? (
-        <div className="result">
-          <h1>{title}</h1>
-          <h3>Favourites: {favourites}</h3>
-          <h2>{description}</h2>
+        <div className="results">
+          <h1 className="playlist-page-playlist-name">{title}</h1>
+          <h5 className="playlist-page-playlist-favourites">
+            Favourites: {favourites}
+          </h5>
+          <p className="playlist-page-playlist-description">{description}</p>
 
           <div>
-            <button onClick={favourite}>
+            <button
+              className="playlist-page-playlist-edit"
+              onClick={editPlaylistInfo}
+            >
+              Edit Playlist
+            </button>
+            <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button onClick={copyToClipboard}>Copy Playlist Link to Clipboard</button>
+            <button className="playlist-page-playlist-share"  onClick={copyToClipboard}>Copy Playlist Link to Clipboard</button>
           </div>
+
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
       ) : (
-        <div className="result">
-          {editInfo ? (
-            <form>
-              <input
-                type="text"
-                placeholder="title"
-                value={title}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              ></input>
-              <br />
-              <input
-                type="text"
-                placeholder="description"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              ></input>
-            </form>
-          ) : (
-            <div>
-              <h1>{title}</h1>
-              <h3>Favourites: {favourites}</h3>
-              <h2>{description}</h2>
-              <button onClick={editPlaylistInfo}>Edit Playlist Info</button>
-              <button onClick={favourite}>
-                <i className="bi bi-heart">Favourite</i>
-              </button>
-            </div>
-          )}
+        <div className="results">
+          <form>
+            <input
+              className="playlist-page-edit-title"
+              type="text"
+              placeholder="title"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            ></input>
+            <br />
+            <input
+              className="playlist-page-edit-description"
+              type="text"
+              placeholder="description"
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+            ></input>
+          </form>
+
+          <div className="playlist-edit-buttons-container">
+          {edit ? (
+            <Link className="playlist-edit-page-add-world" to={addWorldUrl}>
+              Add World
+            </Link>
+          ) : null}
+          <button className="playlist-edit-page-confirm" onClick={confirm}>
+            Confirm
+          </button>
+          </div>
 
           <WorldPlaylist props={worlds} edit={edit} />
-          {edit ? (
-            <h3>
-              <Link to={addWorldUrl}>Add World</Link>
-            </h3>
-          ) : null}
-          <button onClick={confirm}>Confirm</button>
         </div>
       )}
       <FavouriteAddPopup
