@@ -6,6 +6,7 @@ import SearchBar from "./partials/SearchBar";
 import WorldList from "./partials/WorldList";
 import axios from "axios";
 
+// Page to seach and add world to a playlist
 function AddWorld() {
   const params = useParams();
   const playlistId = params.id;
