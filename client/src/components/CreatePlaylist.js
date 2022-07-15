@@ -24,7 +24,7 @@ function CreatePlaylist() {
       { withCredentials: true, credentials: "include" }
     ).then((response) => {
       let data = response.data;
-      // console.log("data at createplaylist", data)
+      console.log("Playlist created - in .then");
       if (data) {
         alert("Playlist Created");
         window.location.href = `/playlist/${data}`;

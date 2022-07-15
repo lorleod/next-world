@@ -1,0 +1,66 @@
+h1.playlist-page-playlist-name {
+  font-family: 'Comfortaa';
+  font-size: 45px;
+  color: #fed928;
+}
+
+h5.playlist-page-playlist-favourites {
+  font-family: 'Comfortaa';
+  color: #d8e6fa;
+}
+
+p.playlist-page-playlist-description {
+  font-family: 'Comfortaa';
+  font-size: 25px;
+  color: #edf4ff;
+  width: 70%;
+  margin: 20px auto;
+}
+
+button.playlist-page-playlist-edit {
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #be8989;
+  color: #31363c;
+}
+
+button.playlist-page-playlist-edit:hover {
+  background-color: #956868;
+  color: #edf4ff;
+}
+
+button.playlist-page-playlist-fav {
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #75a07f;
+  color: #31363c;
+}
+
+button.playlist-page-playlist-fav:hover {
+  background-color: #475f4c;
+  color: #edf4ff;
+}
+
+button.playlist-page-playlist-share {
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c7b351;
+  color: #31363c;
+}
+
+button.playlist-page-playlist-share:hover {
+  background-color: #a18f37;
+  color: #edf4ff;
+}

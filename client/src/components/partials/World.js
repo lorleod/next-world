@@ -5,18 +5,19 @@ import { useParams } from "react-router-dom";
 function World(props) {
   const params = useParams();
   console.log("params: ", params);
-  const submit = () => {
+  const submit = async (event) => {
+    event.preventDefault();
     console.log("addworld submit");
-    axios
+    await axios
       .post("http://localhost:3001/playlist/addworld", {
         worldId: props.world.id,
         playlistId: params.id,
-      })
+      }, { withCredentials: true, credentials: "include" })
       .then((data) => {
         console.log("addworld .then");
         if (data) {
           alert("World added");
-          window.location.href = `/playlist/`;
+          window.location.href = `/playlist/${props.playlistId}`;
         } else {
           alert("World add unsuccessful");
         }

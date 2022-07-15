@@ -34,7 +34,7 @@ function AddWorld() {
       <h1>Add World</h1>
       <Link to={playlistUrl}>Back to Playlist</Link>
       <SearchBar onSearch={onSearch} />
-      <WorldList results={state.results} />
+      <WorldList results={state.results} playlistId={playlistId}/>
     </div>
   );
 }
