@@ -8,10 +8,11 @@ const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and
 // playlists they favorited. Create new playlist option and delete options
-function Dashboard() {
+function UserDashboard(props) {
   const [username, setUsername] = useState("");
   const [playlists, setPlaylists] = useState();
   const [favourites, setFavourites] = useState();
+  console.log("props in userdashboard: ", props);
 
   // get user token from session
   let token = Cookies.get("jwt");
@@ -20,7 +21,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       // GET request to user/:token returns the user and user's playlists
-      await axios.get(`http://localhost:3001/user/${token}`, {
+      await axios
+        .get(`http://localhost:3001/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -32,12 +34,12 @@ function Dashboard() {
     fetchData();
   }, []);
 
-    // on page load:
+  // on page load:
   useEffect(() => {
     const fetchData = async () => {
-
       // GET request to favourites/:token returns all favourite playlists for that user
-      await axios.get(`http://localhost:3001/favourites/${token}`, {
+      await axios
+        .get(`http://localhost:3001/favourites/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -60,4 +62,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default UserDashboard;

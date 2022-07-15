@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 }
 
 .popup-inner {
@@ -19,8 +20,6 @@
   border-radius: 15px;
 }
 
-.popup-inner .close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.btn {
+  margin: 0 5px;
 }

@@ -3,21 +3,23 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import RedirectPopup from "./popups/RedirectPopup";
+import ConfirmPopup from "./popups/ConfirmPopup";
 
 export default function UserPlaylistItem(props) {
   const [popupDeleted, setPopupDeleted] = useState(false);
+  const [confirmPopup, setConfirmPopup] = useState(false);
   // console.log("props userplaylistitem: ", props);
   // console.log("playlistid", props.PlaylistId);
   const playlistUrl = `/playlist/${props.PlaylistId}`;
   const redirectUrl = `/user`;
+  console.log("props trigger: ", props.trigger);
   const deletePlaylist = () => {
-    // confirm equals true if user clicks "ok" on pop up
-    let confirm = window.confirm(
-      "Are you sure you want to delete this playlist?"
-    );
-
-    //if confirm equals true, send DELETE request to backend
-    if (confirm) {
+    setConfirmPopup(true);
+    if (confirmPopup === true) {
+      console.log("confirmPopup: ");
+    }
+    if ("") {
+      console.log("delete");
       const response = axios
         .delete(`http://localhost:3001/playlist/delete`, {
           data: { _id: props.PlaylistId },
@@ -30,7 +32,7 @@ export default function UserPlaylistItem(props) {
             setInterval(() => {
               setPopupDeleted(false);
               window.location.href = redirectUrl;
-            }, 2000);
+            }, 5000);
           }
         })
         .catch((error) => {
@@ -52,6 +54,9 @@ export default function UserPlaylistItem(props) {
       >
         <h1>Playlist Deleted</h1>
       </RedirectPopup>
+      <ConfirmPopup trigger={confirmPopup} setTrigger={setConfirmPopup}>
+        <h1>Delete This Playlist?</h1>
+      </ConfirmPopup>
     </div>
   );
 }
