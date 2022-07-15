@@ -1,16 +1,16 @@
 h1.playlist-page-playlist-name {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 45px;
   color: #fed928;
 }
 
 h5.playlist-page-playlist-favourites {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   color: #d8e6fa;
 }
 
 p.playlist-page-playlist-description {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 25px;
   color: #edf4ff;
   width: 70%;
@@ -18,7 +18,7 @@ p.playlist-page-playlist-description {
 }
 
 button.playlist-page-playlist-edit {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
@@ -34,7 +34,7 @@ button.playlist-page-playlist-edit:hover {
 }
 
 button.playlist-page-playlist-fav {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
@@ -50,7 +50,7 @@ button.playlist-page-playlist-fav:hover {
 }
 
 button.playlist-page-playlist-share {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
@@ -65,8 +65,8 @@ button.playlist-page-playlist-share:hover {
   color: #edf4ff;
 }
 
-input.playlist-page-edit-title{
-  font-family: 'Comfortaa', cursive;
+input.playlist-page-edit-title {
+  font-family: "Comfortaa", cursive;
   margin: 15px;
   width: 30%;
   padding: 15px 40px;
@@ -75,13 +75,12 @@ input.playlist-page-edit-title{
   border: 1px solid rgb(176, 210, 231);
 }
 
-input.playlist-page-edit-title:hover{
+input.playlist-page-edit-title:hover {
   background-color: #8594aa;
 }
 
-
-input.playlist-page-edit-description{
-  font-family: 'Comfortaa', cursive;
+input.playlist-page-edit-description {
+  font-family: "Comfortaa", cursive;
   margin: 15px;
   width: 30%;
   padding: 15px 40px;
@@ -90,7 +89,7 @@ input.playlist-page-edit-description{
   border: 1px solid rgb(176, 210, 231);
 }
 
-input.playlist-page-edit-description:hover{
+input.playlist-page-edit-description:hover {
   background-color: #8594aa;
 }
 
@@ -101,7 +100,7 @@ input.playlist-page-edit-description:hover{
 }
 
 a.playlist-edit-page-add-world {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   background-color: #f5e17f;
   color: #333436;
   width: 85px;
@@ -113,7 +112,7 @@ a.playlist-edit-page-add-world:hover {
 }
 
 button.playlist-edit-page-confirm {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-size: 16px;
   background-color: #75a07f;
   color: #333436;
@@ -125,4 +124,11 @@ button.playlist-edit-page-confirm {
 
 button.playlist-edit-page-confirm:hover {
   background-color: #5a755f;
+}
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
 }

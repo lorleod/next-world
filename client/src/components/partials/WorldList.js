@@ -21,7 +21,7 @@ function WorldList(props) {
     />
   ));
 
-  return <div className="result">{worldList}</div>;
+  return <div className="result-worlds">{worldList}</div>;
 }
 
 export default WorldList;
