@@ -1,7 +1,5 @@
 import "./Popup.scss";
 import { useState } from "react";
-import UserPlaylistItem from "../UserPlaylistItem";
-import UserDashboard from "../../UserDashboard";
 
 function ConfirmPopup(props) {
   const [triggerSend, setTriggerSend] = useState(false);
@@ -17,7 +15,6 @@ function ConfirmPopup(props) {
 
   return props.trigger ? (
     <div>
-      <UserDashboard trigger={triggerSend} />
       <button className="close-btn">
         <div className="popup">
           <div className="popup-inner">
