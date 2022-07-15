@@ -25,6 +25,10 @@ export default function UserPlaylistItem(props) {
           console.log("data in playlistitem: ", data);
           if (data === "deleted") {
             setPopupDeleted(true);
+            setInterval(() => {
+              setPopupDeleted(false);
+              window.location.href = redirectUrl;
+            }, 2000);
           }
         })
         .catch((error) => {});

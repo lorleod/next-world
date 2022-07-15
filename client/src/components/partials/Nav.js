@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import RedirectPopup from "./popups/RedirectPopup";
 
 function Nav() {
   const [user, setUser] = useState(false);
+  const [popupLogoutSuccess, setPopupLogoutSuccess] = useState(false);
   const cookie = Cookies.get();
-
-  //Changes state if user is logged in
+  const redirectUrl = "/login";
   useEffect(() => {
     if (cookie.jwt) {
       setUser(true);
@@ -26,9 +27,7 @@ function Nav() {
     const data = response.data;
 
     if (data.message === "logout successful") {
-      alert("Logout successful");
-      localStorage.setItem("isAuthenication", "false");
-      window.location.href = "/login";
+      setPopupLogoutSuccess(true);
     } else {
       alert("Logout failed");
     }
@@ -65,6 +64,13 @@ function Nav() {
           </li>
         </ul>
       ) : null}
+      <RedirectPopup
+        trigger={popupLogoutSuccess}
+        setTrigger={setPopupLogoutSuccess}
+        redirectUrl={redirectUrl}
+      >
+        <h1>Logout Successful</h1>
+      </RedirectPopup>
     </nav>
   );
 }

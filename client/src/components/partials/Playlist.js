@@ -6,7 +6,7 @@ import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
 import BasicPopup from "./popups/BasicPopup";
 
-function Playlist({ results }) {
+function Playlist(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [worlds, setWorlds] = useState([]);
@@ -20,6 +20,7 @@ function Playlist({ results }) {
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
+  const [trigger, setTrigger] = useState(false);
   let token = Cookies.get("jwt");
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function Playlist({ results }) {
         });
     };
     fetchData();
-  }, []);
+  }, [trigger]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,6 +111,10 @@ function Playlist({ results }) {
       .post(`http://localhost:3001/favourites/${token}/${playlistId}`)
       .then((response) => {
         setPopupFavourite(true);
+        setTrigger(true);
+        setInterval(() => {
+          setTrigger(false);
+        }, 10);
       });
   };
 
@@ -144,25 +149,28 @@ function Playlist({ results }) {
       ) : (
         <div className="result">
           {editInfo ? (
-            <form>
-              <input
-                type="text"
-                placeholder="title"
-                value={title}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              ></input>
-              <br />
-              <input
-                type="text"
-                placeholder="description"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              ></input>
-            </form>
+            <div>
+              <form>
+                <input
+                  type="text"
+                  placeholder="title"
+                  value={title}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                ></input>
+                <br />
+                <input
+                  type="text"
+                  placeholder="description"
+                  value={description}
+                  onChange={(event) => {
+                    setDescription(event.target.value);
+                  }}
+                ></input>
+              </form>
+              <button onClick={confirm}>Confirm</button>
+            </div>
           ) : (
             <div>
               <h1>{title}</h1>
@@ -173,22 +181,27 @@ function Playlist({ results }) {
                 <i className="bi bi-heart">Favourite</i>
               </button>
               <button onClick={copyToClipboard}>Share</button>
+              <div>
+                <Link to={addWorldUrl}>Add World</Link>
+              </div>
             </div>
           )}
 
           <WorldPlaylist props={worlds} edit={edit} />
-          {edit ? (
-            <h3>
-              <Link to={addWorldUrl}>Add World</Link>
-            </h3>
-          ) : null}
-          <button onClick={confirm}>Confirm</button>
         </div>
       )}
-      <BasicPopup trigger={popupFavourite} setTrigger={setPopupFavourite}>
+      <BasicPopup
+        trigger={popupFavourite}
+        setTrigger={setPopupFavourite}
+        setReload={false}
+      >
         <h1>Playlist Added to Favourites</h1>
       </BasicPopup>
-      <BasicPopup trigger={popupShared} setTrigger={setPopupShared}>
+      <BasicPopup
+        trigger={popupShared}
+        setTrigger={setPopupShared}
+        setReload={false}
+      >
         <h1>Link Copied to Clipboard</h1>
       </BasicPopup>
     </div>

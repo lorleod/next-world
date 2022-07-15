@@ -3,10 +3,15 @@ import "./login.scss";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import RedirectPopup from "./partials/popups/RedirectPopup";
+import BasicPopup from "./partials/popups/BasicPopup";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [popupLoginSuccess, setPopupLoginSuccess] = useState(false);
+  const [popupLoginError, setPopupLoginError] = useState(false);
+  const redirectUrl = "/user";
 
   const submit = async (event) => {
     event.preventDefault();
@@ -24,10 +29,9 @@ function Login() {
     if (data.user) {
       // console.log(data);
       Cookies.set("jwt", data.user, { expires: 7 });
-      alert("Login successful");
-      window.location.href = "/user";
+      setPopupLoginSuccess(true);
     } else {
-      alert("Please check credentials");
+      setPopupLoginError(true);
     }
 
     console.log(data);
@@ -58,10 +62,22 @@ function Login() {
               }}
             ></input>
             <br />
-            <button className="login-button" onClick={submit}>Login</button>
+            <button className="login-button" onClick={submit}>
+              Login
+            </button>
           </form>
         </div>
       </div>
+      <RedirectPopup
+        trigger={popupLoginSuccess}
+        setTrigger={setPopupLoginSuccess}
+        redirectUrl={redirectUrl}
+      >
+        <h1>Login Successful</h1>
+      </RedirectPopup>
+      <BasicPopup trigger={popupLoginError} setTrigger={setPopupLoginError}>
+        <h1>Login Successful </h1>
+      </BasicPopup>
     </div>
   );
 }
