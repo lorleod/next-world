@@ -1,13 +1,13 @@
 import React from "react";
 import UserFavouriteItem from "./UserFavouriteItem";
 
-export default function UserPlaylists({ props }) {
+// component lists all user's favourited playlists
+export default function MyFavourites({ props }) {
   let data = [];
   if (props) {
     data = props;
   }
   const UserPlaylists = data.map((playlists) => {
-    console.log("props: ", playlists);
     return (
       <div>
         <UserFavouriteItem

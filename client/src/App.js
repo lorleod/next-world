@@ -3,7 +3,7 @@ import Nav from "./components/partials/Nav";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import UserDashboard from "./components/UserDashboard";
+import Dashboard from "./components/Dashboard";
 import AddWorld from "./components/AddWorld";
 import CreatePlaylist from "./components/CreatePlaylist";
 import Playlist from "./components/partials/Playlist";
@@ -15,10 +15,10 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/user" element={<UserDashboard />} />
+        <Route path="/user" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/userDashboard" element={<UserDashboard />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/playlist/create" element={<CreatePlaylist />} />
         <Route path="/playlist/:id" element={<Playlist />} />
         <Route path="/playlist/:id/addworld" element={<AddWorld />} />

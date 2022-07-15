@@ -8,7 +8,7 @@ const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and
 // playlists they favorited. Create new playlist option and delete options
-function UserDashboard() {
+function Dashboard() {
   const [username, setUsername] = useState("");
   const [playlists, setPlaylists] = useState();
   const [favourites, setFavourites] = useState();
@@ -60,4 +60,4 @@ function UserDashboard() {
   );
 }
 
-export default UserDashboard;
+export default Dashboard;
