@@ -6,14 +6,20 @@ import UserPlaylists from "./partials/UserPlaylists";
 import UserFavourites from "./partials/UserFavourites";
 const Cookies = require("js-cookie");
 
-let token = Cookies.get("jwt");
-
+// page shows logged-in user dashboard: playlists they created and
+// playlists they favorited. Create new playlist option and delete options
 function UserDashboard() {
   const [username, setUsername] = useState("");
   const [playlists, setPlaylists] = useState();
   const [favourites, setFavourites] = useState();
+
+  // get user token from session
+  let token = Cookies.get("jwt");
+
+  // on page load:
   useEffect(() => {
     const fetchData = async () => {
+      // GET request to user/:token returns the user and user's playlists
       await axios
         .get(`http://localhost:3001/user/${token}`, {
           withCredentials: true,

@@ -114,7 +114,8 @@ function Playlist({ results }) {
       });
   };
 
-  const share = async () => {
+  // copies the current playlist url to user's clipboard
+  const copyToClipboard = async () => {
     navigator.clipboard.writeText(
       `http://localhost:3000/playlist/${playlistId}`
     );
@@ -137,7 +138,7 @@ function Playlist({ results }) {
             <button onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button onClick={share}>Share</button>
+            <button onClick={copyToClipboard}>Copy Playlist Link to Clipboard</button>
           </div>
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
