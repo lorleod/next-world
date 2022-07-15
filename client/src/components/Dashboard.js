@@ -1,18 +1,19 @@
 import "../App.scss";
+import "./dashboard.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import MyPlaylists from "./partials/MyPlaylists";
+import MyPlaylistsItem from "./partials/MyPlaylistsItem";
 import MyFavourites from "./partials/MyFavourites";
+import MyFavouritesItem from "./partials/MyFavouritesItem";
 const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and
 // playlists they favorited. Create new playlist option and delete options
 function UserDashboard(props) {
   const [username, setUsername] = useState("");
-  const [playlists, setPlaylists] = useState();
-  const [favourites, setFavourites] = useState();
-  console.log("props in userdashboard: ", props);
+  const [playlists, setPlaylists] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   // get user token from session
   let token = Cookies.get("jwt");
@@ -49,15 +50,44 @@ function UserDashboard(props) {
     };
     fetchData();
   }, []);
+  console.log("favourites: ", favourites);
+  console.log("playlists: ", playlists);
+  const mappedFavourites = favourites.map((favourite) => {
+    return (
+      <MyFavouritesItem
+        key={favourite._id}
+        playlistId={favourite.playlist_id}
+      />
+    );
+  });
+
+  const mappedPlaylists = playlists.map((playlist) => {
+    return (
+      <MyPlaylistsItem
+        key={playlist._id}
+        playlistTitle={playlist.title}
+        playlistDesc={playlist.description}
+        playlistId={playlist._id}
+        authorId={playlist.user_id}
+        worldIds={playlist.worldIds}
+      />
+    );
+  });
 
   return (
-    <div className="App">
+    <div className="user-dashboard">
       <h1>{username}</h1>
       <Link to="/playlist/create">Create New Playlist</Link>
-      <h2>My Playlists</h2>
-      <MyPlaylists key="999" playlists={playlists} />
-      <h2>My Favourites</h2>
-      <MyFavourites key="998" favourites={favourites} />
+      <div className="dashboard-container">
+        <div className="dashboard-left">
+          <h2>My Playlists</h2>
+          {mappedPlaylists}
+        </div>
+        <div className="dashboard-right">
+          <h2>My Favourites</h2>
+          {mappedFavourites}
+        </div>
+      </div>
     </div>
   );
 }

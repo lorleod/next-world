@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BasicPopup from "./popups/BasicPopup";
 
-const PublicPlaylistWorlds = (props) => {
+const MyPlaylistsWorld = (props) => {
   // console.log("props PPW: ", props.worldId);
   const [worldTitle, setWorldTitle] = useState("");
   const [worldImage, setWorldImage] = useState("");
@@ -52,4 +52,4 @@ const PublicPlaylistWorlds = (props) => {
   );
 };
 
-export default PublicPlaylistWorlds;
+export default MyPlaylistsWorld;

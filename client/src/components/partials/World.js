@@ -71,7 +71,7 @@ function World(props) {
         <img className="img-world" src={props.image} />
         <div className="search-world-info-container">
           <h2 className="search-world-title">{props.title}</h2>
-          <h5 className="search-world-author">{props.author}</h5>
+          <h5 className="search-world-author">Author: {props.author}</h5>
           <div className="search-world-description">
             <p className="search-world-description-p">{description}</p>
           </div>

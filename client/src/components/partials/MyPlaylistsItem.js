@@ -4,15 +4,18 @@ import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import RedirectPopup from "./popups/RedirectPopup";
 import ConfirmPopup from "./popups/ConfirmPopup";
+import "./publicPLaylistCard.scss";
+import MyPlaylistsWorld from "./MyPlaylistsWorld";
 
-export default function UserPlaylistItem(props) {
+export default function MyPlaylistsItem(props) {
   const [popupDeleted, setPopupDeleted] = useState(false);
   const [confirmPopup, setConfirmPopup] = useState(false);
+  const [worldId, setWorldId] = useState([]);
   // console.log("props userplaylistitem: ", props);
   // console.log("playlistid", props.PlaylistId);
   const playlistUrl = `/playlist/${props.PlaylistId}`;
   const redirectUrl = `/user`;
-  console.log("props trigger: ", props.trigger);
+  // console.log("props trigger: ", props);
   const deletePlaylist = () => {
     setConfirmPopup(true);
     if (confirmPopup === true) {
@@ -41,10 +44,30 @@ export default function UserPlaylistItem(props) {
     }
   };
 
+  const mappedPlaysWorlds = props.worldIds.map((world, index) => {
+    //generate a unique key for child - worldID alone breaks if two of same world
+    let key = world.concat(index);
+    return <MyPlaylistsWorld key={key} worldId={world} />;
+  });
+
   return (
     <div>
       <h3>
-        <Link to={playlistUrl}>{props.PlaylistTitle}</Link>
+        <div className="public-playlist-container">
+          <h3 className="public-playlist-title">
+            <Link className="public-playlist-title-link" to={playlistUrl}>
+              {props.playlistTitle}
+            </Link>
+          </h3>
+          <div className="public-playlist-right-container">
+            <div className="public-playlist-worlds-title"> Worlds:</div>
+            <div className="public-playlist-worlds-container">
+              <div className="public-playlist-world-list">
+                {mappedPlaysWorlds}
+              </div>
+            </div>
+          </div>
+        </div>
         <i className="bi bi-trash" onClick={deletePlaylist}></i>
       </h3>
       <RedirectPopup
