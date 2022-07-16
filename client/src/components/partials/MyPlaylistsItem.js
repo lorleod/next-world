@@ -1,0 +1,101 @@
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import ConfirmPopup from "./popups/ConfirmPopup";
+import "./publicPLaylistCard.scss";
+import MyPlaylistsWorld from "./MyPlaylistsWorld";
+import BasicPopup from "./popups/BasicPopup";
+
+export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
+  const [popupDeleted, setPopupDeleted] = useState(false);
+  const [confirmPopup, setConfirmPopup] = useState(false);
+  const [title, setTitle] = useState("");
+  const [worldIds, setWorldIds] = useState([]);
+  const [deleteTrigger, setDeleteTrigger] = useState(false);
+  // console.log("props userplaylistitem: ", props);
+  // console.log("playlistid", props.PlaylistId);
+  const playlistUrl = `/playlist/${playlistId}`;
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/playlist/${playlistId}`)
+      .then((response) => {
+        setTitle(response.data.title);
+        setWorldIds(response.data.worldIds);
+        console.log("worldIds in playlist", worldIds);
+        console.log("response in playlist", response.data);
+        // console.log()
+      });
+  }, []);
+
+  const deletePlaylist = () => {
+    let confirm = window.confirm(
+      "Are you sure you want to delete this playlist?"
+    );
+    if (confirm === true) {
+      console.log("delete");
+      const response = axios
+        .delete(`http://localhost:3001/playlist/delete`, {
+          data: { _id: playlistId },
+        })
+        .then((response) => {
+          const data = response.data;
+          //if response confirms delete, alert user then redirect back to dashboard
+          if (data === "deleted") {
+            handleDeleteRefresh(true);
+          }
+        })
+        .catch((error) => {
+          console.log("Error deleting playlist: ", error);
+        });
+    }
+  };
+  //Set the confirm popup to true when the user clicks the delete button
+  // const handleDelete = (event) => {
+  //   setTrigger(event);
+  // };
+
+  const mappedPlaysWorlds = worldIds.map((world, index) => {
+    //generate a unique key for child - worldID alone breaks if two of same world
+    let key = world.concat(index);
+    return <MyPlaylistsWorld key={key} worldId={world} />;
+  });
+
+  return (
+    <div>
+      <div className="public-playlist-container">
+        <div className="public-playlist-wrapper">
+          <h3 className="public-playlist-title">
+            <Link className="public-playlist-title-link" to={playlistUrl}>
+              {title}
+            </Link>
+          </h3>
+          <div className="public-playlist-right-container">
+            <div className="public-playlist-worlds-container">
+              <div className="public-playlist-world-list">
+                {mappedPlaysWorlds}
+              </div>
+            </div>
+            <div
+              className="public-playlist-delete-container"
+              onClick={deletePlaylist}
+            >
+              Delete
+            </div>
+          </div>
+        </div>
+      </div>
+      <BasicPopup trigger={popupDeleted} setTrigger={setPopupDeleted}>
+        <h1>Playlist Deleted</h1>
+      </BasicPopup>
+      <ConfirmPopup
+        trigger={confirmPopup}
+        setTrigger={setConfirmPopup}
+        // handleDeleteConfirm={handleDelete}
+      >
+        <h1>Delete This Playlist?</h1>
+      </ConfirmPopup>
+    </div>
+  );
+}

@@ -35,7 +35,8 @@ function Home() {
     );
   });
 
-  return <div className="App">{mappedHomePlaylists}</div>;
+  //display PublicPlaylistCard component array
+  return <div className="Home-container">{mappedHomePlaylists}</div>;
 }
 
 export default Home;
