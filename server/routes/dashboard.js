@@ -9,7 +9,7 @@ router.get("/:token", async (req, res) => {
   let decoded = jwt.verify(token, process.env.JWTSECRET);
   try {
     const playlists = await Playlist.find({ user_id: decoded._id });
-    res.send({ username: decoded.username, playlists: playlists });
+    res.json({ username: decoded.username, playlists: playlists });
   } catch (error) {}
 });
 
@@ -18,9 +18,9 @@ router.get("/home/:userid", async (req, res) => {
 
   try {
     const userInfo = await User.find({ _id: userId });
-    res.send({ username: userInfo[0].username });
+    res.json({ username: userInfo[0].username });
   } catch (error) {
-    res.send("Account deleted");
+    res.json("Account deleted");
     console.log("error", error);
   }
 });

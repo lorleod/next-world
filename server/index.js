@@ -31,8 +31,8 @@ app.use("/user/logout", logoutRoute);
 app.use("/api/getWorld", api);
 app.use("/playlist", playlist);
 app.use("/playlist/create", createPlaylistRoute);
-app.use("playlist/addworld", playlist);
-app.use("playlist/delete", playlist);
+app.use("/playlist/addworld", playlist);
+app.use("/playlist/delete", playlist);
 app.use("/user", dashboard);
 app.use("/favourites", favouritesRoute);
 

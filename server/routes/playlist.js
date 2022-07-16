@@ -5,13 +5,14 @@ const User = require("../Schema/users-schema");
 
 router.get("/:playlistId", async (req, res) => {
   let playlistId = req.params.playlistId;
+  console.log("PLAYLIST ROUTE playlistId: ", playlistId);
 
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
 
   const playlist = await Playlist.findOne({ _id: o_id });
 
-  return res.send(playlist);
+  return res.json(playlist);
 });
 // console.log("playlistID: ", playlistId);
 
@@ -20,7 +21,7 @@ router.get("/auth/:token", async (req, res) => {
     let token = req.params.token;
     let decoded = jwt.verify(token, process.env.JWTSECRET);
     let user_id = decoded._id;
-    return res.send(user_id);
+    return res.json(user_id);
   } catch (error) {}
 });
 
@@ -35,7 +36,7 @@ router.post("/addworld", async (req, res) => {
       $push: { worldIds: worldId },
     };
     await Playlist.updateOne(filter, updatedDoc);
-    res.send("world added");
+    res.json("world added");
   } catch (err) {
     console.log(err);
     res.json({ status: "error", message: err });
@@ -54,9 +55,9 @@ router.post("/edit", async (req, res) => {
       $set: { title: title, description: description },
     };
     await Playlist.updateOne(filter, updatedDoc);
-    return res.send("Playlist updated");
+    return res.json("Playlist updated");
   } catch (error) {
-    res.send(error);
+    res.json(error);
   }
 });
 
@@ -64,9 +65,9 @@ router.delete("/delete", async (req, res) => {
   try {
     const playlistId = req.body._id;
     await Playlist.deleteOne({ _id: playlistId });
-    res.send("deleted");
+    res.json("deleted");
   } catch (error) {
-    res.send("error");
+    res.json("error");
   }
 });
 
@@ -84,7 +85,7 @@ router.delete("/deleteworld", async (req, res) => {
 
   console.log("deleted world");
 
-  res.send("deleted world");
+  res.json("deleted world");
 });
 
 router.get("/auth/:user_id/:playlist_id", async (req, res) => {
@@ -99,12 +100,12 @@ router.get("/auth/:user_id/:playlist_id", async (req, res) => {
     const object_id = playlist.user_id;
     const playlist_user_id = object_id.toString();
     if (playlist_user_id === user_id) {
-      return res.send("Authorized");
+      return res.json("Authorized");
     } else {
-      return res.send("Unauthorized");
+      return res.json("Unauthorized");
     }
   } catch (error) {
-    res.send("Unauthorized");
+    res.json("Unauthorized");
   }
 });
 

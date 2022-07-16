@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
       worlds: [],
       user_id: decoded._id,
     });
-    res.send(playlist._id);
+    res.json(playlist._id)
   } catch (err) {
     console.log(err);
     res.json({ status: "error", message: err });

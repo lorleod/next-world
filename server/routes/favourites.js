@@ -13,7 +13,7 @@ router.post("/:token/:playlist_id", async (req, res) => {
       playlist_id: playlist_id,
       user_id: user_id,
     });
-    res.send("favourite added");
+    res.json("favourite added");
   } catch (error) {}
 });
 
@@ -26,7 +26,7 @@ router.get("/:token", async (req, res) => {
 
     //query db for all favourite playlists for that userID
     const favourites = await Favourites.find({ user_id: user_id });
-    res.send(favourites);
+    res.json(favourites);
   } catch (error) {}
 });
 
@@ -34,7 +34,7 @@ router.get("/user/:playlist_id", async (req, res) => {
   try {
     const playlist_id = req.params.playlist_id;
     const playlistInfo = await Playlist.find({ _id: playlist_id });
-    res.send(playlistInfo);
+    res.json(playlistInfo);
   } catch (error) {}
 });
 
@@ -42,7 +42,7 @@ router.delete("/delete/:playlist_id", async (req, res) => {
   const playlist_id = req.params.playlist_id;
   try {
     await Favourites.deleteOne({ playlist_id: playlist_id });
-    res.send("deleted");
+    res.json("deleted");
   } catch (error) {}
 });
 
@@ -50,7 +50,7 @@ router.get("/count/:playlist_id", async (req, res) => {
   try {
     const playlist_id = req.params.playlist_id;
     const favourites = await Favourites.find({ playlist_id: playlist_id });
-    res.send(favourites);
+    res.json(favourites);
   } catch (error) {
     console.log(error);
   }

@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     0,
     search
   ).then((worldResults) => {
-    res.send(worldResults.data);
+    res.json(worldResults.data);
   });
 });
 
@@ -25,7 +25,7 @@ router.get("/:worldId", async (req, res) => {
   const worldId = req.params.worldId;
   WorldsApi.getWorld(worldId).then((response) => {
     // console.log("getWorld: ", response.data);
-    res.send(response.data);
+    res.json(response.data);
   });
 });
 

@@ -6,9 +6,9 @@ router.get('/', async (req, res) => {
     //get all playlists from db
     const publicPlaylists = await Playlist.find();
 
-    return res.send(publicPlaylists);
+    return res.json(publicPlaylists);
   } catch (err) {
-    res.send({message: err});
+    res.json({message: err});
   }
 });
 
