@@ -27,7 +27,7 @@ function Playlist(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/playlist/${playlistId}`)
+        .get(`/playlist/${playlistId}`)
         .then((response) => {
           setTitle(response.data.title);
           console.log("response.data.title: ", response.data.title);
@@ -44,7 +44,7 @@ function Playlist(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/playlist/auth/${token}`)
+        .get(`/playlist/auth/${token}`)
         .then((response) => {
           setUser(response.data);
         });
@@ -55,7 +55,7 @@ function Playlist(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/favourites/count/${playlistId}`)
+        .get(`/favourites/count/${playlistId}`)
         .then((response) => {
           setFavourites(response.data.length);
         });
@@ -66,7 +66,7 @@ function Playlist(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/playlist/auth/${token}/${params.id}`)
+        .get(`/playlist/auth/${token}/${params.id}`)
         .then((response) => {
           const auth = response.data;
           console.log("auth: ", auth);
@@ -87,7 +87,7 @@ function Playlist(props) {
     if (confirm) {
       await axios
         .post(
-          "http://localhost:3001/playlist/edit",
+          "/playlist/edit",
           {
             title: title,
             description: description,
@@ -109,7 +109,7 @@ function Playlist(props) {
 
   const favourite = async () => {
     await axios
-      .post(`http://localhost:3001/favourites/${token}/${playlistId}`)
+      .post(`/favourites/${token}/${playlistId}`)
       .then((response) => {
         setPopupFavourite(true);
         setTrigger(true);
@@ -122,7 +122,7 @@ function Playlist(props) {
   // copies the current playlist url to user's clipboard
   const copyToClipboard = async () => {
     navigator.clipboard.writeText(
-      `http://localhost:3000/playlist/${playlistId}`
+      `/playlist/${playlistId}`
     );
     setPopupShared(true);
   };

@@ -20,7 +20,7 @@ function Nav() {
   const logout = async (event) => {
     event.preventDefault();
     const response = await axios.post(
-      "http://localhost:3001/user/logout",
+      "/user/logout",
       {},
       { withCredentials: true }
     );

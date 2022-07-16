@@ -10,17 +10,19 @@ function Home() {
   // When page loads, get array of playlist objects from backend
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`http://localhost:3001/`, {
+      await axios.get(`/home`, {
           withCredentials: true,
         })
         .then((response) => {
           setHomePlaylists(response.data);
-          console.log("response.data: ", response.data);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error);
+        });
     };
     fetchData();
   }, []);
+
 
   //map array of playlist objects into array of PublicPlaylistCard components
   const mappedHomePlaylists = homePlaylists.map((playlist) => {

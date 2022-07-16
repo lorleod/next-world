@@ -22,7 +22,7 @@ function UserDashboard(props) {
     const fetchData = async () => {
       // GET request to user/:token returns the user and user's playlists
       await axios
-        .get(`http://localhost:3001/user/${token}`, {
+        .get(`/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -39,7 +39,7 @@ function UserDashboard(props) {
     const fetchData = async () => {
       // GET request to favourites/:token returns all favourite playlists for that user
       await axios
-        .get(`http://localhost:3001/favourites/${token}`, {
+        .get(`/favourites/${token}`, {
           withCredentials: true,
         })
         .then((response) => {

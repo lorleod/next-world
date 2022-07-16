@@ -14,7 +14,7 @@ function World(props) {
     console.log("addworld submit");
     await axios
       .post(
-        "http://localhost:3001/playlist/addworld",
+        "/playlist/addworld",
         {
           worldId: props.world.id,
           playlistId: params.id,

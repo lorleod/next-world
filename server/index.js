@@ -21,8 +21,10 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 require("dotenv").config();
 
+app.use("/", express.static('../client/build'))
+
 //Routes
-app.use("/", homeRoute);
+app.use("/home", homeRoute);
 app.use("/user/register", registerRoute);
 app.use("/user/login", loginRoute);
 app.use("/user/logout", logoutRoute);
@@ -33,6 +35,7 @@ app.use("playlist/addworld", playlist);
 app.use("playlist/delete", playlist);
 app.use("/user", dashboard);
 app.use("/favourites", favouritesRoute);
+
 
 //Connecting to MongoDB
 mongoose.connect(

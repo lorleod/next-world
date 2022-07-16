@@ -12,7 +12,7 @@ export default function UserFavouritesItem(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/favourites/user/${props.PlaylistId}`)
+      .get(`/favourites/user/${props.PlaylistId}`)
       .then((response) => {
         setTitle(response.data[0].title);
       });
@@ -26,7 +26,7 @@ export default function UserFavouritesItem(props) {
     if (confirm) {
       console.log("delete");
       const response = axios
-        .delete(`http://localhost:3001/favourites/delete/${props.PlaylistId}`, {
+        .delete(`/favourites/delete/${props.PlaylistId}`, {
           data: { _id: props.PlaylistId },
         })
         .then((response) => {

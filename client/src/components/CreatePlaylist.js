@@ -18,7 +18,7 @@ function CreatePlaylist() {
 
     // post create playlist request to backend
     await axios.post(
-      "http://localhost:3001/playlist/create",
+      "/playlist/create",
       {
         title: title,
         description: description,

@@ -18,7 +18,7 @@ export default function PlaylistItem(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
+      .get(`/api/getWorld/${props.worldId}`)
       .then((response) => {
         setTitle(response.data.name);
         setAuthor(response.data.authorName);
@@ -37,7 +37,7 @@ export default function PlaylistItem(props) {
       console.log("Deleting world");
 
       axios
-        .delete(`http://localhost:3001/playlist/deleteworld`, {
+        .delete(`/playlist/deleteworld`, {
           data: {
             playlistId: playlistId,
             worldId: props.worldId,

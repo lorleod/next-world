@@ -12,7 +12,7 @@ export default function PublicPlaylistCard(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/user/home/${props.authorId}`)
+        .get(`/user/home/${props.authorId}`)
         .then((response) => {
           // console.log("response.data.username ", response.data.username);
           setAuthor([response.data.username]);
@@ -26,10 +26,9 @@ export default function PublicPlaylistCard(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/favourites/count/${props.playlistId}`)
+        .get(`/favourites/count/${props.playlistId}`)
         .then((response) => {
           const favouritesCount = response.data.length;
-          console.log("favouritesCount ", favouritesCount);
           setFavourites(favouritesCount);
         })
         .catch((error) => {});

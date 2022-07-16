@@ -21,7 +21,7 @@ export default function UserPlaylistItem(props) {
     if ("") {
       console.log("delete");
       const response = axios
-        .delete(`http://localhost:3001/playlist/delete`, {
+        .delete(`/playlist/delete`, {
           data: { _id: props.PlaylistId },
         })
         .then((response) => {

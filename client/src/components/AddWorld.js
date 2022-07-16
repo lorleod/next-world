@@ -18,7 +18,7 @@ function AddWorld() {
   //Takes input field and adds submit to API url
   const onSearch = async (text) => {
     const response = await axios
-      .post("http://localhost:3001/api/getWorld", { text: text })
+      .post("/api/getWorld", { text: text })
       .then((response) => {
         // console.log("addWorld search results: ", response.data);
         // const results = response.data
