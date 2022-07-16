@@ -1,3 +1,4 @@
+import "./searchBar.scss";
 import { isValidElement, useState } from "react";
 
 //
@@ -37,21 +38,26 @@ function SearchBar(props) {
     <div className="search">
       <form onSubmit={handleSubmit}>
         <input
+        className="search-bar-input"
           type="text"
           name="keyword"
+          placeholder="Search"
           onChange={handleInput}
           onKeyPress={handleEnter}
           value={searchText}
         ></input>
+        <br />
         {adv ? (
           <div className="advanced-search">
-            <input type="text" placeholder="Worldid" name="worldid"></input>
-            <input type="text" placeholder="author" name="author"></input>
-            <button onClick={hide}>Hide</button>
+            <input className="search-bar-advanced-world" type="text" placeholder="Worldid" name="worldid"></input>
+            <br />
+            <input className="search-bar-advanced-author" type="text" placeholder="author" name="author"></input>
+            <br />
+            <button className="search-bar-advanced-hide-button" onClick={hide}>Hide</button>
           </div>
         ) : null}
         {!adv ? (
-          <button type="button" onClick={show}>
+          <button className="search-bar-advanced-button" type="button" onClick={show}>
             Advanced
           </button>
         ) : null}

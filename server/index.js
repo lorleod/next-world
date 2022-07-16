@@ -12,7 +12,7 @@ const logoutRoute = require("./routes/logout");
 const api = require("./routes/getWorld");
 const createPlaylistRoute = require("./routes/createplaylist");
 const playlist = require("./routes/playlist");
-const userDashboard = require("./routes/dashboard");
+const dashboard = require("./routes/dashboard");
 const favouritesRoute = require("./routes/favourites");
 
 //Middleware
@@ -31,7 +31,7 @@ app.use("/playlist", playlist);
 app.use("/playlist/create", createPlaylistRoute);
 app.use("playlist/addworld", playlist);
 app.use("playlist/delete", playlist);
-app.use("/user", userDashboard);
+app.use("/user", dashboard);
 app.use("/favourites", favouritesRoute);
 
 //Connecting to MongoDB

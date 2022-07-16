@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const Playlist = require("../Schema/playlists-schema");
 const User = require("../Schema/users-schema");
 
+// receive GET request, decode token and return username + query db for user's playlists
 router.get("/:token", async (req, res) => {
   const token = req.params.token;
   let decoded = jwt.verify(token, process.env.JWTSECRET);
@@ -13,7 +14,6 @@ router.get("/:token", async (req, res) => {
 });
 
 router.get("/home/:userid", async (req, res) => {
-  // console.log("Dashboard req.params.userid", req.params.userid);
   const userId = req.params.userid;
 
   try {

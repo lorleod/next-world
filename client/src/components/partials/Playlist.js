@@ -1,11 +1,13 @@
+import "./playlist.scss";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
+import BasicPopup from "./popups/BasicPopup";
 
-function Playlist({ results }) {
+function Playlist(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [worlds, setWorlds] = useState([]);
@@ -16,9 +18,11 @@ function Playlist({ results }) {
   const [popupFavourite, setPopupFavourite] = useState(false);
   const [popupShared, setPopupShared] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
+
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
+  const [trigger, setTrigger] = useState(false);
   let token = Cookies.get("jwt");
 
   useEffect(() => {
@@ -58,7 +62,7 @@ function Playlist({ results }) {
         });
     };
     fetchData();
-  }, []);
+  }, [trigger]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,13 +109,23 @@ function Playlist({ results }) {
   };
 
   const favourite = async () => {
-    await axios.post(`http://localhost:3001/favourites/${token}/${playlistId}`);
+    await axios
+      .post(`http://localhost:3001/favourites/${token}/${playlistId}`)
+      .then((response) => {
+        setPopupFavourite(true);
+        setTrigger(true);
+        setInterval(() => {
+          setTrigger(false);
+        }, 10);
+      });
   };
 
-  const share = async () => {
+  // copies the current playlist url to user's clipboard
+  const copyToClipboard = async () => {
     navigator.clipboard.writeText(
       `http://localhost:3000/playlist/${playlistId}`
     );
+    setPopupShared(true);
   };
 
   const editPlaylistInfo = async () => {
@@ -121,13 +135,21 @@ function Playlist({ results }) {
   return (
     <div>
       {!edit ? (
-        <div className="result">
-          <h1>{title}</h1>
-          <h3>Favourites: {favourites}</h3>
-          <h2>{description}</h2>
+        <div className="results">
+          <h1 className="playlist-page-playlist-name">{title}</h1>
+          <h5 className="playlist-page-playlist-favourites">
+            Favourites: {favourites}
+          </h5>
+          <p className="playlist-page-playlist-description">{description}</p>
 
           <div>
-            <button onClick={favourite}>
+            <button
+              className="playlist-page-playlist-edit"
+              onClick={editPlaylistInfo}
+            >
+              Edit Playlist
+            </button>
+            <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
             <button
@@ -137,30 +159,34 @@ function Playlist({ results }) {
               Share
             </button>
           </div>
+
           <WorldPlaylist props={worlds} edit={edit} />
         </div>
       ) : (
         <div className="result">
           {editInfo ? (
-            <form>
-              <input
-                type="text"
-                placeholder="title"
-                value={title}
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              ></input>
-              <br />
-              <input
-                type="text"
-                placeholder="description"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              ></input>
-            </form>
+            <div>
+              <form>
+                <input
+                  type="text"
+                  placeholder="title"
+                  value={title}
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                ></input>
+                <br />
+                <input
+                  type="text"
+                  placeholder="description"
+                  value={description}
+                  onChange={(event) => {
+                    setDescription(event.target.value);
+                  }}
+                ></input>
+              </form>
+              <button onClick={confirm}>Confirm</button>
+            </div>
           ) : (
             <div>
               <h1 className="playlist-page-playlist-name">{title}</h1>
@@ -197,23 +223,22 @@ function Playlist({ results }) {
           )}
 
           <WorldPlaylist props={worlds} edit={edit} />
-          {edit ? (
-            <h3>
-              <Link to={addWorldUrl}>Add World</Link>
-            </h3>
-          ) : null}
-          <button onClick={confirm}>Confirm</button>
         </div>
       )}
-      <FavouriteAddPopup
+      <BasicPopup
         trigger={popupFavourite}
         setTrigger={setPopupFavourite}
+        setReload={false}
       >
         <h1>Playlist Added to Favourites</h1>
-      </FavouriteAddPopup>
-      <SharedPopup trigger={popupShared} setTrigger={setPopupShared}>
-        <h1>Playlist Added to Favourites</h1>
-      </SharedPopup>
+      </BasicPopup>
+      <BasicPopup
+        trigger={popupShared}
+        setTrigger={setPopupShared}
+        setReload={false}
+      >
+        <h1>Link Copied to Clipboard</h1>
+      </BasicPopup>
     </div>
   );
 }

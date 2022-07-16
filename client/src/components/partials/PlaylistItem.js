@@ -1,8 +1,10 @@
+import "./playlistItem.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
-import PlaylistDeletedPopup from "./popups/PlaylistDeletedPopup.js";
+import RedirectPopup from "./popups/RedirectPopup.js";
+import BasicPopup from "./popups/BasicPopup.js";
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");
@@ -10,6 +12,7 @@ export default function PlaylistItem(props) {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [popupDeleted, setPopupDeleted] = useState(false);
+  const [popupWorld, setPopupWorld] = useState(false);
   const edit = props.edit;
 
   const params = useParams();
@@ -62,23 +65,46 @@ export default function PlaylistItem(props) {
     }
   };
 
+  const showWorldInfo = function () {
+    setPopupWorld(true);
+    console.log("showWorldInfo");
+  };
+
   return (
-    <div>
-      <h1>Title: {title}</h1>
-      <h2>Author: {author}</h2>
-      <h3>Description: {description}</h3>
-      <img src={image} alt={title} />
-      <div>
-        <a onClick={launchWorld}>Launch Link</a>
+    <div className="playlist-world-item-container">
+      <div onClick={showWorldInfo}>
+        <img className="playlist-world-item-img" src={image} alt={title} />
+
+        <h3 className="playlist-world-item-title">{title}</h3>
       </div>
-      {edit ? <button onClick={deleteWorld}>Delete World</button> : null}
-      <PlaylistDeletedPopup
+      {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
+      <a className="playlist-world-item-launch-item" onClick={launchWorld}>
+        Launch Link
+      </a>
+
+      {edit ? (
+        <button
+          className="playlist-world-item-delete-button"
+          onClick={deleteWorld}
+        >
+          Delete World
+        </button>
+      ) : null}
+
+      <RedirectPopup
         trigger={popupDeleted}
         setTrigger={setPopupDeleted}
         redirectUrl={redirectUrl}
       >
         <h1>World Deleted From Playlist</h1>
-      </PlaylistDeletedPopup>
+      </RedirectPopup>
+      <BasicPopup trigger={popupWorld} setTrigger={setPopupWorld}>
+        <img className="playlist-world-item-img" src={image} alt={title} />
+
+        <h3 className="playlist-world-item-title">{title}</h3>
+        <h5 className="playlist-world-item-author">Author: {author}</h5>
+        <div className="playlist-world-item-description">{description}</div>
+      </BasicPopup>
     </div>
   );
 }

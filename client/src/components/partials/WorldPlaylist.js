@@ -1,3 +1,4 @@
+import "./worldPlaylist.scss";
 import React from "react";
 import PlaylistItem from "./PlaylistItem";
 
@@ -6,11 +7,7 @@ function WorldPlaylist({ props, edit }) {
     let key = worldId.concat(index);
     return <PlaylistItem key={key} worldId={worldId} edit={edit} />;
   });
-  return (
-    <div>
-      <h1>{worldPlayist}</h1>
-    </div>
-  );
+  return <div className="playlist-world-container">{worldPlayist}</div>;
 }
 
 export default WorldPlaylist;

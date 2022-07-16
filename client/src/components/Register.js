@@ -3,10 +3,13 @@ import "./register.scss";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import RedirectPopup from "./partials/popups/RedirectPopup";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [popupRegisterSuccess, setPopupRegisterSuccess] = useState(false);
+  const redirectUrl = "/user";
   const submit = async (event) => {
     event.preventDefault();
     // console.log(username + password);
@@ -21,14 +24,13 @@ function Register() {
     let data = response.data;
     if (data.user) {
       Cookies.set("jwt", data.user, { expires: 7 });
-      alert("Register successful");
-      window.location.href = "/user";
+      setPopupRegisterSuccess(true);
     } else {
       alert("Register unscuccessful");
     }
   };
   return (
-    <div className="App">
+    <div>
       <div id="register-page-container">
         <h1 id="register-page-heading">Register</h1>
         <div className="login-form-container">
@@ -52,10 +54,19 @@ function Register() {
               }}
             ></input>
             <br />
-            <button className="register-button"  onClick={submit}>Register</button>
+            <button className="register-button" onClick={submit}>
+              Register
+            </button>
           </form>
         </div>
       </div>
+      <RedirectPopup
+        trigger={popupRegisterSuccess}
+        setTrigger={setPopupRegisterSuccess}
+        redirectUrl={redirectUrl}
+      >
+        <h1>Registration Successful</h1>
+      </RedirectPopup>
     </div>
   );
 }

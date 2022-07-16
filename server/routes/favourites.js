@@ -13,14 +13,18 @@ router.post("/:token/:playlist_id", async (req, res) => {
       playlist_id: playlist_id,
       user_id: user_id,
     });
+    res.send("favourite added");
   } catch (error) {}
 });
 
 router.get("/:token", async (req, res) => {
   try {
+    // decode token to get userID
     const token = req.params.token;
     const decoded = jwt.verify(token, process.env.JWTSECRET);
     const user_id = decoded._id;
+
+    //query db for all favourite playlists for that userID
     const favourites = await Favourites.find({ user_id: user_id });
     res.send(favourites);
   } catch (error) {}
