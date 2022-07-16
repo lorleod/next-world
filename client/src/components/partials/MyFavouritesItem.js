@@ -2,17 +2,21 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
+import MyPlaylistsWorld from "./MyPlaylistsWorld";
 
 // component to display each individual favourited playlist of current user
 export default function MyFavouritesItem(props) {
   const [title, setTitle] = useState("");
+  const [worldIds, setWorldIds] = useState([]);
   const playlistUrl = `/playlist/${props.playlistId}`;
+  // console.log("playlisturl: ", playlistUrl);
 
   useEffect(() => {
     axios
       .get(`/favourites/user/${props.playlistId}`)
       .then((response) => {
         setTitle(response.data[0].title);
+        setWorldIds(response.data[0].worldIds);
       });
   }, []);
 
@@ -43,12 +47,35 @@ export default function MyFavouritesItem(props) {
     }
   };
 
+  const mappedPlaysWorlds = worldIds.map((world, index) => {
+    //generate a unique key for child - worldID alone breaks if two of same world
+    let key = world.concat(index);
+    return <MyPlaylistsWorld key={key} worldId={world} />;
+  });
+
   return (
     <div>
-      <h3>
-        <Link to={playlistUrl}>{title}</Link>
-        <i className="bi bi-trash" onClick={unFavourite}></i>
-      </h3>
+      <div className="public-playlist-container">
+        <h3 className="public-playlist-title">
+          <Link className="public-playlist-title-link" to={playlistUrl}>
+            {title}
+          </Link>
+        </h3>
+        <div className="public-playlist-right-container">
+          <div className="public-playlist-worlds-title"> Worlds</div>
+          <div className="public-playlist-worlds-container">
+            <div className="public-playlist-world-list">
+              {mappedPlaysWorlds}
+            </div>
+          </div>
+          <div
+            className="public-playlist-delete-container"
+            onClick={unFavourite}
+          >
+            Remove
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

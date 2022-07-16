@@ -37,11 +37,9 @@ export default function PublicPlaylistCard(props) {
   }, []);
 
   const mappedPlaysWorlds = props.worldIds.map((world, index) => {
-
     //generate a unique key for child - worldID alone breaks if two of same world
     let key = world.concat(index);
     return <PublicPlaylistWorlds key={key} worldId={world} />;
-
   });
 
   // console.log("favourites: ", favourites);
@@ -59,12 +57,12 @@ export default function PublicPlaylistCard(props) {
           </div>
           <div className="public-playlist-author">Author: {author}</div>
 
-        <div className="public-playlist-favourites">
-          Favourited: {favourites}
+          <div className="public-playlist-favourites">
+            Favourited: {favourites}
+          </div>
         </div>
-        </div>
+        <div className="public-playlist-worlds-title"> Worlds</div>
         <div className="public-playlist-worlds-container">
-          <div className="public-playlist-worlds-title"> Worlds:</div>
           <div className="public-playlist-world-list">{mappedPlaysWorlds}</div>
         </div>
       </div>

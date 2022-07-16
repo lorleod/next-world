@@ -1,0 +1,15 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+.dashboard-right {
+  max-width: 50%;
+}
+
+.dashboard-left {
+  max-width: 50%;
+}

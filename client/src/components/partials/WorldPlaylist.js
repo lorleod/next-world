@@ -7,11 +7,7 @@ function WorldPlaylist({ props, edit }) {
     let key = worldId.concat(index);
     return <PlaylistItem key={key} worldId={worldId} edit={edit} />;
   });
-  return (
-    <div className="playlist-world-container">
-      {worldPlayist}
-    </div>
-  );
+  return <div className="playlist-world-container">{worldPlayist}</div>;
 }
 
 export default WorldPlaylist;

@@ -7,6 +7,8 @@ import BasicPopup from "./popups/BasicPopup";
 import { useState } from "react";
 function World(props) {
   const [popupAdded, setPopupAdded] = useState(false);
+  const [popupWorldInfo, setPopupWorldInfo] = useState(false);
+  const [description, setDescription] = useState("");
   const params = useParams();
   console.log("params: ", params);
   const submit = async (event) => {
@@ -34,26 +36,46 @@ function World(props) {
       });
   };
 
-  // console.log("props in world", props);
+  const showWorldInfo = () => {
+    function fetchData() {
+      axios
+        .get(`http://localhost:3001/api/getWorld/${props.world.id}`)
+        .then((response) => {
+          setPopupWorldInfo(true);
+          setDescription(response.data.description);
+        })
+        .catch((error) => {});
+    }
+    fetchData();
+  };
   return (
     <div className="world-box">
-      <img className="img-world" src={props.image} />
-      <div className="search-world-info-container">
-        <h2 className="search-world-title">{props.title}</h2>
-        <h5 className="search-world-author">{props.author}</h5>
-        <div className="search-world-description">
-          <p className="search-world-description-p">summary</p>
+      <div className="world-box-popup-container" onClick={showWorldInfo}>
+        <img className="img-world" src={props.image} />
+        <div className="search-world-info-container">
+          <h2 className="search-world-title">{props.title}</h2>
         </div>
       </div>
       <button className="search-world-add-button" onClick={submit}>
         Add
       </button>
+
       <BasicPopup
         trigger={popupAdded}
         setTrigger={setPopupAdded}
         setReload={false}
       >
         <h1>World Added to Playlist</h1>
+      </BasicPopup>
+      <BasicPopup trigger={popupWorldInfo} setTrigger={setPopupWorldInfo}>
+        <img className="img-world" src={props.image} />
+        <div className="search-world-info-container">
+          <h2 className="search-world-title">{props.title}</h2>
+          <h5 className="search-world-author">Author: {props.author}</h5>
+          <div className="search-world-description">
+            <p className="search-world-description-p">{description}</p>
+          </div>
+        </div>
       </BasicPopup>
     </div>
   );

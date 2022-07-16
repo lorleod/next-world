@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BasicPopup from "./popups/BasicPopup";
 
-const PublicPlaylistWorlds = (props) => {
+const MyPlaylistsWorld = (props) => {
   // console.log("props PPW: ", props.worldId);
   const [worldTitle, setWorldTitle] = useState("");
   const [worldImage, setWorldImage] = useState("");
@@ -13,7 +13,7 @@ const PublicPlaylistWorlds = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`/api/getWorld/${props.worldId}`)
+        .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
         .then((response) => {
           // console.log("response.data.title ", response.data.thumbnailImageUrl);
           setWorldTitle(response.data.name);
@@ -52,4 +52,4 @@ const PublicPlaylistWorlds = (props) => {
   );
 };
 
-export default PublicPlaylistWorlds;
+export default MyPlaylistsWorld;

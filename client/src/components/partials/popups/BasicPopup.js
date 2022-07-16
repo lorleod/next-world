@@ -7,7 +7,7 @@ function BasicPopup(props) {
 
   return props.trigger ? (
     <div>
-      <button className="close-btn" onClick={close}>
+      <button className="btn-close" onClick={close}>
         <div className="popup">
           <div className="popup-inner">{props.children}</div>
         </div>
