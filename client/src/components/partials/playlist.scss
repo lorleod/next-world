@@ -35,6 +35,17 @@ button.playlist-page-playlist-edit:hover {
   cursor: pointer;
 }
 
+button.playlist-page-playlist-fav-selected {
+  font-family: "Comfortaa";
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 5px 20px;
+  border: #31363c solid 2px;
+  border-radius: 5px;
+  background-color: #55745a;
+  color: #31363c;
+}
+
 button.playlist-page-playlist-fav {
   font-family: "Comfortaa";
   font-size: 16px;

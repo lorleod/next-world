@@ -17,6 +17,7 @@ function Playlist(props) {
   const [favourites, setFavourites] = useState([]);
   const [popupFavourite, setPopupFavourite] = useState(false);
   const [popupShared, setPopupShared] = useState(false);
+  const [inFavourites, setInFavourites] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
 
   const params = useParams();
@@ -25,52 +26,48 @@ function Playlist(props) {
   const [trigger, setTrigger] = useState(false);
   let token = Cookies.get("jwt");
 
+  // Get playlist info
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get(`/playlist/${playlistId}`)
-        .then((response) => {
-          setTitle(response.data.title);
-          console.log("response.data.title: ", response.data.title);
-          setDescription(response.data.description);
-          console.log("response.data.description: ", response.data.description);
-          setWorlds(response.data.worldIds);
-          setPlaylistUserId(response.data.user_id);
-          // console.log("playist information", response.data);
-        });
+      await axios.get(`/playlist/${playlistId}`).then((response) => {
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+        setWorlds(response.data.worldIds);
+        setPlaylistUserId(response.data.user_id);
+        // console.log("playist information", response.data);
+      });
     };
     fetchData();
   }, []);
 
+  // Get user info
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get(`/playlist/auth/${token}`)
-        .then((response) => {
-          setUser(response.data);
-        });
+      await axios.get(`/playlist/auth/${token}`).then((response) => {
+        setUser(response.data);
+      });
     };
     fetchData();
   }, []);
 
+  // Get playlist favourite count
   useEffect(() => {
     const fetchData = async () => {
-      await axios
-        .get(`/favourites/count/${playlistId}`)
-        .then((response) => {
-          setFavourites(response.data.length);
-        });
+      await axios.get(`/favourites/count/${playlistId}`).then((response) => {
+        setFavourites(response.data.length);
+      });
     };
     fetchData();
   }, [trigger]);
 
+  // Authenticate user to show edit if user is owner
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`/playlist/auth/${token}/${params.id}`)
+        .get(`/playlist/auth/${token}/${playlistId}`)
         .then((response) => {
           const auth = response.data;
-          console.log("auth: ", auth);
+          // console.log("auth: ", auth);
           if (auth === "Authorized") {
             setEdit(true);
           } else {
@@ -81,6 +78,21 @@ function Playlist(props) {
     };
     fetchData();
   }, []);
+
+  // Check if user already favourited playlist
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`/favourites/check/${token}/${playlistId}`)
+        .then((response) => {
+          console.log(response.data.length);
+          if (response.data.length > 0) {
+            setInFavourites(true);
+          }
+        });
+    };
+    fetchData();
+  }, [trigger]);
 
   const confirm = async (event) => {
     let confirm = window.confirm("Confirm edits");
@@ -109,22 +121,18 @@ function Playlist(props) {
   };
 
   const favourite = async () => {
-    await axios
-      .post(`/favourites/${token}/${playlistId}`)
-      .then((response) => {
-        setPopupFavourite(true);
-        setTrigger(true);
-        setInterval(() => {
-          setTrigger(false);
-        }, 10);
-      });
+    await axios.post(`/favourites/${token}/${playlistId}`).then((response) => {
+      setPopupFavourite(true);
+      setTrigger(true);
+      setInterval(() => {
+        setTrigger(false);
+      }, 10);
+    });
   };
 
   // copies the current playlist url to user's clipboard
   const copyToClipboard = async () => {
-    navigator.clipboard.writeText(
-      `/playlist/${playlistId}`
-    );
+    navigator.clipboard.writeText(`/playlist/${playlistId}`);
     setPopupShared(true);
   };
 
@@ -149,9 +157,19 @@ function Playlist(props) {
             >
               Edit Playlist
             </button>
-            <button className="playlist-page-playlist-fav" onClick={favourite}>
-              <i className="bi bi-heart">Favourite</i>
-            </button>
+            {!inFavourites ? (
+              <button
+                className="playlist-page-playlist-fav"
+                onClick={favourite}
+              >
+                <i className="bi bi-heart">Favourite</i>
+              </button>
+            ) : (
+              <button className="playlist-page-playlist-fav-selected">
+                <i className="bi bi-heart-fill">Favourite</i>
+              </button>
+            )}
+
             <button
               className="playlist-page-playlist-share"
               onClick={copyToClipboard}
@@ -202,8 +220,14 @@ function Playlist(props) {
               >
                 Edit Playlist Info
               </button>
-              <button
+              {/* <button
                 className="playlist-page-playlist-fav"
+                onClick={favourite}
+              >
+                <i className="bi bi-heart">Favourite</i>
+              </button> */}
+              <button
+                className="playlist-page-playlist-fav-selected"
                 onClick={favourite}
               >
                 <i className="bi bi-heart">Favourite</i>

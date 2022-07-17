@@ -55,4 +55,21 @@ router.get("/count/:playlist_id", async (req, res) => {
     console.log(error);
   }
 });
+
+router.get("/check/:token/:playlist_id", async (req, res) => {
+  const token = req.params.token;
+  const playlist_id = req.params.playlist_id;
+  try {
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    const user_id = decoded._id;
+    const favourites = await Favourites.find({
+      user_id: user_id,
+      playlist_id: playlist_id,
+    });
+    console.log(favourites);
+    res.json(favourites);
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;
