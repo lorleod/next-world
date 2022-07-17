@@ -22,7 +22,7 @@ button.playlist-page-playlist-edit {
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
-  border: none;
+  border: #31363c solid 2px;
   border-radius: 5px;
   background-color: #be8989;
   color: #31363c;
@@ -31,6 +31,8 @@ button.playlist-page-playlist-edit {
 button.playlist-page-playlist-edit:hover {
   background-color: #956868;
   color: #edf4ff;
+  border: #a7b7d2 solid 2px;
+  cursor: pointer;
 }
 
 button.playlist-page-playlist-fav {
@@ -38,15 +40,17 @@ button.playlist-page-playlist-fav {
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
-  border: none;
+  border: #31363c solid 2px;
   border-radius: 5px;
   background-color: #75a07f;
   color: #31363c;
 }
 
 button.playlist-page-playlist-fav:hover {
-  background-color: #475f4c;
+  background-color: #55745a;
   color: #edf4ff;
+  border: #a7b7d2 solid 2px;
+  cursor: pointer;
 }
 
 button.playlist-page-playlist-share {
@@ -54,7 +58,7 @@ button.playlist-page-playlist-share {
   font-size: 16px;
   margin: 10px 5px;
   padding: 5px 20px;
-  border: none;
+  border: #31363c solid 2px;
   border-radius: 5px;
   background-color: #c7b351;
   color: #31363c;
@@ -63,6 +67,25 @@ button.playlist-page-playlist-share {
 button.playlist-page-playlist-share:hover {
   background-color: #a18f37;
   color: #edf4ff;
+  border: #a7b7d2 solid 2px;
+  cursor: pointer;
+}
+
+a.playlist-page-playlist-add {
+  font-family: "Comfortaa";
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 5px 169px;
+  border: #31363c solid 2px;
+  border-radius: 5px;
+  background-color: #71a6cc;
+  color: #31363c;
+}
+
+a.playlist-page-playlist-add:hover {
+  background-color: #40769c;
+  color: #edf4ff;
+  border: #a7b7d2 solid 2px;
 }
 
 input.playlist-page-edit-title {

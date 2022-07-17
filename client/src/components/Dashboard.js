@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import MyPlaylistsItem from "./partials/MyPlaylistsItem";
-import MyFavourites from "./partials/MyFavourites";
 import MyFavouritesItem from "./partials/MyFavouritesItem";
+import BasicPopup from "./partials/popups/BasicPopup";
 const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and
@@ -14,7 +14,11 @@ function UserDashboard(props) {
   const [username, setUsername] = useState("");
   const [playlists, setPlaylists] = useState([]);
   const [favourites, setFavourites] = useState([]);
-
+  const [triggerFavouriteRefresh, setTriggerFavouriteRefresh] = useState(false);
+  const [triggerFavouritePopup, setTriggerFavouritePopup] = useState(false);
+  const [triggerDeleteRefresh, setTriggerDeleteRefresh] = useState(false);
+  const [triggerDeletePopup, setTriggerDeletePopup] = useState(false);
+  // console.log(MyFavouritesItem);
   // get user token from session
   let token = Cookies.get("jwt");
 
@@ -28,12 +32,26 @@ function UserDashboard(props) {
         })
         .then((response) => {
           setUsername(response.data.username);
-          setPlaylists(response.data.playlists);
         })
         .catch((error) => {});
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // GET request to user/:token returns the user and user's playlists
+      await axios
+        .get(`http://localhost:3001/user/${token}`, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          setPlaylists(response.data.playlists);
+        })
+        .catch((error) => {});
+    };
+    fetchData();
+  }, [triggerDeleteRefresh]);
 
   // on page load:
   useEffect(() => {
@@ -49,14 +67,30 @@ function UserDashboard(props) {
         .catch((error) => {});
     };
     fetchData();
-  }, []);
-  console.log("favourites: ", favourites);
-  console.log("playlists: ", playlists);
+  }, [triggerFavouriteRefresh]);
+
+  const handleRemoveFavourite = (event) => {
+    setTriggerFavouriteRefresh(event);
+    setTriggerFavouritePopup(event);
+    setInterval(() => {
+      setTriggerFavouriteRefresh(false);
+    }, 100);
+  };
+
+  const handleDeleteRefresh = (event) => {
+    setTriggerDeleteRefresh(event);
+    setTriggerDeletePopup(event);
+    setInterval(() => {
+      setTriggerDeleteRefresh(false);
+    }, 100);
+  };
+
   const mappedFavourites = favourites.map((favourite) => {
     return (
       <MyFavouritesItem
         key={favourite._id}
         playlistId={favourite.playlist_id}
+        handleRemoveFavourite={handleRemoveFavourite}
       />
     );
   });
@@ -65,29 +99,40 @@ function UserDashboard(props) {
     return (
       <MyPlaylistsItem
         key={playlist._id}
-        playlistTitle={playlist.title}
-        playlistDesc={playlist.description}
         playlistId={playlist._id}
-        authorId={playlist.user_id}
-        worldIds={playlist.worldIds}
+        handleDeleteRefresh={handleDeleteRefresh}
       />
     );
   });
 
   return (
     <div className="user-dashboard">
-      <h1>{username}</h1>
-      <Link to="/playlist/create">Create New Playlist</Link>
+      <h1 className="dashboard-username">{username}</h1>
+      <Link className="newplaylist-button" to="/playlist/create">
+        Create New Playlist
+      </Link>
       <div className="dashboard-container">
         <div className="dashboard-left">
-          <h2>My Playlists</h2>
-          {mappedPlaylists}
+          <h2 className="dashboard-heading">My Playlists</h2>
+          <div className="dashboard-inner">{mappedPlaylists}</div>
         </div>
         <div className="dashboard-right">
-          <h2>My Favourites</h2>
-          {mappedFavourites}
+          <h2 className="dashboard-heading">My Favourites</h2>
+          <div className="dashboard-inner">{mappedFavourites}</div>
         </div>
       </div>
+      <BasicPopup
+        trigger={triggerDeletePopup}
+        setTrigger={setTriggerDeletePopup}
+      >
+        <h1>Playlist Deleted</h1>
+      </BasicPopup>
+      <BasicPopup
+        trigger={triggerFavouritePopup}
+        setTrigger={setTriggerFavouritePopup}
+      >
+        <h1>Favourite Removed</h1>
+      </BasicPopup>
     </div>
   );
 }

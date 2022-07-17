@@ -1,0 +1,86 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 59px 25px;
+  box-shadow: 0 5px 5px 0 rgb(77 194 255), 0 5px 10px 0 rgb(58 146 192 / 89%);
+  width: 240px;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(45 47 50);
+}
+
+h3#header-logo {
+  font-size: 40px;
+}
+
+a.header-logo-link {
+  font-family: "Rubik Moonrocks", cursive;
+  color: #ffd927;
+}
+
+.nav-list {
+  font-family: "Comfortaa", cursive;
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-home,
+.nav-login,
+.nav-logout,
+.nav-register,
+.nav-dashboard,
+.nav-search {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #2d2f32;
+  color: #b0d2e7;
+  border: 1px solid #b0d2e7;
+}
+
+.nav-home:hover {
+  background-color: #c7b351;
+  color: #2d2f32;
+  border: 1px solid #c7b351;
+}
+
+.nav-login:hover {
+  background-color: #75a07f;
+  color: #2d2f32;
+  border: 1px solid #75a07f;
+}
+
+.nav-logout:hover {
+  background-color: #a66551;
+  color: #2d2f32;
+  border: 1px solid #a66551;
+}
+
+.nav-register:hover {
+  background-color: #71a6cc;
+  color: #2d2f32;
+  border: 1px solid #71a6cc;
+}
+
+.nav-dashboard:hover {
+  background-color: #75a07f;
+  color: #2d2f32;
+  border: 1px solid #75a07f;
+}
+
+.nav-search:hover {
+  background-color: #71a6cc;
+  color: #2d2f32;
+  border: 1px solid #71a6cc;
+}

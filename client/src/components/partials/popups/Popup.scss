@@ -34,3 +34,53 @@
   padding: 5px;
   cursor: pointer;
 }
+
+.playlist-titles {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 60%;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #777f8a;
+  color: #2d2f32;
+  border: 1px solid #2d2f32;
+}
+
+.playlist-titles:hover {
+  background-color: #75a07f;
+  color: #2d2f32;
+  border: 1px solid #75a07f;
+  cursor: pointer;
+}
+
+.popup-inner-playlist {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  max-width: 400px;
+  background-color: #777f8a;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cancel {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 20%;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #c7a296;
+  color: #2d2f32;
+  border: 1px solid #2d2f32;
+}
+
+.cancel:hover {
+  background-color: #9f2e2e;
+  color: #2d2f32;
+  border: 1px solid #744538;
+  cursor: pointer;
+}

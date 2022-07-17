@@ -38,7 +38,7 @@ function SearchBar(props) {
     <div className="search">
       <form onSubmit={handleSubmit}>
         <input
-        className="search-bar-input"
+          className="search-bar-input"
           type="text"
           name="keyword"
           placeholder="Search"
@@ -47,20 +47,6 @@ function SearchBar(props) {
           value={searchText}
         ></input>
         <br />
-        {adv ? (
-          <div className="advanced-search">
-            <input className="search-bar-advanced-world" type="text" placeholder="Worldid" name="worldid"></input>
-            <br />
-            <input className="search-bar-advanced-author" type="text" placeholder="author" name="author"></input>
-            <br />
-            <button className="search-bar-advanced-hide-button" onClick={hide}>Hide</button>
-          </div>
-        ) : null}
-        {!adv ? (
-          <button className="search-bar-advanced-button" type="button" onClick={show}>
-            Advanced
-          </button>
-        ) : null}
       </form>
     </div>
   );

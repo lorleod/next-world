@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import AddWorld from "./components/AddWorld";
 import CreatePlaylist from "./components/CreatePlaylist";
 import Playlist from "./components/partials/Playlist";
+import Search from "./components/SearchWorlds";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/playlist/create" element={<CreatePlaylist />} />
         <Route path="/playlist/:id" element={<Playlist />} />
         <Route path="/playlist/:id/addworld" element={<AddWorld />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </div>
   );

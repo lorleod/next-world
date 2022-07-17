@@ -7,9 +7,59 @@
 }
 
 .dashboard-right {
-  max-width: 50%;
+  margin: 10px;
+  width: 50%;
 }
 
 .dashboard-left {
-  max-width: 50%;
+  margin: 10px;
+  width: 50%;
+}
+
+.dashboard-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 5px 0px #000000;
+  background-color: #505050;
+  padding: 15px 0px;
+}
+
+.dashboard-heading {
+  font-family: "Comfortaa", cursive;
+  font-size: 30px;
+  font-weight: bold;
+  color: #f8d427;
+  margin-bottom: 20px;
+}
+
+.dashboard-username {
+  font-family: "Comfortaa", cursive;
+  font-size: 60px;
+  font-weight: bold;
+  color: #379f7c;
+  margin-bottom: 20px;
+}
+
+.newplaylist-button {
+  font-family: "Comfortaa";
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 5px;
+  padding: 10px 30px;
+  border: #31363c solid 2px;
+  border-radius: 5px;
+  background-color: #71a6cc;
+  color: #31363c;
+  // box-shadow: #313131 0px 0px 10px 0px;
+}
+
+.newplaylist-button:hover {
+  cursor: pointer;
+  background-color: #4683af;
+  color: #edf4ff;
+  border: #a7b7d2 solid 2px;
 }

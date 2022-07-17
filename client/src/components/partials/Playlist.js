@@ -152,7 +152,12 @@ function Playlist(props) {
             <button className="playlist-page-playlist-fav" onClick={favourite}>
               <i className="bi bi-heart">Favourite</i>
             </button>
-            <button onClick={copyToClipboard}>Share</button>
+            <button
+              className="playlist-page-playlist-share"
+              onClick={copyToClipboard}
+            >
+              Share
+            </button>
           </div>
 
           <WorldPlaylist props={worlds} edit={edit} />
@@ -184,16 +189,35 @@ function Playlist(props) {
             </div>
           ) : (
             <div>
-              <h1>{title}</h1>
-              <h3>Favourites: {favourites}</h3>
-              <h2>{description}</h2>
-              <button onClick={editPlaylistInfo}>Edit Playlist Info</button>
-              <button onClick={favourite}>
+              <h1 className="playlist-page-playlist-name">{title}</h1>
+              <h5 className="playlist-page-playlist-favourites">
+                Favourites: {favourites}
+              </h5>
+              <p className="playlist-page-playlist-description">
+                {description}
+              </p>
+              <button
+                className="playlist-page-playlist-edit"
+                onClick={editPlaylistInfo}
+              >
+                Edit Playlist Info
+              </button>
+              <button
+                className="playlist-page-playlist-fav"
+                onClick={favourite}
+              >
                 <i className="bi bi-heart">Favourite</i>
               </button>
-              <button onClick={copyToClipboard}>Share</button>
+              <button
+                className="playlist-page-playlist-share"
+                onClick={copyToClipboard}
+              >
+                Share
+              </button>
               <div>
-                <Link to={addWorldUrl}>Add World</Link>
+                <Link className="playlist-page-playlist-add" to={addWorldUrl}>
+                  Add World
+                </Link>
               </div>
             </div>
           )}

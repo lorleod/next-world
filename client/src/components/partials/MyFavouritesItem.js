@@ -3,21 +3,25 @@ import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import MyPlaylistsWorld from "./MyPlaylistsWorld";
+import UserDashboard from "../Dashboard";
 
 // component to display each individual favourited playlist of current user
-export default function MyFavouritesItem(props) {
+export default function MyFavouritesItem({
+  playlistId,
+  handleRemoveFavourite,
+}) {
   const [title, setTitle] = useState("");
   const [worldIds, setWorldIds] = useState([]);
-  const playlistUrl = `/playlist/${props.playlistId}`;
-  // console.log("playlisturl: ", playlistUrl);
+  const [trigger, setTrigger] = useState(false);
+  const playlistUrl = `/playlist/${playlistId}`;
 
   useEffect(() => {
-    axios
-      .get(`/favourites/user/${props.playlistId}`)
-      .then((response) => {
-        setTitle(response.data[0].title);
-        setWorldIds(response.data[0].worldIds);
-      });
+    axios.get(`/favourites/user/${playlistId}`).then((response) => {
+      setTitle(response.data[0].title);
+      setWorldIds(response.data[0].worldIds);
+      console.log("worldIds in favourites", worldIds);
+      console.log("response in favourites", response.data);
+    });
   }, []);
 
   // pop up a confirmation then unfavourite if confirmed by user
@@ -26,19 +30,18 @@ export default function MyFavouritesItem(props) {
     let confirm = window.confirm(
       "Are you sure you want to un-favourite this playlist?"
     );
-
     //if confirm equals true, send DELETE request to backend
+
     if (confirm) {
       axios
-        .delete(`/favourites/delete/${props.playlistId}`, {
-          data: { _id: props.playlistId },
+        .delete(`/favourites/delete/${playlistId}`, {
+          data: { _id: playlistId },
         })
         .then((response) => {
           const data = response.data;
           //if response confirms delete, alert user then redirect back to dashboard
           if (data === "deleted") {
-            alert("Playlist removed from your favourites");
-            window.location.href = "/user";
+            handleRemoveFavourite(true);
           }
         })
         .catch((error) => {

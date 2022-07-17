@@ -4,13 +4,41 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BasicPopup from "./popups/BasicPopup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AddSearchPopup from "./popups/AddSearchPopup";
+const Cookies = require("js-cookie");
 function World(props) {
   const [popupAdded, setPopupAdded] = useState(false);
   const [popupWorldInfo, setPopupWorldInfo] = useState(false);
   const [description, setDescription] = useState("");
+  const [playlists, setPlaylists] = useState([]);
+  const [use, setUse] = useState();
   const params = useParams();
   console.log("params: ", params);
+  const playlistId = params.id;
+  let token = Cookies.get("jwt");
+
+  useEffect(() => {
+    if (Object.keys(params).length === 1) {
+      return setUse(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // GET request to user/:token returns the user and user's playlists
+      await axios
+        .get(`http://localhost:3001/user/${token}`, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          setPlaylists(response.data.playlists);
+        })
+        .catch((error) => {});
+    };
+    fetchData();
+  }, []);
+
   const submit = async (event) => {
     event.preventDefault();
     console.log("addworld submit");
@@ -19,7 +47,7 @@ function World(props) {
         "/playlist/addworld",
         {
           worldId: props.world.id,
-          playlistId: params.id,
+          playlistId: playlistId,
         },
         { withCredentials: true, credentials: "include" }
       )
@@ -48,6 +76,10 @@ function World(props) {
     }
     fetchData();
   };
+
+  const addSearch = () => {
+    setPopupAdded(true);
+  };
   return (
     <div className="world-box">
       <div className="world-box-popup-container" onClick={showWorldInfo}>
@@ -56,9 +88,15 @@ function World(props) {
           <h2 className="search-world-title">{props.title}</h2>
         </div>
       </div>
-      <button className="search-world-add-button" onClick={submit}>
-        Add
-      </button>
+      {use ? (
+        <button className="search-world-add-button" onClick={submit}>
+          Add
+        </button>
+      ) : (
+        <button className="search-world-add-button" onClick={addSearch}>
+          Add to Playlist
+        </button>
+      )}
 
       <BasicPopup
         trigger={popupAdded}
@@ -77,6 +115,13 @@ function World(props) {
           </div>
         </div>
       </BasicPopup>
+      <AddSearchPopup
+        trigger={popupAdded}
+        setTrigger={setPopupAdded}
+        worldId={props.world.id}
+        worldTitle={props.title}
+        playlists={playlists}
+      ></AddSearchPopup>
     </div>
   );
 }

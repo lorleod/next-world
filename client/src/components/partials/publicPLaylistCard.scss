@@ -8,6 +8,8 @@ h3.public-playlist-title {
 
 .public-playlist-container {
   display: flex;
+  justify-content: center;
+  margin: 10px 0px;
 }
 
 a.public-playlist-title-link {
@@ -50,6 +52,12 @@ h3.public-playlist-title:hover {
   writing-mode: tb-rl;
   font-size: 20px;
   font-weight: bold;
+  padding: 0px 7px;
+  border-right: #2a2c2f 1px solid;
+}
+
+.public-playlist-worlds-title:hover {
+  cursor: default;
 }
 
 .public-playlist-description {
@@ -92,6 +100,23 @@ h3.public-playlist-title:hover {
   // transform: rotate(180deg);
   font-size: 20px;
   font-weight: bold;
-  background-color: red;
+  background-color: rgb(150, 53, 53);
   color: white;
+}
+
+.public-playlist-delete-container:hover {
+  background-color: #8d1313;
+  cursor: pointer;
+}
+
+.public-playlist-wrapper {
+  display: flex;
+  height: 150px;
+  border-radius: 10px;
+  align-items: center;
+  border: #000000 1px solid;
+}
+
+.public-playlist-wrapper:hover {
+  // box-shadow: 5px 5px rgb(132, 132, 132);
 }

@@ -1,4 +1,5 @@
 import "../../App.scss";
+import "./Nav.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -40,28 +41,37 @@ function Nav() {
           NextWorld
         </Link>
       </h3>
+
       {!user ? (
-        <ul className="nav-links">
-          <Link className="nav-link-a" to="/register">
-            <li id="nav-register-link">Register</li>
+        <ul className="nav-list">
+          <Link className="nav-home" to="/">
+            <li className="nav-link-item">Home</li>
           </Link>
-          <Link className="nav-link-a" to="/login">
-            <li id="nav-login-link">Login</li>
+          <Link className="nav-search" to="/search">
+            <li className="nav-link-item">Search</li>
+          </Link>
+          <Link className="nav-register" to="/register">
+            <li id="nav-link-item">Register</li>
+          </Link>
+          <Link className="nav-login" to="/login">
+            <li id="nav-link-item">Login</li>
           </Link>
         </ul>
       ) : null}
       {user ? (
-        <ul className="nav-links">
-          <li id="nav-dashboard-link">
-            <Link className="nav-link-a" to="/user">
-              Dashboard
-            </Link>
-          </li>
-          <li id="nav-logout-link">
-            <button className="nav-link-logout" onClick={logout}>
-              Logout
-            </button>
-          </li>
+        <ul className="nav-list">
+          <Link className="nav-home" to="/">
+            <li className="nav-link-item">Home</li>
+          </Link>
+          <Link className="nav-dashboard" to="/user">
+            <li className="nav-link-item">Dashboard</li>
+          </Link>
+          <Link className="nav-search" to="/search">
+            <li className="nav-link-item">Search</li>
+          </Link>
+          <Link className="nav-logout" onClick={logout} to="">
+            <li className="nav-link-item">Logout</li>
+          </Link>
         </ul>
       ) : null}
       <RedirectPopup

@@ -1,24 +1,22 @@
 import "./Popup.scss";
 import { useState } from "react";
 
-function ConfirmPopup(props) {
+function ConfirmPopup({ trigger, setTrigger, handleDeleteConfirm, children }) {
   const [triggerSend, setTriggerSend] = useState(false);
   const close = () => {
-    props.setTrigger(false);
+    setTrigger(false);
   };
-
   const confirm = () => {
-    setTriggerSend(true);
+    setTrigger(false);
+    handleDeleteConfirm(true);
   };
 
-  // console.log("triggerSend in confirm: ", triggerSend);
-
-  return props.trigger ? (
+  return trigger ? (
     <div>
       <button className="close-btn">
         <div className="popup">
           <div className="popup-inner">
-            {props.children}
+            {children}
             <button className="btn" onClick={close}>
               Close
             </button>

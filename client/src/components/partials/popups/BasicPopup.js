@@ -1,15 +1,15 @@
 import "./Popup.scss";
 
-function BasicPopup(props) {
+function BasicPopup({ trigger, setTrigger, children }) {
   const close = () => {
-    props.setTrigger(false);
+    setTrigger(false);
   };
 
-  return props.trigger ? (
+  return trigger ? (
     <div>
       <button className="btn-close" onClick={close}>
         <div className="popup">
-          <div className="popup-inner">{props.children}</div>
+          <div className="popup-inner">{children}</div>
         </div>
       </button>
     </div>

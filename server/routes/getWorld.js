@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     "popularity",
     undefined,
     undefined,
-    10,
+    12,
     "descending",
     0,
     search
