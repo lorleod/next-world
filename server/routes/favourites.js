@@ -38,10 +38,13 @@ router.get("/user/:playlist_id", async (req, res) => {
   } catch (error) {}
 });
 
-router.delete("/delete/:playlist_id", async (req, res) => {
+router.delete("/delete/:token/:playlist_id", async (req, res) => {
   const playlist_id = req.params.playlist_id;
+  const token = req.params.token;
   try {
-    await Favourites.deleteOne({ playlist_id: playlist_id });
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    const user_id = decoded._id;
+    await Favourites.deleteOne({ playlist_id: playlist_id, user_id: user_id });
     res.json("deleted");
   } catch (error) {}
 });

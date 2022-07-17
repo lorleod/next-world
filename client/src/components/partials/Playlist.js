@@ -16,6 +16,7 @@ function Playlist(props) {
   const [user, setUser] = useState("");
   const [favourites, setFavourites] = useState([]);
   const [popupFavourite, setPopupFavourite] = useState(false);
+  const [popupRemoveFavourite, setPopupRemoveFavourite] = useState(false);
   const [popupShared, setPopupShared] = useState(false);
   const [inFavourites, setInFavourites] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
@@ -54,6 +55,7 @@ function Playlist(props) {
   useEffect(() => {
     const fetchData = async () => {
       await axios.get(`/favourites/count/${playlistId}`).then((response) => {
+        console.log("favourite count", response.data);
         setFavourites(response.data.length);
       });
     };
@@ -88,6 +90,8 @@ function Playlist(props) {
           console.log(response.data.length);
           if (response.data.length > 0) {
             setInFavourites(true);
+          } else {
+            setInFavourites(false);
           }
         });
     };
@@ -130,6 +134,19 @@ function Playlist(props) {
     });
   };
 
+  const removeFavourite = async () => {
+    await axios
+      .delete(`/favourites/delete/${token}/${playlistId}`)
+      .then((response) => {
+        setPopupRemoveFavourite(true);
+        setTrigger(true);
+        setInterval(() => {
+          setTrigger(false);
+        }, 10);
+      })
+      .catch((error) => {});
+  };
+
   // copies the current playlist url to user's clipboard
   const copyToClipboard = async () => {
     navigator.clipboard.writeText(`/playlist/${playlistId}`);
@@ -166,7 +183,9 @@ function Playlist(props) {
               </button>
             ) : (
               <button className="playlist-page-playlist-fav-selected">
-                <i className="bi bi-heart-fill">Favourite</i>
+                <i className="bi bi-heart-fill" onClick={removeFavourite}>
+                  Favourite
+                </i>
               </button>
             )}
 
@@ -255,6 +274,12 @@ function Playlist(props) {
         setReload={false}
       >
         <h1>Playlist Added to Favourites</h1>
+      </BasicPopup>
+      <BasicPopup
+        trigger={popupRemoveFavourite}
+        setTrigger={setPopupRemoveFavourite}
+      >
+        <h1>Playlist Removed from Favourites</h1>{" "}
       </BasicPopup>
       <BasicPopup
         trigger={popupShared}

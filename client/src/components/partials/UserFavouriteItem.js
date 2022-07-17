@@ -3,19 +3,19 @@ import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import RedirectPopup from "./popups/RedirectPopup";
+import Cookies from "js-cookie";
 
 export default function UserFavouritesItem(props) {
   const [title, setTitle] = useState("");
   const [popupDeleted, setPopupDeleted] = useState(false);
   const playlistUrl = `/playlist/${props.PlaylistId}`;
   const redirectUrl = `/user`;
+  let token = Cookies.get("jwt");
 
   useEffect(() => {
-    axios
-      .get(`/favourites/user/${props.PlaylistId}`)
-      .then((response) => {
-        setTitle(response.data[0].title);
-      });
+    axios.get(`/favourites/user/${props.PlaylistId}`).then((response) => {
+      setTitle(response.data[0].title);
+    });
   }, []);
 
   // console.log("title", title);
@@ -26,9 +26,7 @@ export default function UserFavouritesItem(props) {
     if (confirm) {
       console.log("delete");
       const response = axios
-        .delete(`/favourites/delete/${props.PlaylistId}`, {
-          data: { _id: props.PlaylistId },
-        })
+        .delete(`/favourites/${token}/${props.PlaylistId}`)
         .then((response) => {
           const data = response.data;
           // console.log("data in playlistitem: ", data);
