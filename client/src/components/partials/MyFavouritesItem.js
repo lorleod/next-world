@@ -3,8 +3,8 @@ import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import MyPlaylistsWorld from "./MyPlaylistsWorld";
-import UserDashboard from "../Dashboard";
-
+import Cookies from "js-cookie";
+import BasicPopup from "./popups/BasicPopup";
 // component to display each individual favourited playlist of current user
 export default function MyFavouritesItem({
   playlistId,
@@ -13,7 +13,9 @@ export default function MyFavouritesItem({
   const [title, setTitle] = useState("");
   const [worldIds, setWorldIds] = useState([]);
   const [trigger, setTrigger] = useState(false);
+  const [popupRemoveFavourite, setPopupRemoveFavourite] = useState(false);
   const playlistUrl = `/playlist/${playlistId}`;
+  const token = Cookies.get("jwt");
 
   useEffect(() => {
     axios.get(`/favourites/user/${playlistId}`).then((response) => {
@@ -25,7 +27,7 @@ export default function MyFavouritesItem({
   }, []);
 
   // pop up a confirmation then unfavourite if confirmed by user
-  const unFavourite = () => {
+  const unFavourite = async () => {
     // confirm equals true if user clicks "ok" on pop up
     let confirm = window.confirm(
       "Are you sure you want to un-favourite this playlist?"
@@ -33,20 +35,12 @@ export default function MyFavouritesItem({
     //if confirm equals true, send DELETE request to backend
 
     if (confirm) {
-      axios
-        .delete(`/favourites/delete/${playlistId}`, {
-          data: { _id: playlistId },
-        })
+      await axios
+        .delete(`/favourites/delete/${token}/${playlistId}`)
         .then((response) => {
-          const data = response.data;
-          //if response confirms delete, alert user then redirect back to dashboard
-          if (data === "deleted") {
-            handleRemoveFavourite(true);
-          }
+          handleRemoveFavourite(true);
         })
-        .catch((error) => {
-          console.log("Error: ", error);
-        });
+        .catch((error) => {});
     }
   };
 
@@ -79,6 +73,12 @@ export default function MyFavouritesItem({
           </div>
         </div>
       </div>
+      <BasicPopup
+        trigger={popupRemoveFavourite}
+        setTrigger={setPopupRemoveFavourite}
+      >
+        <h1>Favourite Removed</h1>
+      </BasicPopup>
     </div>
   );
 }
