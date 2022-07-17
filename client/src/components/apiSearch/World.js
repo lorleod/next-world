@@ -3,9 +3,9 @@ import "./worldList.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import BasicPopup from "./popups/BasicPopup";
+import BasicPopup from "../partials/popups/BasicPopup";
 import { useEffect, useState } from "react";
-import AddSearchPopup from "./popups/AddSearchPopup";
+import AddSearchPopup from "../partials/popups/AddSearchPopup";
 const Cookies = require("js-cookie");
 function World(props) {
   const [popupAdded, setPopupAdded] = useState(false);

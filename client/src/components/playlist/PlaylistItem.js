@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
-import RedirectPopup from "./popups/RedirectPopup.js";
-import BasicPopup from "./popups/BasicPopup.js";
+import RedirectPopup from "../partials/popups/RedirectPopup.js";
+import BasicPopup from "../partials/popups/BasicPopup.js";
 
 export default function PlaylistItem(props) {
   const [title, setTitle] = useState("");

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import BasicPopup from "./popups/BasicPopup";
+import BasicPopup from "../partials/popups/BasicPopup";
 
 const MyPlaylistsWorld = (props) => {
   // console.log("props PPW: ", props.worldId);

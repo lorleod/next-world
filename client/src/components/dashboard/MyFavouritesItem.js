@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
-import MyPlaylistsWorld from "./MyPlaylistsWorld";
+import MyPlaylistsWorld from "../playlist/MyPlaylistsWorld";
 import Cookies from "js-cookie";
-import BasicPopup from "./popups/BasicPopup";
+import BasicPopup from "../partials/popups/BasicPopup";
 // component to display each individual favourited playlist of current user
 export default function MyFavouritesItem({
   playlistId,

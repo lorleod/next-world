@@ -1,5 +1,5 @@
 import "../App.scss";
-import PublicPlaylistCard from "./partials/PublicPlaylistCard";
+import PublicPlaylistCard from "./playlist/PublicPlaylistCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 

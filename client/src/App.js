@@ -3,11 +3,11 @@ import Nav from "./components/partials/Nav";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import AddWorld from "./components/AddWorld";
-import CreatePlaylist from "./components/CreatePlaylist";
-import Playlist from "./components/partials/Playlist";
-import Search from "./components/SearchWorlds";
+import Dashboard from "./components/dashboard/Dashboard";
+import AddWorld from "./components/apiSearch/AddWorld";
+import CreatePlaylist from "./components/playlist/CreatePlaylist";
+import Playlist from "./components/playlist/Playlist";
+import Search from "./components/apiSearch/SearchWorlds";
 import { Routes, Route } from "react-router-dom";
 
 function App() {

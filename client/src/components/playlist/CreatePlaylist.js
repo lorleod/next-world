@@ -1,6 +1,6 @@
-import "../App.scss";
+import "../../App.scss";
 import "./createPlaylist.scss";
-import {useState} from 'react';
+import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -14,36 +14,37 @@ function CreatePlaylist() {
     event.preventDefault();
 
     //get encoded jwt cookie containing user id for assigning owner of playlist
-    let token = Cookies.get('jwt');
+    let token = Cookies.get("jwt");
 
     // post create playlist request to backend
-    await axios.post(
-      "/playlist/create",
-      {
-        title: title,
-        description: description,
-        token: token
-      },
-      { withCredentials: true, credentials: "include" }
-    ).then((response) => {
-      //if successful, alert user then redirect back to playlist
-      let data = response.data;
-      if (data) {
-        alert("Playlist Created");
-        window.location.href = `/playlist/${data}`;
-      } else {
-        alert("Playlist creation unscuccessful");
-      }
-    });
-
+    await axios
+      .post(
+        "/playlist/create",
+        {
+          title: title,
+          description: description,
+          token: token,
+        },
+        { withCredentials: true, credentials: "include" }
+      )
+      .then((response) => {
+        //if successful, alert user then redirect back to playlist
+        let data = response.data;
+        if (data) {
+          alert("Playlist Created");
+          window.location.href = `/playlist/${data}`;
+        } else {
+          alert("Playlist creation unscuccessful");
+        }
+      });
   };
   return (
     <div className="create-playlist-container">
       <h1 className="create-playlist-heading">Create Playlist</h1>
       <form>
-      <br />
+        <br />
         <input
-        className="create-playlist-title"
+          className="create-playlist-title"
           type="text"
           placeholder="Title"
           onChange={(event) => {
@@ -52,7 +53,7 @@ function CreatePlaylist() {
         ></input>
         <br />
         <input
-        className="create-playlist-description"
+          className="create-playlist-description"
           type="text"
           size="60"
           placeholder="Description"
@@ -61,9 +62,11 @@ function CreatePlaylist() {
           }}
         ></input>
         <br />
-        <button className="create-playlist-create-button" onClick={submit}>Create</button>
+        <button className="create-playlist-create-button" onClick={submit}>
+          Create
+        </button>
       </form>
-      </div>
+    </div>
   );
 }
 

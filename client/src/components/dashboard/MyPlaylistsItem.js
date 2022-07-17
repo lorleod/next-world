@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import ConfirmPopup from "./popups/ConfirmPopup";
-import "./publicPLaylistCard.scss";
-import MyPlaylistsWorld from "./MyPlaylistsWorld";
-import BasicPopup from "./popups/BasicPopup";
+import ConfirmPopup from "../partials/popups/ConfirmPopup";
+import "../playlist/publicPLaylistCard.scss";
+import MyPlaylistsWorld from "../playlist/MyPlaylistsWorld";
+import BasicPopup from "../partials/popups/BasicPopup";
 
 export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   const [popupDeleted, setPopupDeleted] = useState(false);

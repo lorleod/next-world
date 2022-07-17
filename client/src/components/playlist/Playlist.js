@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import WorldPlaylist from "./WorldPlaylist";
-import BasicPopup from "./popups/BasicPopup";
+import BasicPopup from "../partials/popups/BasicPopup";
 
 function Playlist(props) {
   const [title, setTitle] = useState("");

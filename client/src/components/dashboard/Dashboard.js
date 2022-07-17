@@ -1,11 +1,11 @@
-import "../App.scss";
+import "../../App.scss";
 import "./dashboard.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import MyPlaylistsItem from "./partials/MyPlaylistsItem";
-import MyFavouritesItem from "./partials/MyFavouritesItem";
-import BasicPopup from "./partials/popups/BasicPopup";
+import MyPlaylistsItem from "./MyPlaylistsItem";
+import MyFavouritesItem from "./MyFavouritesItem";
+import BasicPopup from "../partials/popups/BasicPopup";
 const Cookies = require("js-cookie");
 
 // page shows logged-in user dashboard: playlists they created and

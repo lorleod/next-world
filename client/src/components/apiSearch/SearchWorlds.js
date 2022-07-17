@@ -1,13 +1,14 @@
-import "../App.scss";
+import "../../App.scss";
 import "./AddWorld.scss";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import SearchBar from "./partials/SearchBar";
-import WorldList from "./partials/WorldList";
+import SearchBar from "./SearchBar";
+import WorldList from "../partials/WorldList";
+import World from "./World";
 import axios from "axios";
 
 // Page to seach and add world to a playlist
-function AddWorld() {
+function SearchWorld() {
   const params = useParams();
   const playlistId = params.id;
   const playlistUrl = `/playlist/${playlistId}`;
@@ -29,15 +30,30 @@ function AddWorld() {
       return { ...prevState, results: response };
     });
   };
+  let data = [];
+
+  if (state.results.data) {
+    data = state.results.data;
+    console.log("data: ", data);
+  }
+
+  let worldList = data.map((item) => (
+    <World
+      key={item.id}
+      world={item}
+      title={item.name}
+      image={item.thumbnailImageUrl}
+      author={item.authorName}
+    />
+  ));
 
   return (
     <div className="add-world-container">
-      <h1 className="add-world-heading">Add World</h1>
-      <Link className="add-world-back-playlist-button" to={playlistUrl}>Back to Playlist</Link>
+      <h1 className="add-world-heading">Search Worlds</h1>
       <SearchBar onSearch={onSearch} />
-      <WorldList results={state.results} playlistId={playlistId}/>
+      <div className="result-worlds">{worldList}</div>
     </div>
   );
 }
 
-export default AddWorld;
+export default SearchWorld;

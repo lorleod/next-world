@@ -1,4 +1,4 @@
-import World from "./World";
+import World from "../apiSearch/World";
 
 function WorldList(props) {
   //Makes an empty array so not read as undefined before search is submitted
