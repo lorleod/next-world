@@ -27,7 +27,7 @@
   height: 100%;
   border: 1px solid #2d2f32;
   border-radius: 5px;
-  margin: 15px;
+  margin: 15px 15px 0px 15px;
 }
 
 .show-world {
@@ -80,4 +80,32 @@ button.search-world-add-button {
   text-align: center;
   background-color: #5e9369;
   border: none;
+}
+
+.playlist-world-wrapper {
+  position: relative;
+
+}
+
+.playlist-world-item-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  width: fit-content;
+  padding: 25px ;
+  background: rgb(51 61 67 / 72%);
+  border-radius: 10px;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+  margin:auto;
+}
+
+.playlist-world-wrapper:hover .playlist-world-item-title {
+  visibility: visible;
+  opacity: 1;
 }

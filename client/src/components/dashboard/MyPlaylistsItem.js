@@ -65,7 +65,6 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   return (
     <div>
       <div className="public-playlist-container">
-        <div className="public-playlist-wrapper">
           <h3 className="public-playlist-title">
             <Link className="public-playlist-title-link" to={playlistUrl}>
               {title}
@@ -84,7 +83,6 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
               Delete
             </div>
           </div>
-        </div>
       </div>
       <BasicPopup trigger={popupDeleted} setTrigger={setPopupDeleted}>
         <h1>Playlist Deleted</h1>
