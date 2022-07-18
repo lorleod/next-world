@@ -7,6 +7,7 @@ h3.public-playlist-title {
 }
 
 .public-playlist-container {
+  display: flex;
   justify-content: center;
   margin: 10px 0px;
   
@@ -86,7 +87,7 @@ h3.public-playlist-title:hover {
 }
 
 .public-playlist-image {
-  height: 170px;
+  height: 180px;
   // border-radius: 5px;
   margin: auto 0px;
 }
