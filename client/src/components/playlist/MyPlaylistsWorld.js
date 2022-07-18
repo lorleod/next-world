@@ -42,7 +42,7 @@ const MyPlaylistsWorld = (props) => {
           alt={worldTitle}
         />
 
-        <h3 className="playlist-world-item-title">{worldTitle}</h3>
+        <h3 className="playlist-world-popup-title">{worldTitle}</h3>
         <h5 className="playlist-world-item-author">Author: {worldAuthor}</h5>
         <div className="playlist-world-item-description">
           {worldDescription}

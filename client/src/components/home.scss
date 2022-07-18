@@ -1,0 +1,61 @@
+.title {
+  font-family: "Rubik Moonrocks", cursive;
+  color: #ffd927;
+  font-size: 120px;
+  margin: 0px;
+}
+
+.slogan {
+  font-family: "Comfortaa", cursive;
+  font-size: 25px;
+  margin-top: 0px;
+  color: #b0d2e7;
+}
+
+.about {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 5px 0px #000000;
+  background-color: #fadb4fb1;
+  padding: 20px;
+  width: fit-content;
+  margin: 30px auto;
+}
+
+.about-text {
+  font-family: "Comfortaa", cursive;
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e2e2e;
+  margin: 0px;
+}
+
+.home-playlists-line {
+  border-bottom: #31363c83 solid 5px;
+  border-radius: 5px;
+  margin: 0 auto 27px auto;
+  width: 75%;
+  // background-color: #31363c83;
+}
+
+.home-playlists {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 5px 0px #000000;
+  background-color: #505050;
+  padding: 15px;
+  margin-bottom: 50px;
+}
+
+.home-header-text {
+  border-bottom: #31363c7f solid 5px;
+  border-radius: 5px;
+  width: 45%;
+  margin: auto;
+}

@@ -28,14 +28,13 @@ img.playlist-world-item-img {
 }
 
 .playlist-world-item-description {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   margin-bottom: 14px;
   font-size: 20px;
 }
 
 .playlist-world-wrapper {
   position: relative;
-
 }
 
 .playlist-world-item-title {
@@ -46,14 +45,14 @@ img.playlist-world-item-img {
   right: 0;
   height: fit-content;
   width: fit-content;
-  padding: 25px ;
+  padding: 25px;
   background: rgb(51 61 67 / 72%);
   border-radius: 10px;
   color: #fff;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s, visibility 0.2s;
-  margin:auto;
+  margin: auto;
 }
 
 .playlist-world-wrapper:hover .playlist-world-item-title {
@@ -83,7 +82,7 @@ a.playlist-world-item-launch-item:hover {
   cursor: pointer;
 }
 
-.playlist-world-item-delete-button{
+.playlist-world-item-delete-button {
   width: auto;
   font-family: "Comfortaa";
   font-size: 18px;
@@ -98,4 +97,8 @@ a.playlist-world-item-launch-item:hover {
 .playlist-world-item-delete-button:hover {
   background-color: #956868;
   cursor: pointer;
+}
+
+.playlist-world-popup-title {
+  font-size: 30px;
 }

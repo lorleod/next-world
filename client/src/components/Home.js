@@ -1,4 +1,5 @@
 import "../App.scss";
+import "./home.scss";
 import PublicPlaylistCard from "./playlist/PublicPlaylistCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -38,7 +39,24 @@ function Home() {
   });
 
   //display PublicPlaylistCard component array
-  return <div className="Home-container">{mappedHomePlaylists}</div>;
+  return (
+    <div className="Home-container">
+      <div className="home-info">
+        <div className="home-header-text">
+          <h1 className="title">NextWorld</h1>
+          <h3 className="slogan">Discover New Realities!</h3>
+        </div>
+        <div className="about">
+          <p className="about-text">
+            NextWorld is a portal where you can curate and share playlists of
+            your favourite worlds{" "}
+          </p>
+        </div>
+      </div>
+      <div className="home-playlists-line"> </div>
+      <div className="home-playlists">{mappedHomePlaylists}</div>
+    </div>
+  );
 }
 
 export default Home;
