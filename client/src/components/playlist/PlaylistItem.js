@@ -102,7 +102,7 @@ export default function PlaylistItem(props) {
       <BasicPopup trigger={popupWorld} setTrigger={setPopupWorld}>
         <img className="playlist-world-item-img" src={image} alt={title} />
 
-        <h3 className="playlist-world-item-title">{title}</h3>
+        <h3 className="playlist-world-popup-title">{title}</h3>
         <h5 className="playlist-world-item-author">Author: {author}</h5>
         <div className="playlist-world-item-description">{description}</div>
       </BasicPopup>
