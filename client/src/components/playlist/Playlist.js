@@ -241,18 +241,20 @@ function Playlist(props) {
               >
                 Edit Playlist Info
               </button>
-              {/* <button
-                className="playlist-page-playlist-fav"
-                onClick={favourite}
-              >
-                <i className="bi bi-heart">Favourite</i>
-              </button> */}
-              <button
-                className="playlist-page-playlist-fav-selected"
-                onClick={favourite}
-              >
-                <i className="bi bi-heart">Favourite</i>
-              </button>
+              {!inFavourites ? (
+                <button
+                  className="playlist-page-playlist-fav"
+                  onClick={favourite}
+                >
+                  <i className="bi bi-heart">Favourite</i>
+                </button>
+              ) : (
+                <button className="playlist-page-playlist-fav-selected">
+                  <i className="bi bi-heart-fill" onClick={removeFavourite}>
+                    Favourite
+                  </i>
+                </button>
+              )}
               <button
                 className="playlist-page-playlist-share"
                 onClick={copyToClipboard}

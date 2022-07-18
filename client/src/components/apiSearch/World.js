@@ -9,6 +9,7 @@ import AddSearchPopup from "../partials/popups/AddSearchPopup";
 const Cookies = require("js-cookie");
 function World(props) {
   const [popupAdded, setPopupAdded] = useState(false);
+  const [popupAddedInPlaylist, setPopupAddedInPlaylist] = useState(false);
   const [popupWorldInfo, setPopupWorldInfo] = useState(false);
   const [description, setDescription] = useState("");
   const [playlists, setPlaylists] = useState([]);
@@ -54,7 +55,7 @@ function World(props) {
       .then((data) => {
         console.log("addworld .then");
         if (data) {
-          setPopupAdded(true);
+          setPopupAddedInPlaylist(true);
         } else {
           alert("World add unsuccessful");
         }
@@ -83,11 +84,9 @@ function World(props) {
   return (
     <div className="playlist-world-item-container">
       <div className="playlist-world-wrapper" onClick={showWorldInfo}>
-     
         <img className="playlist-world-item-img" src={props.image} />
-        
-          <h3 className="playlist-world-item-title">{props.title}</h3>
 
+        <h3 className="playlist-world-item-title">{props.title}</h3>
       </div>
       {use ? (
         <button className="search-world-add-button" onClick={submit}>
@@ -100,11 +99,11 @@ function World(props) {
       )}
 
       <BasicPopup
-        trigger={popupAdded}
-        setTrigger={setPopupAdded}
+        trigger={popupAddedInPlaylist}
+        setTrigger={setPopupAddedInPlaylist}
         setReload={false}
       >
-        <h1>World Added to Playlist</h1>
+        <h1>{props.title} Added to Playlist</h1>
       </BasicPopup>
       <BasicPopup trigger={popupWorldInfo} setTrigger={setPopupWorldInfo}>
         <img className="img-world" src={props.image} />
