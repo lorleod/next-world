@@ -59,7 +59,7 @@ export default function MyFavouritesItem({
           </Link>
         </h3>
         <div className="public-playlist-right-container">
-          <div className="public-playlist-worlds-title"> Worlds</div>
+
           <div className="public-playlist-worlds-container">
             <div className="public-playlist-world-list">
               {mappedPlaysWorlds}
