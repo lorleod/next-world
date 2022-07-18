@@ -205,6 +205,7 @@ function Playlist(props) {
             <div>
               <form>
                 <input
+                className="create-playlist-title"
                   type="text"
                   placeholder="title"
                   value={title}
@@ -214,6 +215,7 @@ function Playlist(props) {
                 ></input>
                 <br />
                 <input
+                className="create-playlist-description"
                   type="text"
                   placeholder="description"
                   value={description}
@@ -222,7 +224,7 @@ function Playlist(props) {
                   }}
                 ></input>
               </form>
-              <button onClick={confirm}>Confirm</button>
+              <button className="create-playlist-create-button" onClick={confirm}>Confirm</button>
             </div>
           ) : (
             <div>

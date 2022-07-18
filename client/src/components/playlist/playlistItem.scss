@@ -11,14 +11,16 @@
 }
 
 h3.playlist-world-item-title {
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 30px;
   color: #fed928;
+  margin: auto;
 }
 
 h5.playlist-world-item-author {
-  font-family: 'Comfortaa';
-  color: #b3c7d2;
+  font-family: "Comfortaa";
+  font-size: 15px;
+  color: #1c252b;
 }
 
 img.playlist-world-item-img {
@@ -28,4 +30,71 @@ img.playlist-world-item-img {
 .playlist-world-item-description {
   font-family: 'Comfortaa';
   margin-bottom: 14px;
+  font-size: 20px;
+}
+
+.playlist-world-wrapper {
+  position: relative;
+
+}
+
+.playlist-world-item-title {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  width: fit-content;
+  padding: 25px ;
+  background: rgb(51 61 67 / 72%);
+  border-radius: 10px;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.playlist-world-wrapper:hover .playlist-world-item-title {
+  visibility: visible;
+  opacity: 1;
+}
+
+.playlist-world-button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+a.playlist-world-item-launch-item {
+  width: auto;
+  font-family: "Comfortaa";
+  font-size: 18px;
+  padding: 10px 0px;
+  text-align: center;
+  background-color: #5e9369;
+  border: none;
+  border-radius: 0px;
+  color: #2d2f32;
+}
+
+a.playlist-world-item-launch-item:hover {
+  background-color: #386641;
+  cursor: pointer;
+}
+
+.playlist-world-item-delete-button{
+  width: auto;
+  font-family: "Comfortaa";
+  font-size: 18px;
+  padding: 10px 0px;
+  text-align: center;
+  background-color: #be8989;
+  border: none;
+  border-radius: 0px;
+  color: #2d2f32;
+}
+
+.playlist-world-item-delete-button:hover {
+  background-color: #956868;
+  cursor: pointer;
 }

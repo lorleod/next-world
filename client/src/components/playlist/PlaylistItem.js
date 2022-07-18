@@ -72,25 +72,26 @@ export default function PlaylistItem(props) {
 
   return (
     <div className="playlist-world-item-container">
-      <div onClick={showWorldInfo}>
+      <div className="playlist-world-wrapper" onClick={showWorldInfo}>
         <img className="playlist-world-item-img" src={image} alt={title} />
 
         <h3 className="playlist-world-item-title">{title}</h3>
       </div>
       {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
-      <a className="playlist-world-item-launch-item" onClick={launchWorld}>
-        Launch Link
-      </a>
+      <div className="playlist-world-button-wrapper">
+        <a className="playlist-world-item-launch-item" onClick={launchWorld}>
+          Launch Link
+        </a>
 
-      {edit ? (
-        <button
-          className="playlist-world-item-delete-button"
-          onClick={deleteWorld}
-        >
-          Delete World
-        </button>
-      ) : null}
-
+        {edit ? (
+          <a
+            className="playlist-world-item-delete-button"
+            onClick={deleteWorld}
+          >
+            Delete World
+          </a>
+        ) : null}
+      </div>
       <RedirectPopup
         trigger={popupDeleted}
         setTrigger={setPopupDeleted}
