@@ -24,17 +24,19 @@ require("dotenv").config();
 app.use("/", express.static('../client/build'))
 
 //Routes
-app.use("/home", homeRoute);
-app.use("/user/register", registerRoute);
-app.use("/user/login", loginRoute);
-app.use("/user/logout", logoutRoute);
+app.use("/api/home", homeRoute);
+app.use("/api/user/register", registerRoute);
+app.use("/api/user/login", loginRoute);
+app.use("/api/user/logout", logoutRoute);
 app.use("/api/getWorld", api);
-app.use("/playlist", playlist);
-app.use("/playlist/create", createPlaylistRoute);
-app.use("/playlist/addworld", playlist);
-app.use("/playlist/delete", playlist);
-app.use("/user", dashboard);
-app.use("/favourites", favouritesRoute);
+app.use("/api/playlist", playlist);
+app.use("/api/playlist/create", createPlaylistRoute);
+app.use("/api/playlist/addworld", playlist);
+app.use("/api/playlist/delete", playlist);
+app.use("/api/user", dashboard);
+app.use("/api/favourites", favouritesRoute);
+
+app.use("/*", express.static('../client/build'))
 
 
 //Connecting to MongoDB

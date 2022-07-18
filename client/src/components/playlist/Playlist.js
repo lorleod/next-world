@@ -30,7 +30,7 @@ function Playlist(props) {
   // Get playlist info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/playlist/${playlistId}`).then((response) => {
+      await axios.get(`/api/playlist/${playlistId}`).then((response) => {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setWorlds(response.data.worldIds);
@@ -44,7 +44,7 @@ function Playlist(props) {
   // Get user info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/playlist/auth/${token}`).then((response) => {
+      await axios.get(`/api/playlist/auth/${token}`).then((response) => {
         setUser(response.data);
       });
     };
@@ -54,7 +54,7 @@ function Playlist(props) {
   // Get playlist favourite count
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/favourites/count/${playlistId}`).then((response) => {
+      await axios.get(`/api/favourites/count/${playlistId}`).then((response) => {
         console.log("favourite count", response.data);
         setFavourites(response.data.length);
       });
@@ -64,9 +64,8 @@ function Playlist(props) {
 
   // Authenticate user to show edit if user is owner
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`/playlist/auth/${token}/${playlistId}`)
+    const fetchData = () => {
+      axios.get(`/api/playlist/auth/${token}/${playlistId}`)
         .then((response) => {
           const auth = response.data;
           // console.log("auth: ", auth);
@@ -83,9 +82,8 @@ function Playlist(props) {
 
   // Check if user already favourited playlist
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`/favourites/check/${token}/${playlistId}`)
+    const fetchData = () => {
+      axios.get(`/api/favourites/check/${token}/${playlistId}`)
         .then((response) => {
           console.log(response.data.length);
           if (response.data.length > 0) {
@@ -98,13 +96,12 @@ function Playlist(props) {
     fetchData();
   }, [trigger]);
 
-  const confirm = async (event) => {
+  const confirm = (event) => {
     let confirm = window.confirm("Confirm edits");
     event.preventDefault();
     if (confirm) {
-      await axios
-        .post(
-          "/playlist/edit",
+      axios.post(
+          "/api/playlist/edit",
           {
             title: title,
             description: description,
@@ -124,8 +121,8 @@ function Playlist(props) {
     }
   };
 
-  const favourite = async () => {
-    await axios.post(`/favourites/${token}/${playlistId}`).then((response) => {
+  const favourite = () => {
+    axios.post(`/api/favourites/${token}/${playlistId}`).then((response) => {
       setPopupFavourite(true);
       setTrigger(true);
       setInterval(() => {
@@ -134,9 +131,8 @@ function Playlist(props) {
     });
   };
 
-  const removeFavourite = async () => {
-    await axios
-      .delete(`/favourites/delete/${token}/${playlistId}`)
+  const removeFavourite = () => {
+    axios.delete(`/favourites/delete/${token}/${playlistId}`)
       .then((response) => {
         setPopupRemoveFavourite(true);
         setTrigger(true);

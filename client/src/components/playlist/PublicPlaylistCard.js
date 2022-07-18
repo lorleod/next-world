@@ -10,9 +10,8 @@ export default function PublicPlaylistCard(props) {
   const playlistUrl = `/playlist/${props.playlistId}`;
   // console.log("props PPC: ", props);
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`/user/home/${props.authorId}`)
+    const fetchData = () => {
+      axios.get(`/api/user/home/${props.authorId}`)
         .then((response) => {
           // console.log("response.data.username ", response.data.username);
           setAuthor([response.data.username]);
@@ -24,9 +23,8 @@ export default function PublicPlaylistCard(props) {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`/favourites/count/${props.playlistId}`)
+    const fetchData = () => {
+      axios.get(`/api/favourites/count/${props.playlistId}`)
         .then((response) => {
           const favouritesCount = response.data.length;
           setFavourites(favouritesCount);

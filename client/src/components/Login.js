@@ -14,10 +14,10 @@ function Login() {
   const [popupLoginError, setPopupLoginError] = useState(false);
   const redirectUrl = "/user";
 
-  const submit = async (event) => {
+  const submit = (event) => {
     event.preventDefault();
-    const response = await axios.post(
-      "/user/login",
+    const response = axios.post(
+      "/api/user/login",
       {
         username: username,
         password: password,

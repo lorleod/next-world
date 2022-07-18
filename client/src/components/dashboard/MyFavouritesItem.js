@@ -18,7 +18,7 @@ export default function MyFavouritesItem({
   const token = Cookies.get("jwt");
 
   useEffect(() => {
-    axios.get(`/favourites/user/${playlistId}`).then((response) => {
+    axios.get(`/api/favourites/user/${playlistId}`).then((response) => {
       setTitle(response.data[0].title);
       setWorldIds(response.data[0].worldIds);
       console.log("worldIds in favourites", worldIds);
@@ -36,7 +36,7 @@ export default function MyFavouritesItem({
 
     if (confirm) {
       await axios
-        .delete(`/favourites/delete/${token}/${playlistId}`)
+        .delete(`/api/favourites/delete/${token}/${playlistId}`)
         .then((response) => {
           handleRemoveFavourite(true);
         })

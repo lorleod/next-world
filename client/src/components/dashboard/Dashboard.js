@@ -24,10 +24,9 @@ function UserDashboard(props) {
 
   // on page load:
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData =   () => {
       // GET request to user/:token returns the user and user's playlists
-      await axios
-        .get(`/user/${token}`, {
+      axios.get(`/api/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -39,10 +38,9 @@ function UserDashboard(props) {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       // GET request to user/:token returns the user and user's playlists
-      await axios
-        .get(`http://localhost:3001/user/${token}`, {
+      axios.get(`/api/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -55,10 +53,9 @@ function UserDashboard(props) {
 
   // on page load:
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       // GET request to favourites/:token returns all favourite playlists for that user
-      await axios
-        .get(`/favourites/${token}`, {
+      axios.get(`/api/favourites/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
