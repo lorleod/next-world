@@ -53,6 +53,7 @@ img.playlist-world-item-img {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s, visibility 0.2s;
+  margin:auto;
 }
 
 .playlist-world-wrapper:hover .playlist-world-item-title {

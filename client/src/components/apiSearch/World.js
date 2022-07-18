@@ -81,12 +81,13 @@ function World(props) {
     setPopupAdded(true);
   };
   return (
-    <div className="world-box">
-      <div className="world-box-popup-container" onClick={showWorldInfo}>
-        <img className="img-world" src={props.image} />
-        <div className="search-world-info-container">
-          <h2 className="search-world-title">{props.title}</h2>
-        </div>
+    <div className="playlist-world-item-container">
+      <div className="playlist-world-wrapper" onClick={showWorldInfo}>
+     
+        <img className="playlist-world-item-img" src={props.image} />
+        
+          <h3 className="playlist-world-item-title">{props.title}</h3>
+
       </div>
       {use ? (
         <button className="search-world-add-button" onClick={submit}>
