@@ -149,7 +149,9 @@ function Playlist(props) {
 
   // copies the current playlist url to user's clipboard
   const copyToClipboard = async () => {
-    navigator.clipboard.writeText(`/playlist/${playlistId}`);
+    navigator.clipboard.writeText(
+      `http://localhost:3000/playlist/${playlistId}`
+    );
     setPopupShared(true);
   };
 
@@ -168,12 +170,6 @@ function Playlist(props) {
           <p className="playlist-page-playlist-description">{description}</p>
 
           <div>
-            <button
-              className="playlist-page-playlist-edit"
-              onClick={editPlaylistInfo}
-            >
-              Edit Playlist
-            </button>
             {!inFavourites ? (
               <button
                 className="playlist-page-playlist-fav"
@@ -205,7 +201,7 @@ function Playlist(props) {
             <div>
               <form>
                 <input
-                className="create-playlist-title"
+                  className="create-playlist-title"
                   type="text"
                   placeholder="title"
                   value={title}
@@ -215,7 +211,7 @@ function Playlist(props) {
                 ></input>
                 <br />
                 <input
-                className="create-playlist-description"
+                  className="create-playlist-description"
                   type="text"
                   placeholder="description"
                   value={description}
@@ -224,7 +220,12 @@ function Playlist(props) {
                   }}
                 ></input>
               </form>
-              <button className="create-playlist-create-button" onClick={confirm}>Confirm</button>
+              <button
+                className="create-playlist-create-button"
+                onClick={confirm}
+              >
+                Confirm
+              </button>
             </div>
           ) : (
             <div>
