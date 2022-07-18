@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import WorldPlaylist from "./WorldPlaylist";
+// import WorldPlaylist from "./WorldPlaylist";
+import PlaylistItem from "./PlaylistItem";
 import BasicPopup from "../partials/popups/BasicPopup";
 
 function Playlist(props) {
@@ -17,6 +18,7 @@ function Playlist(props) {
   const [favourites, setFavourites] = useState([]);
   const [popupFavourite, setPopupFavourite] = useState(false);
   const [popupRemoveFavourite, setPopupRemoveFavourite] = useState(false);
+  const [popupDelete, setPopupDelete] = useState(false);
   const [popupShared, setPopupShared] = useState(false);
   const [inFavourites, setInFavourites] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
@@ -25,6 +27,7 @@ function Playlist(props) {
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
   const [trigger, setTrigger] = useState(false);
+  const [deleteWorldTrigger, setDeleteWorldTrigger] = useState(false);
   let token = Cookies.get("jwt");
 
   // Get playlist info
@@ -39,7 +42,7 @@ function Playlist(props) {
       });
     };
     fetchData();
-  }, []);
+  }, [deleteWorldTrigger]);
 
   // Get user info
   useEffect(() => {
@@ -159,6 +162,26 @@ function Playlist(props) {
     setEditInfo(true);
   };
 
+  const deleteWorldRefresh = async (event) => {
+    setDeleteWorldTrigger(event);
+    setPopupDelete(event);
+    setInterval(() => {
+      setDeleteWorldTrigger(false);
+    }, 10);
+  };
+
+  const worldPlayist = worlds.map((worldId, index) => {
+    let key = worldId.concat(index);
+    return (
+      <PlaylistItem
+        key={key}
+        worldId={worldId}
+        edit={edit}
+        deleteWorldRefresh={deleteWorldRefresh}
+      />
+    );
+  });
+
   return (
     <div>
       {!edit ? (
@@ -168,7 +191,6 @@ function Playlist(props) {
             Favourites: {favourites}
           </h5>
           <p className="playlist-page-playlist-description">{description}</p>
-
           <div>
             {!inFavourites ? (
               <button
@@ -192,8 +214,7 @@ function Playlist(props) {
               Share
             </button>
           </div>
-
-          <WorldPlaylist props={worlds} edit={edit} />
+          <div className="playlist-world-container">{worldPlayist}</div>;
         </div>
       ) : (
         <div className="result">
@@ -269,8 +290,7 @@ function Playlist(props) {
               </div>
             </div>
           )}
-
-          <WorldPlaylist props={worlds} edit={edit} />
+          <div className="playlist-world-container">{worldPlayist}</div>;
         </div>
       )}
       <BasicPopup
@@ -286,12 +306,11 @@ function Playlist(props) {
       >
         <h1>Playlist Removed from Favourites</h1>{" "}
       </BasicPopup>
-      <BasicPopup
-        trigger={popupShared}
-        setTrigger={setPopupShared}
-        setReload={false}
-      >
+      <BasicPopup trigger={popupShared} setTrigger={setPopupShared}>
         <h1>Link Copied to Clipboard</h1>
+      </BasicPopup>
+      <BasicPopup trigger={popupDelete} setTrigger={setPopupDelete}>
+        <h1>World Deleted</h1>
       </BasicPopup>
     </div>
   );

@@ -3,24 +3,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
-import RedirectPopup from "../partials/popups/RedirectPopup.js";
 import BasicPopup from "../partials/popups/BasicPopup.js";
 
-export default function PlaylistItem(props) {
+export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
-  const [popupDeleted, setPopupDeleted] = useState(false);
   const [popupWorld, setPopupWorld] = useState(false);
-  const edit = props.edit;
 
   const params = useParams();
   const redirectUrl = `/playlist/${params.id}`;
 
   useEffect(() => {
     axios
-      .get(`/api/getWorld/${props.worldId}`)
+      .get(`/api/getWorld/${worldId}`)
       .then((response) => {
         setTitle(response.data.name);
         setAuthor(response.data.authorName);
@@ -42,13 +39,13 @@ export default function PlaylistItem(props) {
         .delete(`/playlist/deleteworld`, {
           data: {
             playlistId: playlistId,
-            worldId: props.worldId,
+            worldId: worldId,
           },
         })
         .then((response) => {
           console.log("response.data: ", response.data);
           if (response.data === "deleted world") {
-            setPopupDeleted(true);
+            deleteWorldRefresh(true);
           }
         })
         .catch((error) => {});
@@ -61,7 +58,7 @@ export default function PlaylistItem(props) {
     );
 
     if (confirm) {
-      window.open(getLaunchLink(props.worldId));
+      window.open(getLaunchLink(worldId));
     }
   };
 
@@ -77,7 +74,6 @@ export default function PlaylistItem(props) {
 
         <h3 className="playlist-world-item-title">{title}</h3>
       </div>
-      {/* <a href={getLaunchLink(props.worldId)}>Launch Link</a> */}
       <div className="playlist-world-button-wrapper">
         <a className="playlist-world-item-launch-item" onClick={launchWorld}>
           Launch Link
@@ -92,13 +88,6 @@ export default function PlaylistItem(props) {
           </a>
         ) : null}
       </div>
-      <RedirectPopup
-        trigger={popupDeleted}
-        setTrigger={setPopupDeleted}
-        redirectUrl={redirectUrl}
-      >
-        <h1>World Deleted From Playlist</h1>
-      </RedirectPopup>
       <BasicPopup trigger={popupWorld} setTrigger={setPopupWorld}>
         <img className="playlist-world-item-img" src={image} alt={title} />
 
