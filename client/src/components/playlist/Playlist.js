@@ -33,15 +33,17 @@ function Playlist(props) {
   // Get playlist info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/playlist/${playlistId}`)
-      .then((response) => {
-        setTitle(response.data.title);
-        setDescription(response.data.description);
-        setWorlds(response.data.worldIds);
-        setPlaylistUserId(response.data.user_id);
-      }).catch((error) => {
-        console.log("error:", error)
-      });
+      await axios
+        .get(`/api/playlist/${playlistId}`)
+        .then((response) => {
+          setTitle(response.data.title);
+          setDescription(response.data.description);
+          setWorlds(response.data.worldIds);
+          setPlaylistUserId(response.data.user_id);
+        })
+        .catch((error) => {
+          console.log("error:", error);
+        });
     };
     fetchData();
   }, [deleteWorldTrigger]);
@@ -49,12 +51,14 @@ function Playlist(props) {
   // Get user info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/playlist/auth/${token}`)
-      .then((response) => {
-        setUser(response.data);
-      }).catch((error) => {
-        console.log("error:", error)
-      });
+      await axios
+        .get(`/api/playlist/auth/${token}`)
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.log("error:", error);
+        });
     };
     fetchData();
   }, []);
@@ -62,12 +66,14 @@ function Playlist(props) {
   // Get playlist favourite count
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/favourites/count/${playlistId}`)
-      .then((response) => {
-        setFavourites(response.data.length);
-      }).catch((error) => {
-        console.log("error:", error)
-      });
+      await axios
+        .get(`/api/favourites/count/${playlistId}`)
+        .then((response) => {
+          setFavourites(response.data.length);
+        })
+        .catch((error) => {
+          console.log("error:", error);
+        });
     };
     fetchData();
   }, [trigger]);
@@ -75,7 +81,8 @@ function Playlist(props) {
   // Authenticate user to show edit if user is owner
   useEffect(() => {
     const fetchData = () => {
-      axios.get(`/api/playlist/auth/${token}/${playlistId}`)
+      axios
+        .get(`/api/playlist/auth/${token}/${playlistId}`)
         .then((response) => {
           const auth = response.data;
           if (auth === "Authorized") {
@@ -85,7 +92,7 @@ function Playlist(props) {
           }
         })
         .catch((error) => {
-          console.log("error:", error)
+          console.log("error:", error);
         });
     };
     fetchData();
@@ -94,15 +101,17 @@ function Playlist(props) {
   // Check if user already favourited playlist
   useEffect(() => {
     const fetchData = () => {
-      axios.get(`/api/favourites/check/${token}/${playlistId}`)
+      axios
+        .get(`/api/favourites/check/${token}/${playlistId}`)
         .then((response) => {
           if (response.data.length > 0) {
             setInFavourites(true);
           } else {
             setInFavourites(false);
           }
-        }).catch((error) => {
-          console.log("error:", error)
+        })
+        .catch((error) => {
+          console.log("error:", error);
         });
     };
     fetchData();
@@ -112,7 +121,8 @@ function Playlist(props) {
     let confirm = window.confirm("Confirm edits");
     event.preventDefault();
     if (confirm) {
-      axios.post(
+      axios
+        .post(
           "/api/playlist/edit",
           {
             title: title,
@@ -130,27 +140,31 @@ function Playlist(props) {
           } else {
             alert("Playlist creation unscuccessful");
           }
-        }).catch((error) => {
-          console.log("error:", error)
+        })
+        .catch((error) => {
+          console.log("error:", error);
         });
     }
   };
 
   const favourite = () => {
-    axios.post(`/api/favourites/${token}/${playlistId}`)
-    .then((response) => {
-      setPopupFavourite(true);
-      setTrigger(true);
-      setInterval(() => {
-        setTrigger(false);
-      }, 10);
-    }).catch((error) => {
-      console.log("error:", error)
-    });
+    axios
+      .post(`/api/favourites/${token}/${playlistId}`)
+      .then((response) => {
+        setPopupFavourite(true);
+        setTrigger(true);
+        setInterval(() => {
+          setTrigger(false);
+        }, 10);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
   };
 
   const removeFavourite = () => {
-    axios.delete(`/api/favourites/delete/${token}/${playlistId}`)
+    axios
+      .delete(`/api/favourites/delete/${token}/${playlistId}`)
       .then((response) => {
         setPopupRemoveFavourite(true);
         setTrigger(true);
@@ -159,7 +173,7 @@ function Playlist(props) {
         }, 10);
       })
       .catch((error) => {
-        console.log("error:", error)
+        console.log("error:", error);
       });
   };
 
@@ -227,7 +241,7 @@ function Playlist(props) {
               Share
             </button>
           </div>
-          <div className="playlist-world-container">{worldPlayist}</div>;
+          <div className="playlist-world-container">{worldPlayist}</div>
         </div>
       ) : (
         <div className="result">
@@ -303,7 +317,7 @@ function Playlist(props) {
               </div>
             </div>
           )}
-          <div className="playlist-world-container">{worldPlayist}</div>;
+          <div className="playlist-world-container">{worldPlayist}</div>
         </div>
       )}
       <BasicPopup
