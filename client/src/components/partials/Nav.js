@@ -71,12 +71,13 @@ function Nav({ userToken }) {
           <Link className="nav-home" to="/">
             <li className="nav-link-item">Home</li>
           </Link>
-          <Link className="nav-dashboard" to="/user">
-            <li className="nav-link-item">Dashboard</li>
-          </Link>
           <Link className="nav-search" to="/search">
             <li className="nav-link-item">Search</li>
           </Link>
+          <Link className="nav-dashboard" to="/user">
+            <li className="nav-link-item">Dashboard</li>
+          </Link>
+
           <Link className="nav-logout" onClick={logout} to="">
             <li className="nav-link-item">Logout</li>
           </Link>

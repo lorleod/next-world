@@ -11,8 +11,8 @@ const MyPlaylistsWorld = (props) => {
   const [popupWorldInfo, setPopupWorldInfo] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
+    const fetchData = () => {
+      axios
         .get(`/api/getWorld/${props.worldId}`)
         .then((response) => {
           // console.log("response.data.title ", response.data.thumbnailImageUrl);
