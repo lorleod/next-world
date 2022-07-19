@@ -12,7 +12,6 @@ function Register() {
   const redirectUrl = "/user";
   const submit = async (event) => {
     event.preventDefault();
-    // console.log(username + password);
     const response = await axios.post(
       "/api/user/register",
       {

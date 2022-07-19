@@ -1,17 +1,15 @@
 import "../../App.scss";
 import "./AddWorld.scss";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import WorldList from "../partials/WorldList";
 import World from "./World";
 import axios from "axios";
 
 // Page to seach and add world to a playlist
 function SearchWorld() {
-  const params = useParams();
-  const playlistId = params.id;
-  const playlistUrl = `/playlist/${playlistId}`;
+  let data = [];
+
   const [state, setState] = useState({
     results: [],
   });
@@ -21,20 +19,20 @@ function SearchWorld() {
     const response = await axios
       .post("/api/getWorld", { text: text })
       .then((response) => {
-        // console.log("addWorld search results: ", response.data);
-        // const results = response.data
         return response;
+      }).catch((error) => {
+        console.log("error:", error)
       });
 
     setState((prevState) => {
       return { ...prevState, results: response };
     });
   };
-  let data = [];
+
+  
 
   if (state.results.data) {
     data = state.results.data;
-    console.log("data: ", data);
   }
 
   let worldList = data.map((item) => (

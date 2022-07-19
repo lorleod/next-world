@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-// import WorldPlaylist from "./WorldPlaylist";
 import PlaylistItem from "./PlaylistItem";
 import BasicPopup from "../partials/popups/BasicPopup";
 
@@ -22,24 +21,26 @@ function Playlist(props) {
   const [popupShared, setPopupShared] = useState(false);
   const [inFavourites, setInFavourites] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
-  const navigate = useNavigate();
+  const [trigger, setTrigger] = useState(false);
+  const [deleteWorldTrigger, setDeleteWorldTrigger] = useState(false);
 
+  const navigate = useNavigate();
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
   const playlistId = params.id;
-  const [trigger, setTrigger] = useState(false);
-  const [deleteWorldTrigger, setDeleteWorldTrigger] = useState(false);
   let token = Cookies.get("jwt");
 
   // Get playlist info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/playlist/${playlistId}`).then((response) => {
+      await axios.get(`/api/playlist/${playlistId}`)
+      .then((response) => {
         setTitle(response.data.title);
         setDescription(response.data.description);
         setWorlds(response.data.worldIds);
         setPlaylistUserId(response.data.user_id);
-        // console.log("playist information", response.data);
+      }).catch((error) => {
+        console.log("error:", error)
       });
     };
     fetchData();
@@ -48,8 +49,11 @@ function Playlist(props) {
   // Get user info
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/playlist/auth/${token}`).then((response) => {
+      await axios.get(`/api/playlist/auth/${token}`)
+      .then((response) => {
         setUser(response.data);
+      }).catch((error) => {
+        console.log("error:", error)
       });
     };
     fetchData();
@@ -58,9 +62,11 @@ function Playlist(props) {
   // Get playlist favourite count
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`/api/favourites/count/${playlistId}`).then((response) => {
-        console.log("favourite count", response.data);
+      await axios.get(`/api/favourites/count/${playlistId}`)
+      .then((response) => {
         setFavourites(response.data.length);
+      }).catch((error) => {
+        console.log("error:", error)
       });
     };
     fetchData();
@@ -72,14 +78,15 @@ function Playlist(props) {
       axios.get(`/api/playlist/auth/${token}/${playlistId}`)
         .then((response) => {
           const auth = response.data;
-          // console.log("auth: ", auth);
           if (auth === "Authorized") {
             setEdit(true);
           } else {
             setEdit(false);
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     };
     fetchData();
   }, []);
@@ -89,12 +96,13 @@ function Playlist(props) {
     const fetchData = () => {
       axios.get(`/api/favourites/check/${token}/${playlistId}`)
         .then((response) => {
-          console.log(response.data.length);
           if (response.data.length > 0) {
             setInFavourites(true);
           } else {
             setInFavourites(false);
           }
+        }).catch((error) => {
+          console.log("error:", error)
         });
     };
     fetchData();
@@ -122,22 +130,27 @@ function Playlist(props) {
           } else {
             alert("Playlist creation unscuccessful");
           }
+        }).catch((error) => {
+          console.log("error:", error)
         });
     }
   };
 
   const favourite = () => {
-    axios.post(`/api/favourites/${token}/${playlistId}`).then((response) => {
+    axios.post(`/api/favourites/${token}/${playlistId}`)
+    .then((response) => {
       setPopupFavourite(true);
       setTrigger(true);
       setInterval(() => {
         setTrigger(false);
       }, 10);
+    }).catch((error) => {
+      console.log("error:", error)
     });
   };
 
   const removeFavourite = () => {
-    axios.delete(`/favourites/delete/${token}/${playlistId}`)
+    axios.delete(`/api/favourites/delete/${token}/${playlistId}`)
       .then((response) => {
         setPopupRemoveFavourite(true);
         setTrigger(true);
@@ -145,7 +158,9 @@ function Playlist(props) {
           setTrigger(false);
         }, 10);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log("error:", error)
+      });
   };
 
   // copies the current playlist url to user's clipboard

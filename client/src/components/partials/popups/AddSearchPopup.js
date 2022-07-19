@@ -12,16 +12,15 @@ function AddSearchPopup({
 }) {
   const [popupAdded, setPopupAdded] = useState(false);
   const [title, setTitle] = useState("");
+
   const close = () => {
     setTrigger(false);
   };
 
   const mappedPlaylists = playlists.map((playlist) => {
     const addWorld = async () => {
-      console.log("add world", playlist._id);
-      await axios
-        .post(
-          "/playlist/addworld",
+      await axios.post(
+          "/api/playlist/addworld",
           {
             worldId: worldId,
             playlistId: playlist._id,
@@ -29,7 +28,6 @@ function AddSearchPopup({
           { withCredentials: true, credentials: "include" }
         )
         .then((data) => {
-          console.log("addworld .then");
           if (data) {
             setTitle(playlist.title);
             setPopupAdded(true);

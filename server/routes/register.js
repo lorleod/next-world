@@ -11,7 +11,6 @@ router.post("/", async (req, res) => {
       { username: user.username, _id: user._id },
       "secret123"
     );
-    // res.cookie("jwt", token, { maxAge: maxAge });
     return res.status(201).json({ user: token });
   } catch (err) {
     console.log(err);

@@ -15,17 +15,19 @@ function WorldExpanded() {
   const [world, setWorld] = useState({});
   const [popupAdded, setPopupAdded] = useState(false);
   const [playlists, setPlaylists] = useState([]);
+
   const token = Cookies.get("jwt");
-  console.log("worldId: ", world_id);
+  let tags = [];
 
   useEffect(() => {
     axios
       .get(`/api/getWorld/${world_id}`)
       .then((response) => {
-        console.log("response.data: ", response.data);
         setWorld(response.data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log("error:", error)
+      });
   }, []);
 
   useEffect(() => {
@@ -38,19 +40,19 @@ function WorldExpanded() {
         .then((response) => {
           setPlaylists(response.data.playlists);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     };
     fetchData();
   }, []);
 
-  let tags = [];
+ 
   if (world.tags) {
     tags = world.tags;
   }
-  const tagLI = tags
 
-    .map((tag) => {
-      console.log("tag: ", tag);
+  const tagLI = tags.map((tag) => {
       return tag;
     })
     .join(", ");
@@ -62,13 +64,14 @@ function WorldExpanded() {
   const launchLink = () => {
     window.open(getLaunchLink(world_id));
   };
+
   return (
     <div className="world">
       <div>
         <h2 className="title">{world.name}</h2>
         <h3 className="author">Author: {world.authorName}</h3>
 
-        <img className="img-world" src={world.imageUrl} />
+        <img className="img-world" src={world.imageUrl} alt={world.name}/>
       </div>{" "}
       <button className="add-button" onClick={addSearch}>
         Add to Playlist

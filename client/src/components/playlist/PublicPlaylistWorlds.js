@@ -3,7 +3,6 @@ import axios from "axios";
 import WorldCardPopup from "../partials/popups/WorldCardPopup";
 
 const PublicPlaylistWorlds = (props) => {
-  // console.log("props PPW: ", props.worldId);
   const [worldTitle, setWorldTitle] = useState("");
   const [worldImage, setWorldImage] = useState("");
   const [worldDescription, setWorldDescription] = useState("");
@@ -15,7 +14,6 @@ const PublicPlaylistWorlds = (props) => {
       await axios
         .get(`/api/getWorld/${props.worldId}`)
         .then((response) => {
-          // console.log("response.data.title ", response.data.thumbnailImageUrl);
           setWorldTitle(response.data.name);
           setWorldImage(response.data.thumbnailImageUrl);
           setWorldDescription(response.data.description);
@@ -27,7 +25,6 @@ const PublicPlaylistWorlds = (props) => {
   }, []);
 
   const worldInfo = () => {
-    console.log("worldInfo");
     setPopupWorldInfo(true);
   };
   return (

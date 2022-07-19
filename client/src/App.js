@@ -16,7 +16,6 @@ function App() {
   const [user, setUser] = useState({});
 
   const checkLogin = (event) => {
-    // console.log("event in app", event);
     setUser(event);
   };
   return (

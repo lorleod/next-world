@@ -17,7 +17,6 @@ router.post("/", async (req, res, next) => {
           },
           "secret123"
         );
-        // res.cookie("jwt", token, { maxAge: maxAge });
         return res.json({ status: "ok", user: token });
       }
       if (err) {

@@ -19,8 +19,7 @@ function CreatePlaylist() {
     let token = Cookies.get("jwt");
 
     // post create playlist request to backend
-    await axios
-      .post(
+    await axios.post(
         "/api/playlist/create",
         {
           title: title,
@@ -38,6 +37,8 @@ function CreatePlaylist() {
         } else {
           alert("Playlist creation unscuccessful");
         }
+      }).catch((error) => {
+        console.log("error:", error)
       });
   };
   return (

@@ -8,6 +8,7 @@ import WorldCardPopup from "../partials/popups/WorldCardPopup";
 import { useEffect, useState } from "react";
 import AddSearchPopup from "../partials/popups/AddSearchPopup";
 const Cookies = require("js-cookie");
+
 function World(props) {
   const [popupAdded, setPopupAdded] = useState(false);
   const [popupAddedInPlaylist, setPopupAddedInPlaylist] = useState(false);
@@ -15,8 +16,8 @@ function World(props) {
   const [description, setDescription] = useState("");
   const [playlists, setPlaylists] = useState([]);
   const [use, setUse] = useState();
+
   const params = useParams();
-  console.log("params: ", params);
   const playlistId = params.id;
   let token = Cookies.get("jwt");
 
@@ -36,14 +37,13 @@ function World(props) {
         .then((response) => {
           setPlaylists(response.data.playlists);
         })
-        .catch((error) => {});
+        .catch((error) => {console.log("error:", error)});
     };
     fetchData();
   }, []);
 
   const submit = (event) => {
     event.preventDefault();
-    console.log("addworld submit");
     axios
       .post(
         "/api/playlist/addworld",
@@ -54,7 +54,6 @@ function World(props) {
         { withCredentials: true, credentials: "include" }
       )
       .then((data) => {
-        console.log("addworld .then");
         if (data) {
           setPopupAddedInPlaylist(true);
         } else {
@@ -74,7 +73,7 @@ function World(props) {
           setPopupWorldInfo(true);
           setDescription(response.data.description);
         })
-        .catch((error) => {});
+        .catch((error) => {console.log("error:", error)});
     }
     fetchData();
   };
@@ -85,7 +84,7 @@ function World(props) {
   return (
     <div className="playlist-world-item-container">
       <div className="playlist-world-wrapper" onClick={showWorldInfo}>
-        <img className="playlist-world-item-img" src={props.image} />
+        <img className="playlist-world-item-img" src={props.image} alt={props.title}/>
 
         <h3 className="playlist-world-item-title">{props.title}</h3>
       </div>

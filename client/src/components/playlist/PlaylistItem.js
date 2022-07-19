@@ -13,7 +13,6 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
   const [popupWorld, setPopupWorld] = useState(false);
 
   const params = useParams();
-  const redirectUrl = `/playlist/${params.id}`;
 
   useEffect(() => {
     axios
@@ -24,7 +23,9 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
         setImage(response.data.thumbnailImageUrl);
         setDescription(response.data.description);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log("error:", error)
+      });
   }, []);
 
   const deleteWorld = function () {
@@ -33,8 +34,6 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
     let confirm = window.confirm("Are you sure you want to delete this world?");
 
     if (confirm) {
-      console.log("Deleting world");
-
       axios
         .delete(`/api/playlist/deleteworld`, {
           data: {
@@ -43,13 +42,13 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
           },
         })
         .then((response) => {
-          console.log("response.data: ", response.data);
-          console.log("response.data.success: ", response);
           if (response.data === "deleted world") {
             deleteWorldRefresh(true);
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     }
   };
 
@@ -59,7 +58,6 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
 
   const showWorldInfo = function () {
     setPopupWorld(true);
-    console.log("showWorldInfo");
   };
 
   return (

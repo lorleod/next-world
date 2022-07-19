@@ -13,10 +13,13 @@ export default function PublicPlaylistCard(props) {
     const fetchData = () => {
       axios.get(`/api/user/home/${props.authorId}`)
         .then((response) => {
-          // console.log("response.data.username ", response.data.username);
           setAuthor([response.data.username]);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log((error) => {
+            console.log("error:", error)
+          })
+        });
     };
 
     fetchData();
@@ -29,7 +32,9 @@ export default function PublicPlaylistCard(props) {
           const favouritesCount = response.data.length;
           setFavourites(favouritesCount);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     };
     fetchData();
   }, []);
@@ -40,7 +45,6 @@ export default function PublicPlaylistCard(props) {
     return <PublicPlaylistWorlds key={key} worldId={world} />;
   });
 
-  // console.log("favourites: ", favourites);
   return (
     <div className="public-playlist-container">
       <h3 className="public-playlist-title">

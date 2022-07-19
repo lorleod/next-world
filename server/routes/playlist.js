@@ -5,7 +5,6 @@ const User = require("../Schema/users-schema");
 
 router.get("/:playlistId", async (req, res) => {
   let playlistId = req.params.playlistId;
-  console.log("PLAYLIST ROUTE playlistId: ", playlistId);
 
   let ObjectId = require("mongodb").ObjectId;
   let o_id = new ObjectId(playlistId);
@@ -14,7 +13,6 @@ router.get("/:playlistId", async (req, res) => {
 
   return res.json(playlist);
 });
-// console.log("playlistID: ", playlistId);
 
 router.get("/auth/:token", async (req, res) => {
   try {
@@ -82,8 +80,6 @@ router.delete("/deleteworld", async (req, res) => {
     $pull: { worldIds: worldId },
   };
   let result = await Playlist.updateOne(filter, updatedDoc);
-
-  console.log("deleted world");
 
   res.json("deleted world");
 });

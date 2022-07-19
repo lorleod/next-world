@@ -17,12 +17,11 @@ function AddWorld() {
 
   //Takes input field and adds submit to API url
   const onSearch = async (text) => {
-    const response = await axios
-      .post("/api/getWorld", { text: text })
+    const response = await axios.post("/api/getWorld", { text: text })
       .then((response) => {
-        // console.log("addWorld search results: ", response.data);
-        // const results = response.data
         return response;
+      }).catch((error) => {
+        console.log("error:", error)
       });
 
     setState((prevState) => {

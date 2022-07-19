@@ -12,18 +12,15 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   const [confirmPopup, setConfirmPopup] = useState(false);
   const [title, setTitle] = useState("");
   const [worldIds, setWorldIds] = useState([]);
-  const [deleteTrigger, setDeleteTrigger] = useState(false);
-  // console.log("props userplaylistitem: ", props);
-  // console.log("playlistid", props.PlaylistId);
   const playlistUrl = `/playlist/${playlistId}`;
 
   useEffect(() => {
-    axios.get(`/api/playlist/${playlistId}`).then((response) => {
+    axios.get(`/api/playlist/${playlistId}`)
+    .then((response) => {
       setTitle(response.data.title);
       setWorldIds(response.data.worldIds);
-      console.log("worldIds in playlist", worldIds);
-      console.log("response in playlist", response.data);
-      // console.log()
+    }).catch((error) => {
+      console.log("error:", error)
     });
   }, []);
 
@@ -32,9 +29,7 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
       "Are you sure you want to delete this playlist?"
     );
     if (confirm === true) {
-      console.log("delete");
-      const response = axios
-        .delete(`/api/playlist/delete`, {
+      axios.delete(`/api/playlist/delete`, {
           data: { _id: playlistId },
         })
         .then((response) => {
@@ -49,10 +44,6 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
         });
     }
   };
-  //Set the confirm popup to true when the user clicks the delete button
-  // const handleDelete = (event) => {
-  //   setTrigger(event);
-  // };
 
   const mappedPlaysWorlds = worldIds.map((world, index) => {
     //generate a unique key for child - worldID alone breaks if two of same world
@@ -88,7 +79,6 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
       <ConfirmPopup
         trigger={confirmPopup}
         setTrigger={setConfirmPopup}
-        // handleDeleteConfirm={handleDelete}
       >
         <h1>Delete This Playlist?</h1>
       </ConfirmPopup>

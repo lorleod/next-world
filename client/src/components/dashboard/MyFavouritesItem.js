@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import MyPlaylistsWorld from "../playlist/MyPlaylistsWorld";
 import Cookies from "js-cookie";
 import BasicPopup from "../partials/popups/BasicPopup";
+
 // component to display each individual favourited playlist of current user
 export default function MyFavouritesItem({
   playlistId,
@@ -12,18 +13,19 @@ export default function MyFavouritesItem({
 }) {
   const [title, setTitle] = useState("");
   const [worldIds, setWorldIds] = useState([]);
-  const [trigger, setTrigger] = useState(false);
   const [popupRemoveFavourite, setPopupRemoveFavourite] = useState(false);
   const playlistUrl = `/playlist/${playlistId}`;
   const token = Cookies.get("jwt");
 
   useEffect(() => {
-    axios.get(`/api/favourites/user/${playlistId}`).then((response) => {
-      setTitle(response.data[0].title);
-      setWorldIds(response.data[0].worldIds);
-      console.log("worldIds in favourites", worldIds);
-      console.log("response in favourites", response.data);
-    });
+    axios.get(`/api/favourites/user/${playlistId}`)
+      .then((response) => {
+        setTitle(response.data[0].title);
+        setWorldIds(response.data[0].worldIds);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
   }, []);
 
   // pop up a confirmation then unfavourite if confirmed by user
@@ -35,12 +37,13 @@ export default function MyFavouritesItem({
     //if confirm equals true, send DELETE request to backend
 
     if (confirm) {
-      await axios
-        .delete(`/api/favourites/delete/${token}/${playlistId}`)
+      await axios.delete(`/api/favourites/delete/${token}/${playlistId}`)
         .then((response) => {
           handleRemoveFavourite(true);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     }
   };
 
@@ -59,7 +62,6 @@ export default function MyFavouritesItem({
           </Link>
         </h3>
         <div className="public-playlist-right-container">
-
           <div className="public-playlist-worlds-container">
             <div className="public-playlist-world-list">
               {mappedPlaysWorlds}

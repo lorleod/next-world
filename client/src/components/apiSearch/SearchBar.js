@@ -1,21 +1,10 @@
 import "./searchBar.scss";
-import { isValidElement, useState } from "react";
+import { useState } from "react";
 
 //
 function SearchBar(props) {
-  const [adv, setAdv] = useState(false);
   const { onSearch } = props;
   const [searchText, setSearchText] = useState("");
-
-  //onClick handler for showing advance form
-  const show = () => {
-    setAdv(true);
-  };
-
-  //onClick handler for hidding advance form
-  const hide = () => {
-    setAdv(false);
-  };
 
   //Changes state to input field
   const handleInput = (event) => {

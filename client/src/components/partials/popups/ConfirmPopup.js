@@ -1,8 +1,6 @@
 import "./Popup.scss";
-import { useState } from "react";
 
 function ConfirmPopup({ trigger, setTrigger, handleDeleteConfirm, children }) {
-  const [triggerSend, setTriggerSend] = useState(false);
   const close = () => {
     setTrigger(false);
   };

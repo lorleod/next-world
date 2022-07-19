@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import RedirectPopup from "./partials/popups/RedirectPopup";
 import BasicPopup from "./partials/popups/BasicPopup";
 import Nav from "./partials/Nav";
 
@@ -12,16 +11,13 @@ import Nav from "./partials/Nav";
 function Login({ checkLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [popupLoginSuccess, setPopupLoginSuccess] = useState(false);
   const [popupLoginError, setPopupLoginError] = useState(false);
   const [user, setUser] = useState(false);
-  const redirectUrl = "/user";
   const navigate = useNavigate();
 
   const submit = (event) => {
     event.preventDefault();
-    const response = axios
-      .post(
+    axios.post(
         "/api/user/login",
         {
           username: username,
@@ -31,18 +27,18 @@ function Login({ checkLogin }) {
       )
       .then((response) => {
         const data = response.data;
-        console.log("data", response);
 
         if (data.user) {
           Cookies.set("jwt", data.user, { expires: 7 });
-          // setPopupLoginSuccess(true);
           checkLogin(data.user);
           navigate("/user");
         } else {
           setPopupLoginError(true);
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log("error:", error)
+      });
   };
 
   <Nav setUserSend={user} />;
@@ -65,7 +61,7 @@ function Login({ checkLogin }) {
             <br />
             <input
               id="login-password-form"
-              type="text"
+              type="password"
               placeholder="password"
               onChange={(event) => {
                 setPassword(event.target.value);
@@ -78,13 +74,6 @@ function Login({ checkLogin }) {
           </form>
         </div>
       </div>
-      <RedirectPopup
-        trigger={popupLoginSuccess}
-        setTrigger={setPopupLoginSuccess}
-        redirectUrl={redirectUrl}
-      >
-        <h1>Login Successful</h1>
-      </RedirectPopup>
       <BasicPopup trigger={popupLoginError} setTrigger={setPopupLoginError}>
         <h1>Login Unsuccessful </h1>
       </BasicPopup>

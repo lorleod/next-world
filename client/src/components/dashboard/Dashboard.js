@@ -18,7 +18,7 @@ function UserDashboard(props) {
   const [triggerFavouritePopup, setTriggerFavouritePopup] = useState(false);
   const [triggerDeleteRefresh, setTriggerDeleteRefresh] = useState(false);
   const [triggerDeletePopup, setTriggerDeletePopup] = useState(false);
-  // console.log(MyFavouritesItem);
+
   // get user token from session
   let token = Cookies.get("jwt");
 
@@ -32,7 +32,9 @@ function UserDashboard(props) {
         .then((response) => {
           setUsername(response.data.username);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     };
     fetchData();
   }, []);
@@ -46,7 +48,9 @@ function UserDashboard(props) {
         .then((response) => {
           setPlaylists(response.data.playlists);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error:", error)
+        });
     };
     fetchData();
   }, [triggerDeleteRefresh]);
@@ -61,7 +65,9 @@ function UserDashboard(props) {
         .then((response) => {
           setFavourites(response.data);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log("error", error)
+        });
     };
     fetchData();
   }, [triggerFavouriteRefresh]);

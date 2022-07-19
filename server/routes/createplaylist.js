@@ -3,8 +3,6 @@ const Playlist = require("../Schema/playlists-schema");
 const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  // console.log("Playlist route req.body", req.body);
-
   const title = req.body.title;
   const description = req.body.description;
   const token = req.body.token;
@@ -22,7 +20,6 @@ router.post("/", async (req, res) => {
     });
     res.json(playlist._id)
   } catch (err) {
-    console.log(err);
     res.json({ status: "error", message: err });
   }
 });

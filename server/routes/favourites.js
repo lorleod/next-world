@@ -69,7 +69,6 @@ router.get("/check/:token/:playlist_id", async (req, res) => {
       user_id: user_id,
       playlist_id: playlist_id,
     });
-    console.log(favourites);
     res.json(favourites);
   } catch (error) {
     console.log(error);
