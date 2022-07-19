@@ -13,7 +13,7 @@ const MyPlaylistsWorld = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:3001/api/getWorld/${props.worldId}`)
+        .get(`/api/getWorld/${props.worldId}`)
         .then((response) => {
           // console.log("response.data.title ", response.data.thumbnailImageUrl);
           setWorldTitle(response.data.name);
