@@ -11,7 +11,8 @@ function Home() {
   // When page loads, get array of playlist objects from backend
   useEffect(() => {
     const fetchData = () => {
-      axios.get(`/api/home`, {
+      axios
+        .get(`/api/home`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -44,7 +45,6 @@ function Home() {
       <div className="home-info">
         <div className="home-header-text">
           <h1 className="title">NextWorld</h1>
-          <h3 className="slogan">Discover New Realities!</h3>
         </div>
         <div className="about">
           <p className="about-text">

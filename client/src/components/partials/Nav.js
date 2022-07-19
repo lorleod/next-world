@@ -44,6 +44,7 @@ function Nav({ userToken }) {
           NextWorld
         </Link>
       </h3>
+      <h3 className="slogan">Discover New Realities!</h3>
 
       {!user ? (
         <ul className="nav-list">
