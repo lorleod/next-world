@@ -1,9 +1,11 @@
 import "./world.scss";
+import "./worldexpanded.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AddSearchPopup from "../partials/popups/AddSearchPopup";
+import { getLaunchLink } from "../../helpers/getLaunchLink.js";
 import Cookies from "js-cookie";
 
 //Expanded view of world (more info) for playlist
@@ -30,7 +32,7 @@ function WorldExpanded() {
     const fetchData = async () => {
       // GET request to user/:token returns the user and user's playlists
       await axios
-        .get(`http://localhost:3001/user/${token}`, {
+        .get(`/api/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -57,21 +59,31 @@ function WorldExpanded() {
     setPopupAdded(true);
   };
 
+  const launchLink = () => {
+    window.open(getLaunchLink(world_id));
+  };
   return (
     <div className="world">
       <div>
-        <h2>{world.name}</h2>
-        <h3>{world.authorName}</h3>
-        <button className="search-world-add-button" onClick={addSearch}>
-          Add to Playlist
-        </button>
+        <h2 className="title">{world.name}</h2>
+        <h3 className="author">Author: {world.authorName}</h3>
+
         <img className="img-world" src={world.imageUrl} />
+      </div>{" "}
+      <button className="add-button" onClick={addSearch}>
+        Add to Playlist
+      </button>
+      <button className="launch-button" onClick={launchLink}>
+        Launch Link
+      </button>
+      <div className="desc-title">
+        <span>Description</span>
       </div>
-      <div className="world-desc">
-        <p>{world.description}</p>
+      <div className="world-description">
+        <p className="desc-text">{world.description}</p>
       </div>
       <div className="vr-stats">
-        <h4>Stats From VRChat</h4>
+        <h4 className="stats-title">Stats From VRChat</h4>
         <ul>
           <li>publication Date: {world.publicationDate}</li>
           <li>Capacity: {world.capacity}</li>

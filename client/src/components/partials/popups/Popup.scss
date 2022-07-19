@@ -69,8 +69,8 @@
 .cancel {
   font-family: "Comfortaa", cursive;
   font-size: 16px;
-  width: 20%;
-  margin: 10px 0px;
+  width: 25%;
+  margin: 10px 5px;
   padding: 10px;
   border-radius: 5px;
   background-color: #c7a296;
@@ -83,4 +83,34 @@
   color: #2d2f32;
   border: 1px solid #744538;
   cursor: pointer;
+}
+
+.view {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 25%;
+  margin: 10px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #5e9369;
+  color: #2d2f32;
+  border: 1px solid #2d2f32;
+}
+
+.view:hover {
+  background-color: #386641;
+  color: #2d2f32;
+  border: 1px solid #386641;
+  cursor: pointer;
+}
+
+.popup-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.view a {
+  color: #2d2f32;
 }

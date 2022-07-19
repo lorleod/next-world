@@ -12,12 +12,14 @@ function WorldCardPopup({ trigger, setTrigger, children, world_id }) {
       <div className="popup">
         <div className="popup-inner">
           {children}{" "}
-          <h2 className="cancel" onClick={close}>
-            Cancel
-          </h2>
-          <Link to={redirectUrl}>
-            <h2 className="cancel">View World</h2>
-          </Link>
+          <div className="popup-button-wrapper">
+            <h2 className="view">
+              <Link to={redirectUrl}>View World</Link>
+            </h2>
+            <h2 className="cancel" onClick={close}>
+              Close
+            </h2>
+          </div>
         </div>
       </div>
     </div>

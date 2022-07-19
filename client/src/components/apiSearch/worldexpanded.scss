@@ -1,0 +1,105 @@
+.add-button {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 25%;
+  margin: 20px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #5e9369;
+  color: #2d2f32;
+  border: 1px solid #2d2f32;
+}
+
+.add-button:hover {
+  background-color: #386641;
+  color: #2d2f32;
+  border: 1px solid #386641;
+  cursor: pointer;
+}
+
+.launch-button {
+  font-family: "Comfortaa", cursive;
+  font-size: 16px;
+  width: 25%;
+  margin: 20px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #71a6cc;
+  color: #2d2f32;
+  border: 1px solid #2d2f32;
+}
+
+.launch-button:hover {
+  background-color: #40769c;
+  color: #2d2f32;
+  border: 1px solid #40769c;
+  cursor: pointer;
+}
+.title {
+  font-family: "Rubik Moonrocks", cursive;
+  font-size: 70px;
+}
+
+.author {
+  font-family: "Comfortaa", cursive;
+  font-size: 25px;
+  font-weight: bold;
+  color: #2d2f32;
+}
+
+h3.author {
+  margin: 10px;
+}
+
+.img-world {
+  width: 60%;
+  margin: auto;
+}
+
+.world-description {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 5px 0px #000000;
+  background-color: #505050;
+  padding: 15px;
+  width: 65%;
+  margin: auto;
+}
+
+.desc-text {
+  font-family: "Comfortaa", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #b0d2e7;
+  margin-bottom: 20px;
+}
+
+.desc-title {
+  font-family: "Comfortaa", cursive;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fed928;
+  margin-bottom: 20px;
+}
+
+.stats-title {
+  font-family: "Comfortaa", cursive;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fed928;
+  margin-bottom: 20px;
+}
+
+.vr-stats ul {
+  list-style-type: none;
+}
+.vr-stats li {
+  font-family: "Comfortaa", cursive;
+  font-size: 15px;
+  font-weight: bold;
+  color: #2d2f32;
+  margin-bottom: 20px;
+}

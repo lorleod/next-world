@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import BasicPopup from "../partials/popups/BasicPopup";
+import WorldCardPopup from "../partials/popups/WorldCardPopup";
 import { useEffect, useState } from "react";
 import AddSearchPopup from "../partials/popups/AddSearchPopup";
 const Cookies = require("js-cookie");
@@ -29,7 +30,7 @@ function World(props) {
     const fetchData = async () => {
       // GET request to user/:token returns the user and user's playlists
       await axios
-        .get(`http://localhost:3001/user/${token}`, {
+        .get(`/api/user/${token}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -43,7 +44,8 @@ function World(props) {
   const submit = (event) => {
     event.preventDefault();
     console.log("addworld submit");
-    axios.post(
+    axios
+      .post(
         "/api/playlist/addworld",
         {
           worldId: props.world.id,
@@ -104,16 +106,21 @@ function World(props) {
       >
         <h1>{props.title} Added to Playlist</h1>
       </BasicPopup>
-      <BasicPopup trigger={popupWorldInfo} setTrigger={setPopupWorldInfo}>
-        <img className="img-world" src={props.image} />
-        <div className="search-world-info-container">
-          <h2 className="search-world-title">{props.title}</h2>
-          <h5 className="search-world-author">Author: {props.author}</h5>
-          <div className="search-world-description">
-            <p className="search-world-description-p">{description}</p>
-          </div>
-        </div>
-      </BasicPopup>
+      <WorldCardPopup
+        trigger={popupWorldInfo}
+        setTrigger={setPopupWorldInfo}
+        world_id={props.world.id}
+      >
+        <img
+          className="playlist-world-item-img"
+          src={props.image}
+          alt={props.title}
+        />
+
+        <h3 className="playlist-world-popup-title">{props.title}</h3>
+        <h5 className="playlist-world-item-author">Author: {props.author}</h5>
+        <div className="playlist-world-item-description">{description}</div>
+      </WorldCardPopup>
       <AddSearchPopup
         trigger={popupAdded}
         setTrigger={setPopupAdded}

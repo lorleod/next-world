@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import BasicPopup from "../partials/popups/BasicPopup";
+import WorldCardPopup from "../partials/popups/WorldCardPopup";
 
 const MyPlaylistsWorld = (props) => {
   // console.log("props PPW: ", props.worldId);
@@ -35,7 +35,11 @@ const MyPlaylistsWorld = (props) => {
       <div className="public-playlist-image-container" onClick={worldInfo}>
         <img className="public-playlist-image" src={worldImage} alt="world" />
       </div>
-      <BasicPopup trigger={popupWorldInfo} setTrigger={setPopupWorldInfo}>
+      <WorldCardPopup
+        trigger={popupWorldInfo}
+        setTrigger={setPopupWorldInfo}
+        world_id={props.worldId}
+      >
         <img
           className="playlist-world-item-img"
           src={worldImage}
@@ -47,7 +51,7 @@ const MyPlaylistsWorld = (props) => {
         <div className="playlist-world-item-description">
           {worldDescription}
         </div>
-      </BasicPopup>
+      </WorldCardPopup>
     </div>
   );
 };

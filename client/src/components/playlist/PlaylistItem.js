@@ -54,13 +54,7 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
   };
 
   const launchWorld = function () {
-    const confirm = window.confirm(
-      "Are you sure you want to launch this world? Will open in a new tab."
-    );
-
-    if (confirm) {
-      window.open(getLaunchLink(worldId));
-    }
+    window.open(getLaunchLink(worldId));
   };
 
   const showWorldInfo = function () {
