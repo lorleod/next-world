@@ -18,14 +18,13 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   const playlistUrl = `/playlist/${playlistId}`;
 
   useEffect(() => {
-    axios.get(`/api/playlist/${playlistId}`)
-      .then((response) => {
-        setTitle(response.data.title);
-        setWorldIds(response.data.worldIds);
-        console.log("worldIds in playlist", worldIds);
-        console.log("response in playlist", response.data);
-        // console.log()
-      });
+    axios.get(`/api/playlist/${playlistId}`).then((response) => {
+      setTitle(response.data.title);
+      setWorldIds(response.data.worldIds);
+      console.log("worldIds in playlist", worldIds);
+      console.log("response in playlist", response.data);
+      // console.log()
+    });
   }, []);
 
   const deletePlaylist = () => {
@@ -35,7 +34,7 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
     if (confirm === true) {
       console.log("delete");
       const response = axios
-        .delete(`/playlist/delete`, {
+        .delete(`/api/playlist/delete`, {
           data: { _id: playlistId },
         })
         .then((response) => {
@@ -64,24 +63,24 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   return (
     <div>
       <div className="public-playlist-container">
-          <h3 className="public-playlist-title">
-            <Link className="public-playlist-title-link" to={playlistUrl}>
-              {title}
-            </Link>
-          </h3>
-          <div className="public-playlist-right-container">
-            <div className="public-playlist-worlds-container">
-              <div className="public-playlist-world-list">
-                {mappedPlaysWorlds}
-              </div>
-            </div>
-            <div
-              className="public-playlist-delete-container"
-              onClick={deletePlaylist}
-            >
-              Delete
+        <h3 className="public-playlist-title">
+          <Link className="public-playlist-title-link" to={playlistUrl}>
+            {title}
+          </Link>
+        </h3>
+        <div className="public-playlist-right-container">
+          <div className="public-playlist-worlds-container">
+            <div className="public-playlist-world-list">
+              {mappedPlaysWorlds}
             </div>
           </div>
+          <div
+            className="public-playlist-delete-container"
+            onClick={deletePlaylist}
+          >
+            Delete
+          </div>
+        </div>
       </div>
       <BasicPopup trigger={popupDeleted} setTrigger={setPopupDeleted}>
         <h1>Playlist Deleted</h1>

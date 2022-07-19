@@ -36,7 +36,7 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
       console.log("Deleting world");
 
       axios
-        .delete(`/playlist/deleteworld`, {
+        .delete(`/api/playlist/deleteworld`, {
           data: {
             playlistId: playlistId,
             worldId: worldId,
@@ -44,6 +44,7 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
         })
         .then((response) => {
           console.log("response.data: ", response.data);
+          console.log("response.data.success: ", response);
           if (response.data === "deleted world") {
             deleteWorldRefresh(true);
           }
