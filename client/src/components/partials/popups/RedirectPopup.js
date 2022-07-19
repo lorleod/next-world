@@ -3,7 +3,6 @@ import "./Popup.scss";
 function PlaylistDeletedPopup(props) {
   const close = () => {
     props.setTrigger(false);
-    window.location.href = props.redirectUrl;
   };
 
   return props.trigger ? (

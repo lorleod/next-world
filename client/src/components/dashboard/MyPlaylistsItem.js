@@ -18,8 +18,7 @@ export default function MyPlaylistsItem({ playlistId, handleDeleteRefresh }) {
   const playlistUrl = `/playlist/${playlistId}`;
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/playlist/${playlistId}`)
+    axios.get(`/api/playlist/${playlistId}`)
       .then((response) => {
         setTitle(response.data.title);
         setWorldIds(response.data.worldIds);

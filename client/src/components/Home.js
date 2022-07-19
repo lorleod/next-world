@@ -10,9 +10,8 @@ function Home() {
 
   // When page loads, get array of playlist objects from backend
   useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get(`/home`, {
+    const fetchData = () => {
+      axios.get(`/api/home`, {
           withCredentials: true,
         })
         .then((response) => {

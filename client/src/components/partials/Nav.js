@@ -27,7 +27,7 @@ function Nav({ userToken }) {
   const logout = async (event) => {
     event.preventDefault();
     const response = await axios.post(
-      "/user/logout",
+      "/api/user/logout",
       {},
       { withCredentials: true }
     );

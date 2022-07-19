@@ -40,12 +40,11 @@ function World(props) {
     fetchData();
   }, []);
 
-  const submit = async (event) => {
+  const submit = (event) => {
     event.preventDefault();
     console.log("addworld submit");
-    await axios
-      .post(
-        "/playlist/addworld",
+    axios.post(
+        "/api/playlist/addworld",
         {
           worldId: props.world.id,
           playlistId: playlistId,
