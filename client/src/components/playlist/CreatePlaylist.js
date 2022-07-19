@@ -1,6 +1,7 @@
 import "../../App.scss";
 import "./createPlaylist.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -8,6 +9,7 @@ import Cookies from "js-cookie";
 function CreatePlaylist() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
   //submit form info to backend when triggered by user
   const submit = async (event) => {
@@ -32,7 +34,7 @@ function CreatePlaylist() {
         let data = response.data;
         if (data) {
           alert("Playlist Created");
-          window.location.href = `/playlist/${data}`;
+          navigate(`/playlist/${data}`);
         } else {
           alert("Playlist creation unscuccessful");
         }

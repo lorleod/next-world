@@ -1,22 +1,28 @@
 import "../../App.scss";
 import "./Nav.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import RedirectPopup from "./popups/RedirectPopup";
 
-function Nav() {
+function Nav({ userToken }) {
   const [user, setUser] = useState(false);
   const [popupLogoutSuccess, setPopupLogoutSuccess] = useState(false);
   const cookie = Cookies.get();
-  const redirectUrl = "/login";
+  const navigate = useNavigate();
   useEffect(() => {
     if (cookie.jwt) {
       setUser(true);
     }
+    if (userToken === {}) {
+      setUser(true);
+    }
   });
 
+  console.log("userToken", userToken);
+
+  // console.log("trigger from login", setUserSend);
   //Sends logout sumbit to backend to delete the cookies
   const logout = async (event) => {
     event.preventDefault();
@@ -28,7 +34,9 @@ function Nav() {
     const data = response.data;
 
     if (data.message === "logout successful") {
-      setPopupLogoutSuccess(true);
+      // setPopupLogoutSuccess(true);
+      setUser(false);
+      navigate("/login");
     } else {
       alert("Logout failed");
     }
@@ -77,7 +85,6 @@ function Nav() {
       <RedirectPopup
         trigger={popupLogoutSuccess}
         setTrigger={setPopupLogoutSuccess}
-        redirectUrl={redirectUrl}
       >
         <h1>Logout Successful</h1>
       </RedirectPopup>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { getLaunchLink } from "../../helpers/getLaunchLink.js";
-import BasicPopup from "../partials/popups/BasicPopup.js";
+import WorldCardPopup from "../partials/popups/WorldCardPopup";
 
 export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
   const [title, setTitle] = useState("");
@@ -88,13 +88,17 @@ export default function PlaylistItem({ edit, worldId, deleteWorldRefresh }) {
           </a>
         ) : null}
       </div>
-      <BasicPopup trigger={popupWorld} setTrigger={setPopupWorld}>
+      <WorldCardPopup
+        trigger={popupWorld}
+        setTrigger={setPopupWorld}
+        world_id={worldId}
+      >
         <img className="playlist-world-item-img" src={image} alt={title} />
 
         <h3 className="playlist-world-popup-title">{title}</h3>
         <h5 className="playlist-world-item-author">Author: {author}</h5>
         <div className="playlist-world-item-description">{description}</div>
-      </BasicPopup>
+      </WorldCardPopup>
     </div>
   );
 }

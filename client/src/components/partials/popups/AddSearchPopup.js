@@ -42,7 +42,7 @@ function AddSearchPopup({
         });
     };
     return (
-      <h3 className="playlist-titles" onClick={addWorld}>
+      <h3 className="playlist-titles" key={playlist._id} onClick={addWorld}>
         {playlist.title}
       </h3>
     );

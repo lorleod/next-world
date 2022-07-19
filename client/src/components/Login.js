@@ -1,18 +1,22 @@
 import "../App.scss";
 import "./login.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import RedirectPopup from "./partials/popups/RedirectPopup";
 import BasicPopup from "./partials/popups/BasicPopup";
+import Nav from "./partials/Nav";
 
 // user login page
-function Login() {
+function Login({ checkLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [popupLoginSuccess, setPopupLoginSuccess] = useState(false);
   const [popupLoginError, setPopupLoginError] = useState(false);
+  const [user, setUser] = useState(false);
   const redirectUrl = "/user";
+  const navigate = useNavigate();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -28,11 +32,15 @@ function Login() {
 
     if (data.user) {
       Cookies.set("jwt", data.user, { expires: 7 });
-      setPopupLoginSuccess(true);
+      // setPopupLoginSuccess(true);
+      checkLogin(data.user);
+      navigate("/user");
     } else {
       setPopupLoginError(true);
     }
   };
+
+  <Nav setUserSend={user} />;
 
   return (
     <div>

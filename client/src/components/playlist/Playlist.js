@@ -1,7 +1,7 @@
 import "./playlist.scss";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 // import WorldPlaylist from "./WorldPlaylist";
@@ -22,6 +22,7 @@ function Playlist(props) {
   const [popupShared, setPopupShared] = useState(false);
   const [inFavourites, setInFavourites] = useState(false);
   const [editInfo, setEditInfo] = useState(false);
+  const navigate = useNavigate();
 
   const params = useParams();
   const addWorldUrl = `/playlist/${params.id}/addworld`;
@@ -119,7 +120,8 @@ function Playlist(props) {
         .then((response) => {
           let data = response.data;
           if (data) {
-            window.location.href = `/playlist/${playlistId}`;
+            setEditInfo(false);
+            navigate(`/playlist/${playlistId}`);
           } else {
             alert("Playlist creation unscuccessful");
           }
