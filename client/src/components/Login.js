@@ -20,24 +20,29 @@ function Login({ checkLogin }) {
 
   const submit = (event) => {
     event.preventDefault();
-    const response = axios.post(
-      "/api/user/login",
-      {
-        username: username,
-        password: password,
-      },
-      { withCredentials: true, credentials: "include" }
-    );
-    const data = response.data;
+    const response = axios
+      .post(
+        "/api/user/login",
+        {
+          username: username,
+          password: password,
+        },
+        { withCredentials: true, credentials: "include" }
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log("data", response);
 
-    if (data.user) {
-      Cookies.set("jwt", data.user, { expires: 7 });
-      // setPopupLoginSuccess(true);
-      checkLogin(data.user);
-      navigate("/user");
-    } else {
-      setPopupLoginError(true);
-    }
+        if (data.user) {
+          Cookies.set("jwt", data.user, { expires: 7 });
+          // setPopupLoginSuccess(true);
+          checkLogin(data.user);
+          navigate("/user");
+        } else {
+          setPopupLoginError(true);
+        }
+      })
+      .catch((error) => {});
   };
 
   <Nav setUserSend={user} />;
