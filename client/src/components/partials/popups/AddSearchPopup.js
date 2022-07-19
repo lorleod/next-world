@@ -2,6 +2,7 @@ import "./Popup.scss";
 import axios from "axios";
 import { useState } from "react";
 import BasicPopup from "./BasicPopup";
+import { useNavigate } from "react-router-dom";
 
 function AddSearchPopup({
   trigger,
@@ -12,6 +13,7 @@ function AddSearchPopup({
 }) {
   const [popupAdded, setPopupAdded] = useState(false);
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const close = () => {
     setTrigger(false);
@@ -19,7 +21,8 @@ function AddSearchPopup({
 
   const mappedPlaylists = playlists.map((playlist) => {
     const addWorld = async () => {
-      await axios.post(
+      await axios
+        .post(
           "/api/playlist/addworld",
           {
             worldId: worldId,
@@ -46,12 +49,17 @@ function AddSearchPopup({
     );
   });
 
+  const create = async () => {
+    navigate("/playlist/create");
+  };
   return trigger ? (
     <div>
       <div className="popup">
         <div className="popup-inner-playlist">
-          {" "}
-          {mappedPlaylists}{" "}
+          <h2>Your Playlists</h2> {mappedPlaylists}{" "}
+          <h2 className="create" onClick={create}>
+            Create Playlist
+          </h2>
           <h2 className="cancel" onClick={close}>
             Cancel
           </h2>
