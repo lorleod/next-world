@@ -69,7 +69,7 @@ function World(props) {
   const showWorldInfo = () => {
     function fetchData() {
       axios
-        .get(`http://localhost:3001/api/getWorld/${props.world.id}`)
+        .get(`/api/getWorld/${props.world.id}`)
         .then((response) => {
           setPopupWorldInfo(true);
           setDescription(response.data.description);

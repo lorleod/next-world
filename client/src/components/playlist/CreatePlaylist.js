@@ -21,7 +21,7 @@ function CreatePlaylist() {
     // post create playlist request to backend
     await axios
       .post(
-        "/playlist/create",
+        "/api/playlist/create",
         {
           title: title,
           description: description,
