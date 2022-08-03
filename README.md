@@ -9,6 +9,7 @@ Main Contributors: [Taylor McLeod](https://github.com/lorleod), [Kevin Holmes](h
 
 Homepage - 
 
+
 User's Dashboard -
 
 Create a Playlist -
@@ -16,3 +17,7 @@ Create a Playlist -
 Edit a Playlist -
 
 Add a World to a Playlist -
+
+Launching a world in a playlist from within VR -
+<!-- ![Launching a world in a playlist from within VR](https://myoctocat.com/assets/images/base-octocat.svg) -->
+
