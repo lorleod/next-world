@@ -26,3 +26,15 @@ Add a World to a Playlist
 Edit a Playlist
 
 <img width="558" alt="Edit a Playlist" src="https://user-images.githubusercontent.com/3805194/182953433-2ead04ef-1cfc-42f5-89d2-44bdc09710d4.png">
+
+## Stack
+- MongoDB
+- ExpressJS
+- ReactJS
+- React Router
+- NodeJS
+- Bcrypt
+- JWT
+- Axios
+- Cookie-Parser
+- VRChat API
