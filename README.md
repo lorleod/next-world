@@ -21,6 +21,7 @@ Add a World to a Playlist -
 Launching a world in a playlist from within VR -
 <!-- ![Launching a world in a playlist from within VR](https://myoctocat.com/assets/images/base-octocat.svg) -->
 
+![gif2_compressed](https://user-images.githubusercontent.com/3805194/182944679-eac83922-21b1-428c-881b-8f41f2143d5d.gif)
 
 
 https://user-images.githubusercontent.com/3805194/182933409-c5165117-f713-48f9-ab17-c18405c1faa8.mp4
