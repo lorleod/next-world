@@ -11,10 +11,10 @@ Launching a world in a playlist from within VR
 ![Launching a world in a playlist from within VR](https://user-images.githubusercontent.com/3805194/182944679-eac83922-21b1-428c-881b-8f41f2143d5d.gif)
 
 Homepage
-<img width="1419" alt="Homepage" src="https://user-images.githubusercontent.com/3805194/182953329-a11298b7-518c-4806-9524-c5b936c7926a.png">
+<img alt="Homepage" src="https://user-images.githubusercontent.com/3805194/182953329-a11298b7-518c-4806-9524-c5b936c7926a.png">
 
 User's Dashboard
-<img width="573" alt="User's Dashboard" src="https://user-images.githubusercontent.com/3805194/182953359-822ff561-91cc-4224-ad74-fe3aacda7ee6.png">
+<img alt="User's Dashboard" src="https://user-images.githubusercontent.com/3805194/182953359-822ff561-91cc-4224-ad74-fe3aacda7ee6.png">
 
 View a Playlist
 <img width="1068" alt="Screen Shot 2022-08-04 at 11 31 28 AM" src="https://user-images.githubusercontent.com/3805194/182953418-d5633dfe-c165-4b41-947f-168a0ef91532.png">
