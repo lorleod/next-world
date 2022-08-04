@@ -17,10 +17,10 @@ User's Dashboard
 <img alt="User's Dashboard" src="https://user-images.githubusercontent.com/3805194/182953359-822ff561-91cc-4224-ad74-fe3aacda7ee6.png">
 
 View a Playlist
-<img width="1068" alt="Screen Shot 2022-08-04 at 11 31 28 AM" src="https://user-images.githubusercontent.com/3805194/182953418-d5633dfe-c165-4b41-947f-168a0ef91532.png">
-
-Edit a Playlist
-<img width="558" alt="Screen Shot 2022-08-04 at 11 31 41 AM" src="https://user-images.githubusercontent.com/3805194/182953433-2ead04ef-1cfc-42f5-89d2-44bdc09710d4.png">
+<img alt="View a Playlist" src="https://user-images.githubusercontent.com/3805194/182953418-d5633dfe-c165-4b41-947f-168a0ef91532.png">
 
 Add a World to a Playlist
-<img width="1026" alt="Screen Shot 2022-08-04 at 2 13 32 PM" src="https://user-images.githubusercontent.com/3805194/182953768-ae6f15d6-72fb-427a-9714-aba48dca1ada.png">
+<img alt="Add a World to a Playlist" src="https://user-images.githubusercontent.com/3805194/182953768-ae6f15d6-72fb-427a-9714-aba48dca1ada.png">
+
+Edit a Playlist
+<img width="558" alt="Edit a Playlist" src="https://user-images.githubusercontent.com/3805194/182953433-2ead04ef-1cfc-42f5-89d2-44bdc09710d4.png">
