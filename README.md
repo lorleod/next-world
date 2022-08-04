@@ -24,4 +24,5 @@ Add a World to a Playlist
 <img alt="Add a World to a Playlist" src="https://user-images.githubusercontent.com/3805194/182953768-ae6f15d6-72fb-427a-9714-aba48dca1ada.png">
 
 Edit a Playlist
+
 <img width="558" alt="Edit a Playlist" src="https://user-images.githubusercontent.com/3805194/182953433-2ead04ef-1cfc-42f5-89d2-44bdc09710d4.png">
