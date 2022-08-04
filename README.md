@@ -8,6 +8,7 @@ Main Contributors: [Taylor McLeod](https://github.com/lorleod), [Kevin Holmes](h
 ## Screenshots
 
 Launching a world in a playlist from within VR
+
 ![Launching a world in a playlist from within VR](https://user-images.githubusercontent.com/3805194/182944679-eac83922-21b1-428c-881b-8f41f2143d5d.gif)
 
 Homepage
