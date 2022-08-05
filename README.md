@@ -7,7 +7,7 @@ This project was created by: [Taylor McLeod](https://github.com/lorleod), [Kevin
 
 ## Screenshots
 
-A user using our site to transport themself to the first world in the "Cool Worlds" playlist without leaving VRChat
+A user using our site to go from their home world to the first world in the "Cool Worlds" playlist without leaving VRChat
 
 ![Launching a world in a playlist from within VR](https://user-images.githubusercontent.com/3805194/182944679-eac83922-21b1-428c-881b-8f41f2143d5d.gif)
 
