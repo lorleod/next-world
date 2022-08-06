@@ -41,7 +41,7 @@ app.use("/*", express.static('../client/build'))
 
 //Connecting to MongoDB
 mongoose.connect(
-  "mongodb+srv://NextWorld:KRT176LHL@nextworldcluster.i7wjs.mongodb.net/NextWorldDB?retryWrites=true&w=majority",
+  `mongodb+srv://${process.env.MONGODBSECRET}/NextWorldDB?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
   }
